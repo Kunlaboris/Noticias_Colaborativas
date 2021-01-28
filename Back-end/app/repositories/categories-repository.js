@@ -1,6 +1,5 @@
 'use strict';
 
-const { query } = require('express');
 const database = require('../infrastructure/database');
 
 async function createCategory(name) {

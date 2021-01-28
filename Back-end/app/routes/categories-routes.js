@@ -22,7 +22,7 @@ router
 router
   .route('/:id')
   // .all(validateAuth)
-  .get((req, res) => getCategoryById(req, res))
+  // .get((req, res) => getCategoryById(req, res))
   .patch((req, res) => updateCategory(req, res))
   .delete((req, res) => deleteCategoryById(req, res));
 

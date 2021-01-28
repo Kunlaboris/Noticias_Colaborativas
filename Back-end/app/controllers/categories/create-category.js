@@ -16,7 +16,7 @@ async function addCategory(req, res) {
     await schema.validateAsync(name);
     const existCategory = await findByCategory(name);
 
-    if (existCategory) {
+    if (!existCategory) {
       const error = new Error(`${name} is a category that we already have in our database`);
       error.status = 409;
       throw error;
