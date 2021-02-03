@@ -5,7 +5,7 @@ const getPool = require('../infrastructure/database');
 async function addVoteByIdUser(idUser, idNews, valuePositive, valueNegative) {
   const connection = await getPool();
   const insertQuery = `INSERT
- INTO usuario_noticia (id_usuario, id_noticia, valoraciones_positivas, valoraciones_negativas, fecha_valoracion)
+ INTO valoraciones (id_usuario, id_noticia, valoraciones_positivas, valoraciones_negativas, fecha_valoracion)
  VALUE (?, ?, ?, ?, now())`;
   const [create] = await connection.query(insertQuery, [idUser, idNews, valuePositive, valueNegative]);
 
@@ -15,7 +15,7 @@ async function addVoteByIdUser(idUser, idNews, valuePositive, valueNegative) {
 
 async function findVotesPositiveByIdNews(idNews) {
   const connection = await getPool();
-  const query = `SELECT COUNT(*) FROM usuario_noticia WHERE id_noticia = ? AND valoraciones_positivas = 1`;
+  const query = `SELECT COUNT(*) FROM valoraciones WHERE id_noticia = ? AND valoraciones_positivas = 1`;
   const [voting] = await connection.query(query, idNews);
 
   connection.release();
@@ -24,7 +24,7 @@ async function findVotesPositiveByIdNews(idNews) {
 
 async function findVotesNegativeByIdNews(idNews) {
   const connection = await getPool();
-  const query = `SELECT COUNT(*) FROM usuario_noticia WHERE id_noticia = ? AND valoraciones_negativas = 1`;
+  const query = `SELECT COUNT(*) FROM valoraciones WHERE id_noticia = ? AND valoraciones_negativas = 1`;
   const [voting] = await connection.query(query, idNews);
 
   connection.release();

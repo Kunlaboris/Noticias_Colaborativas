@@ -17,6 +17,7 @@ async function main() {
     await connection.query(`DROP TABLE IF EXISTS usuarios;`);
     await connection.query(`DROP TABLE IF EXISTS valoraciones;`);
     await connection.query(`DROP TABLE IF EXISTS comentarios;`);
+    await connection.query(`DROP TABLE IF EXISTS usuario_activacion;`);
 
     console.log('Tablas eliminadas.');
 
@@ -41,11 +42,13 @@ async function main() {
         email varchar(60) NOT NULL,
         nickname varchar(30) NOT NULL,
         contrasena varchar(100) NOT NULL,
+        rol varchar(20) NOT NULL DEFAULT "reader",
         fecha_creacion timestamp NULL DEFAULT CURRENT_TIMESTAMP
       );
     `);
 
     // Creamos la tabla noticias.
+
     await connection.query(`
       CREATE TABLE noticias (
         id INT PRIMARY KEY AUTO_INCREMENT,
@@ -85,6 +88,16 @@ async function main() {
           id_usuario int NOT NULL,
           FOREIGN KEY (id_usuario) REFERENCES usuarios (id) ON DELETE CASCADE
         )
+    `);
+
+    await connection.query(`
+    create table usuario_activacion (
+      id int unsigned auto_increment not null primary key,
+      user_id int not null, 
+      verification_code char(64) not null, 
+      created_at datetime not null,
+      verified_at datetime default null
+    );
     `);
 
     // Activamos la asignación de claves foráneas.

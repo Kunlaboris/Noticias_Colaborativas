@@ -90,7 +90,7 @@ async function findAllUsers() {
 async function findUserByEmail(email) {
   // llamada DB, el FALSE significa que no lo ha encontrado
   const connection = await getPool();
-  const query = 'SELECT * FROM usuario WHERE email = ?';
+  const query = 'SELECT * FROM usuarios WHERE email = ?';
   //HAY QUE ADAPTAR LA CONSULTA A LAS COLUMNAS DE LA BASE DE DATOS
   const [user] = await connection.query(query, email);
 
@@ -100,7 +100,7 @@ async function findUserByEmail(email) {
 
 async function findUserByNickname(nickname) {
   const connection = await getPool();
-  const query = 'SELECT * FROM usuario WHERE nickname = ?';
+  const query = 'SELECT * FROM usuarios WHERE nickname = ?';
   const [user] = await connection.query(query, nickname);
   return user[0];
 }
@@ -109,7 +109,7 @@ async function createUser(firstname, lastname, surname, nickname, email, birthDa
   const connection = await getPool();
   //HAY QUE ADAPTAR LA CONSULTA A LA BASE DE DATOS
   const insertQuery =
-    'INSERT INTO usuario (nombre, apellido_1, apellido_2, nickname, email, fecha_nacimiento, contrasena, biografia, rol) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)';
+    'INSERT INTO usuarios (nombre, apellido_1, apellido_2, nickname, email, fecha_nacimiento, contrasena, biografia, rol) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)';
   const [created] = await connection.query(insertQuery, [
     firstname,
     lastname,
@@ -128,7 +128,7 @@ async function createUser(firstname, lastname, surname, nickname, email, birthDa
 
 async function findUserById(id) {
   const connection = await getPool();
-  const query = 'SELECT * FROM usuario WHERE id = ?';
+  const query = 'SELECT * FROM usuarios WHERE id = ?';
   const [users] = await connection.query(query, id);
 
   connection.release();
@@ -139,7 +139,7 @@ async function findUserById(id) {
 
 async function removeUserById(id) {
   const connection = await getPool();
-  const query = 'DELETE FROM usuario WHERE id = ?';
+  const query = 'DELETE FROM usuarios WHERE id = ?';
   await connection.query(query, id);
   connection.release();
   return true;
@@ -147,7 +147,7 @@ async function removeUserById(id) {
 
 async function uploadUserProfileImage(id, image) {
   const connection = await getPool();
-  const updateQuery = 'UPDATE usuario SET foto = ? WHERE id =?';
+  const updateQuery = 'UPDATE usuarios SET foto = ? WHERE id =?';
   await connection.query(updateQuery, [image, id]);
 
   connection.release();
