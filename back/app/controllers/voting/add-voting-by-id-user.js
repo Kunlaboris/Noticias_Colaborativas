@@ -14,6 +14,7 @@ const schema = Joi.object().keys({
 async function addVotingByIdUser(req, res) {
   try {
     // const { id } = req.auth;
+    // esto fjkafdk afkkakask
     const id = 1;
 
     const { idNews, valuePositive, valueNegative } = req.body;
