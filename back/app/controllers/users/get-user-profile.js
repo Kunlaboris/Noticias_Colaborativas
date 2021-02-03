@@ -1,8 +1,7 @@
-"use strict";
+'use strict';
 
-const Joi = require("joi");
-const { findUserById } = require("../../repositories/users-repository");
-const createJsonError = require("../errors/create-json-errors");
+const { findUserById } = require('../../repositories/users-repository');
+const createJsonError = require('../errors/create-json-errors');
 
 async function getUserProfile(req, res) {
   try {
@@ -27,7 +26,7 @@ async function getUserProfile(req, res) {
     };
 
     //Si el usuario que pedimos es el nuestro o el token es de admin mostrarmos toda la info
-    if (parseInt(id) === userId || userRol === "admin") {
+    if (parseInt(id) === userId || userRol === 'admin') {
       delete user.contrasena;
 
       return res.send({

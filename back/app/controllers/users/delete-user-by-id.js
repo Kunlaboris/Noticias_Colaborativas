@@ -1,18 +1,15 @@
-"use strict";
+'use strict';
 
-const Joi = require("joi");
-const {
-  removeUserById,
-  findUserById,
-} = require("../../repositories/users-repository");
-const createJsonError = require("../errors/create-json-errors");
+const Joi = require('joi');
+const { removeUserById, findUserById } = require('../../repositories/users-repository');
+const createJsonError = require('../errors/create-json-errors');
 
 const schema = Joi.number().positive();
 
 async function deleteUserById(req, res) {
   try {
-    if (req.auth.rol !== "admin") {
-      const error = new Error("No tienes permiso para realizar esta acción");
+    if (req.auth.rol !== 'admin') {
+      const error = new Error('No tienes permiso para realizar esta acción');
       error.status = 403;
       throw error;
     }
@@ -23,13 +20,13 @@ async function deleteUserById(req, res) {
 
     const user = await findUserById(id);
     if (!user) {
-      const error = new Error("Este usuario no existe");
+      const error = new Error('Este usuario no existe');
       error.status = 400;
       throw error;
     }
 
-    if (user.rol === "admin") {
-      const error = new Error("No se puede borrar un usuario administrador");
+    if (user.rol === 'admin') {
+      const error = new Error('No se puede borrar un usuario administrador');
       error.status = 403;
       throw error;
     }
@@ -37,7 +34,7 @@ async function deleteUserById(req, res) {
     await removeUserById(id);
 
     res.send({
-      message: "usuario borrado",
+      message: 'usuario borrado',
     });
   } catch (err) {
     createJsonError(err, res);

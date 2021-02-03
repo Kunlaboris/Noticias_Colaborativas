@@ -1,11 +1,11 @@
-"use strict";
+'use strict';
 
-const Joi = require("joi");
-const jwt = require("jsonwebtoken");
+const Joi = require('joi');
+const jwt = require('jsonwebtoken');
 
-const bcrypt = require("bcryptjs");
-const { findUserByEmail } = require("../../repositories/users-repository");
-const createJsonError = require("../errors/create-json-errors");
+const bcrypt = require('bcryptjs');
+const { findUserByEmail } = require('../../repositories/users-repository');
+const createJsonError = require('../errors/create-json-errors');
 
 const schema = Joi.object().keys({
   email: Joi.string().email().required(),
@@ -27,7 +27,7 @@ async function loginUser(req, res) {
 
     const user = await findUserByEmail(email);
     if (!user) {
-      const error = new Error("No existe un usuario con este email");
+      const error = new Error('No existe un usuario con este email');
       error.code = 401;
       throw error;
     }
@@ -36,14 +36,14 @@ async function loginUser(req, res) {
     // hay que validar el PASSWORD
     const isValidPassword = await bcrypt.compare(password, user.contrasena);
     if (!isValidPassword) {
-      const error = new Error("Email o password no válido");
+      const error = new Error('Email o password no válido');
       error.code = 401;
       throw error;
     }
 
     const secret = process.env.JWT_SECRET;
     const { id, nickname, rol } = user;
-    const jwtTokenExpiration = "10d";
+    const jwtTokenExpiration = '10d';
     const payload = { id, nickname, rol };
     const token = jwt.sign(payload, secret, { expiresIn: jwtTokenExpiration });
 

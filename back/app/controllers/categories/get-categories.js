@@ -1,6 +1,5 @@
 'use strict';
 
-const Joi = require('joi');
 const { findAllCategories } = require('../../repositories/categories-repository');
 const createJsonError = require('../errors/create-json-errors');
 

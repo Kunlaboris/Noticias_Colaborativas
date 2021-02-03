@@ -1,8 +1,8 @@
-"use strict";
+'use strict';
 
-const Joi = require("joi");
-const bcrypt = require("bcryptjs");
-const cryptoRandomString = require("crypto-random-string");
+const Joi = require('joi');
+const bcrypt = require('bcryptjs');
+const cryptoRandomString = require('crypto-random-string');
 
 const {
   findUserByEmail,
@@ -10,26 +10,26 @@ const {
   findUserById,
   addVerificationCode,
   deleteOldVerificationCode,
-} = require("../../repositories/users-repository");
+} = require('../../repositories/users-repository');
 
-const createJsonError = require("../errors/create-json-errors");
-const { sendEmailRegistration } = require("../../../mail-smtp");
+const createJsonError = require('../errors/create-json-errors');
+const { sendEmailRegistration } = require('../../../mail-smtp');
 
 const schema = Joi.object().keys({
   firstname: Joi.string().min(3).max(40).required(),
   lastname: Joi.string().min(3).max(40).required(),
-  surname: Joi.string().allow(null, ""),
+  surname: Joi.string().allow(null, ''),
   nickname: Joi.string().min(3).max(40).required(),
   email: Joi.string().email().required(),
-  birthDate: Joi.date().less("now"),
+  birthDate: Joi.date().less('now'),
   password: Joi.string().min(4).max(100).required(),
-  repeatPassword: Joi.ref("password"),
+  repeatPassword: Joi.ref('password'),
   biography: Joi.string().max(250),
 });
 
 const schemaPassword = Joi.object().keys({
   password: Joi.string().min(4).max(100).required(),
-  repeatPassword: Joi.ref("password"),
+  repeatPassword: Joi.ref('password'),
 });
 
 async function updateUser(req, res) {
@@ -43,7 +43,7 @@ async function updateUser(req, res) {
     const user = await findUserByEmail(email);
 
     if (user && user.id !== id) {
-      const error = new Error("Ya existe un usuario con ese email");
+      const error = new Error('Ya existe un usuario con ese email');
       error.status = 409;
       throw error;
     }
@@ -63,7 +63,7 @@ async function updateUser(req, res) {
       await addVerificationCode(id, verificationCode);
     }
 
-    await udpateUserById({ id, nickname, email, password: updatedPassword });
+    await updateUserById({ id, nickname, email, password: updatedPassword });
 
     res.send({ id, nickname, email, role: userById.role });
   } catch (err) {

@@ -1,30 +1,25 @@
-"use strict";
+'use strict';
 
-const createJsonError = require("../errors/create-json-errors");
-const path = require("path");
-const fs = require("fs");
+const createJsonError = require('../errors/create-json-errors');
 
-const {
-  findUserById,
-  uploadUserProfileImage,
-} = require("../../repositories/users-repository");
+const { findUserById, uploadUserProfileImage } = require('../../repositories/users-repository');
 
-const { uploadImage, deleteImage } = require("../../../helpers");
+const { uploadImage, deleteImage } = require('../../../helpers');
 
 async function uploadImageProfile(req, res) {
   try {
     const { id } = req.auth;
 
     if (!req.files || !req.files.avatar) {
-      const error = new Error("No se ha cargado ninguna imagen");
+      const error = new Error('No se ha cargado ninguna imagen');
       error.status = 400;
       throw error;
     }
 
     const avatar = req.files.avatar;
 
-    if (!avatar.mimetype.startsWith("image")) {
-      const error = new Error("El fichero subido no es una imagen");
+    if (!avatar.mimetype.startsWith('image')) {
+      const error = new Error('El fichero subido no es una imagen');
       error.status = 400;
       throw error;
     }
@@ -53,8 +48,8 @@ async function uploadImageProfile(req, res) {
 
     // devolvemos una respuesta
     res.send({
-      status: "ok",
-      message: "Avatar actualizado",
+      status: 'ok',
+      message: 'Avatar actualizado',
     });
   } catch (err) {
     createJsonError(err, res);

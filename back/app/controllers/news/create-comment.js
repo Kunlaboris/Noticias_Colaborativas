@@ -1,6 +1,6 @@
 'use strict';
 
-const getPool = require('../../infraestructure/database');
+const getPool = require('../../infrastructure/database');
 
 async function createComment(req, res, next) {
   let connection;

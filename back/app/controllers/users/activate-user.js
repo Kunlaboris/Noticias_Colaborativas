@@ -1,8 +1,8 @@
-"use strict";
+'use strict';
 
-const Joi = require("joi");
-const { validateActivation } = require("../../repositories/users-repository");
-const createJsonError = require("../errors/create-json-errors");
+const Joi = require('joi');
+const { validateActivation } = require('../../repositories/users-repository');
+const createJsonError = require('../errors/create-json-errors');
 
 const schema = Joi.string().min(64).max(64).required();
 
@@ -11,7 +11,7 @@ async function activateUser(req, res) {
     const { verification_code: verificationCode } = req.query;
 
     if (!verificationCode) {
-      const error = new Error("Invalid verification code");
+      const error = new Error('Invalid verification code');
       error.status(400);
       throw error;
     }
@@ -19,9 +19,9 @@ async function activateUser(req, res) {
 
     const isActivated = await validateActivation(verificationCode);
     if (!isActivated) {
-      res.send("Account not activated. Verification code expired.");
+      res.send('Account not activated. Verification code expired.');
     } else {
-      res.send("Account activate");
+      res.send('Account activate');
     }
   } catch (err) {
     createJsonError(err, res);

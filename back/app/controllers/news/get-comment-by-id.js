@@ -1,7 +1,7 @@
 'use strict';
 
 //Para crear una conexion
-const getPool = require('../../infraestructure/database');
+const getPool = require('../../infrastructure/database');
 
 async function getCommentById(req, res, next) {
   let connection;

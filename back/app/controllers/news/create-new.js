@@ -1,6 +1,6 @@
-"use strict";
+'use strict';
 
-const getPool = require("../../infraestructure/database");
+const getPool = require('../../infrastructure/database');
 
 async function createNew(req, res, next) {
   let connection;
@@ -12,7 +12,7 @@ async function createNew(req, res, next) {
 
     // Comprobamos que nos llegan todos los campos requeridos.
     if (!subject || !tag || !lead || !text) {
-      const error = new Error("Faltan campos.");
+      const error = new Error('Faltan campos.');
       error.httpStatus = 400;
       throw error;
     }
@@ -28,8 +28,8 @@ async function createNew(req, res, next) {
     //esto es una prueba si github esta funcionando
 
     res.send({
-      status: "ok",
-      message: "Se ha agregado una nueva noticia.",
+      status: 'ok',
+      message: 'Se ha agregado una nueva noticia.',
     });
   } catch (err) {
     next(err);

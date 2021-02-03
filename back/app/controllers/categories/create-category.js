@@ -21,7 +21,7 @@ async function addCategory(req, res) {
       error.status = 409;
       throw error;
     }
-    const id = await createCategory(name);
+    await createCategory(name);
     res.status(201).send(`${name} category has been created successfully`);
     // }
   } catch (err) {

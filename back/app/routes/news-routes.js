@@ -3,7 +3,7 @@
 const express = require('express');
 const newsControllers = require('../controllers/news');
 const isNew = require('../middlewares/isNew');
-const { validateAuth, isUser } = require('../middlewares/validate-auht');
+const { validateAuth, isUser } = require('../middlewares/validate-auth');
 
 const router = express.Router();
 

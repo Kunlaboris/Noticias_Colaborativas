@@ -1,6 +1,5 @@
 'use strict';
 
-const Joi = require('joi');
 const findNewsById = require('../../repositories/news-repository');
 const { findVotesPositiveByIdNews, findVotesNegativeByIdNews } = require('../../repositories/voting-repository');
 const createJsonError = require('../errors/create-json-errors');

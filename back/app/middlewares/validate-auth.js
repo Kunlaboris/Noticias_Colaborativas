@@ -1,6 +1,6 @@
-"use strict";
+'use strict';
 
-const jwt = require("jsonwebtoken");
+const jwt = require('jsonwebtoken');
 const { JWT_SECRET } = process.env;
 
 function validateAuth(req, res, next) {
@@ -11,11 +11,11 @@ function validateAuth(req, res, next) {
     // Validamos que viene en el header y empieza por Bearer, si no es así, se genera un error
     // El Bearer vienen por que postman simula que viene de un servidor
 
-    if (!authorization || !authorization.startsWith("Bearer")) {
+    if (!authorization || !authorization.startsWith('Bearer')) {
       return next();
     }
     // se separa la cadena donde hay un espacio y coge el primer elemento donde hay nuestro token
-    const accessToken = authorization.split(" ")[1];
+    const accessToken = authorization.split(' ')[1];
 
     // Esto leerá el payload del todo
     const payload = jwt.verify(accessToken, JWT_SECRET);
@@ -33,7 +33,7 @@ function validateAuth(req, res, next) {
 function isUser(req, res, next) {
   if (!req.auth) {
     res.status(403);
-    res.send({ error: "Autorización requerida" });
+    res.send({ error: 'Autorización requerida' });
   } else {
     next();
   }

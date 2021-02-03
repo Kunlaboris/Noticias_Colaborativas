@@ -1,46 +1,56 @@
 'use strict';
 
-const database = require('../infrastructure/database');
+const getPool = require('../infrastructure/database');
 
 async function createCategory(name) {
-  const pool = await database.getPool();
+  const connection = await getPool();
   const insertQuery = 'INSERT INTO categoria (nombre) VALUES (?)';
-  const [created] = await pool.query(insertQuery, [name]);
+  const [created] = await connection.query(insertQuery, [name]);
+  connection.release();
   return created.insertId;
 }
 
 async function findByCategory(name) {
-  const pool = await database.getPool();
+  const connection = await getPool();
   const query = 'SELECT * FROM categoria WHERE nombre = ?';
-  const [category] = await pool.query(query, [name]);
+  const [category] = await connection.query(query, [name]);
+  connection.release();
   return category[0];
 }
 
 async function findAllCategories() {
-  const pool = await database.getPool();
+  const connection = await getPool();
   const query = 'SELECT * FROM categoria';
-  const [category] = await pool.query(query);
+  const [category] = await connection.query(query);
+  connection.release();
+
   return category;
 }
 
 async function findCategoryById(id) {
-  const pool = await database.getPool();
+  const connection = await getPool();
   const query = 'SELECT * FROM categoria WHERE id = ?';
-  const [category] = await pool.query(query, id);
+  const [category] = await connection.query(query, id);
+  connection.release();
+
   return category[0];
 }
 
 async function updateCategoryById(id, name) {
-  const pool = await database.getPool();
+  const connection = await getPool();
   const updateQuery = 'UPDATE categoria SET nombre = ? WHERE id = ?';
-  await pool.query(updateQuery, [name, id]);
+  await connection.query(updateQuery, [name, id]);
+  connection.release();
+
   return true;
 }
 
 async function removeCategoryById(id) {
-  const pool = await database.getPool();
+  const connection = await getPool();
   const deleteQuery = 'DELETE FROM categoria WHERE id = ?';
-  await pool.query(deleteQuery, id);
+  await connection.query(deleteQuery, id);
+  connection.release();
+
   return true;
 }
 
