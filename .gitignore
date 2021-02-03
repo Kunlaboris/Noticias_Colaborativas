@@ -2,3 +2,4 @@
 /back/public/images
 /back/.env
 /back/access.log
+.DS_Store
