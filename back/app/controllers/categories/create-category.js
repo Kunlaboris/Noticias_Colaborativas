@@ -3,7 +3,7 @@
 const Joi = require('joi');
 const { createCategory, findByCategory } = require('../../repositories/categories-repository');
 const createJsonError = require('../errors/create-json-errors');
-
+//esto es un comentario de pueba de git
 const schema = Joi.string().min(3).max(100).required();
 async function addCategory(req, res) {
   try {
