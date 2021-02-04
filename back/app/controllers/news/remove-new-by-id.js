@@ -1,15 +1,12 @@
 'use strict';
 
+const createJsonError = require('../errors/create-json-errors');
+
 // Para crear una conexion
-const getPool = require('../../infrastructure/database');
 const { removeNewById } = require('../../repositories/news-repository');
 
 async function removeNewsById(req, res, next) {
-  let connection;
-
   try {
-    connection = await getPool();
-
     const { idNew } = req.params;
 
     await removeNewById(idNew);
@@ -19,9 +16,7 @@ async function removeNewsById(req, res, next) {
       message: 'La noticia ha sido eliminada.',
     });
   } catch (err) {
-    next(err);
-  } finally {
-    if (connection) connection.release();
+    createJsonError(err, res);
   }
 }
 

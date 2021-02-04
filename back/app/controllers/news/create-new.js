@@ -1,14 +1,10 @@
 'use strict';
 
-const getPool = require('../../infrastructure/database');
+const createJsonError = require('../errors/create-json-errors');
 const { createNews } = require('../../repositories/news-repository');
 
 async function addNews(req, res, next) {
-  let connection;
-
   try {
-    connection = await getPool();
-
     const { subject, tag, lead, text, idUser } = req.body;
 
     // Comprobamos que nos llegan todos los campos requeridos.
@@ -27,9 +23,7 @@ async function addNews(req, res, next) {
       message: 'Se ha agregado una nueva noticia.',
     });
   } catch (err) {
-    next(err);
-  } finally {
-    if (connection) connection.release();
+    createJsonError(err, res);
   }
 }
 

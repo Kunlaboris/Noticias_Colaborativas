@@ -1,15 +1,12 @@
 'use strict';
 
 //Para crear una conexion
-const getPool = require('../../infrastructure/database');
+const createJsonError = require('../errors/create-json-errors');
+
 const { getNewById } = require('../../repositories/news-repository');
 
 async function getNewsById(req, res, next) {
-  let connection;
-
   try {
-    connection = await getPool();
-
     const { idNew } = req.params;
 
     const [currentNew] = await getNewById(idNew);
@@ -19,9 +16,7 @@ async function getNewsById(req, res, next) {
       data: currentNew[0],
     });
   } catch (err) {
-    next(err);
-  } finally {
-    if (connection) connection.release();
+    createJsonError(err, res);
   }
 }
 
