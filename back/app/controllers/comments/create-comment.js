@@ -1,6 +1,7 @@
 'use strict';
 
 const getPool = require('../../infrastructure/database');
+const { addComment } = require('../../repositories/comment-repository');
 
 async function createComment(req, res, next) {
   let connection;
@@ -8,7 +9,7 @@ async function createComment(req, res, next) {
   try {
     connection = await getPool();
 
-    const { text, idUser } = req.body;
+    const { text, idUser, idNews } = req.body;
 
     // Comprobamos que nos llegan todos los campos requeridos.
     if (!text) {
@@ -17,13 +18,7 @@ async function createComment(req, res, next) {
       throw error;
     }
 
-    await connection.query(
-      `
-        INSERT INTO comentario (texto, id_usuario)
-        VALUES (?, ?)
-      `,
-      [text, idUser]
-    );
+    await addComment(text, idUser, idNews);
 
     res.send({
       status: 'ok',

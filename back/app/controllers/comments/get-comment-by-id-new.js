@@ -2,8 +2,9 @@
 
 //Para crear una conexion
 const getPool = require('../../infrastructure/database');
+const { findCommentByIdNew } = require('../../repositories/comment-repository');
 
-async function getCommentById(req, res, next) {
+async function getCommentByIdNew(req, res, next) {
   let connection;
 
   try {
@@ -12,7 +13,7 @@ async function getCommentById(req, res, next) {
     const { idNew } = req.params;
     //const { idComment } = req.params;
 
-    const [currentNew] = await connection.query(`SELECT * FROM noticias WHERE id=?;`, [idNew]);
+    const [currentNew] = await findCommentByIdNew(idNew);
     //const [currentComment] = await connection.query(`SELECT * FROM comentario WHERE id=?;`, [idComment]);
 
     res.send({
@@ -27,7 +28,7 @@ async function getCommentById(req, res, next) {
   }
 }
 
-module.exports = getCommentById;
+module.exports = getCommentByIdNew;
 
 /* const Joi = require("joi");
 const { findById } = require("../repositories/news-repository");

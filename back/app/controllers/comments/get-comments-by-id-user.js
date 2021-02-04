@@ -2,17 +2,16 @@
 
 // Para crear una conexion
 const getPool = require('../../infrastructure/database');
+const { findCommentByIdUser } = require('../../repositories/comment-repository');
 
-async function getComment(req, res, next) {
+async function getCommentByIdUser(req, res, next) {
   let connection;
 
   try {
     connection = await getPool();
 
-    // console.log("HOLAAAAAAAAAAAA");
-
-    const [result] = await connection.query(`SELECT * FROM noticias;`);
-    //const [result] = await connection.query(`SELECT * FROM comentario;`);
+    const { id } = req.auth;
+    const [result] = await findCommentByIdUser(id);
 
     res.send({
       status: 'ok',
@@ -25,4 +24,4 @@ async function getComment(req, res, next) {
   }
 }
 
-module.exports = getComment;
+module.exports = getCommentByIdUser;
