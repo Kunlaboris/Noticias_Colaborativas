@@ -54,6 +54,7 @@ async function main() {
         id INT PRIMARY KEY AUTO_INCREMENT,
         titulo VARCHAR(200) NOT NULL,
         foto VARCHAR(255) DEFAULT NULL,
+        miniatura VARCHAR(255) DEFAULT NULL,
         entradilla VARCHAR(255) NOT NULL,
         texto VARCHAR(1000) NOT NULL,
         fecha_publicacion TIMESTAMP DEFAULT CURRENT_TIMESTAMP,

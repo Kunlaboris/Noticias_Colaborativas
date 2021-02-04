@@ -2,13 +2,13 @@
 
 const getPool = require('../infrastructure/database');
 
-async function createNews(subject, tag, lead, text, idUser) {
+async function createNews(subject, category, lead, text, idUser, photo, thumb) {
   const connection = await getPool();
   const query = `
-        INSERT INTO noticias (titulo, id_categoria, entradilla, texto, id_usuario)
-        VALUES (?, ?, ?, ?, ?)
+        INSERT INTO noticias (titulo, id_categoria, entradilla, texto, id_usuario, foto, miniatura)
+        VALUES (?, ?, ?, ?, ?, ?, ?)
       `;
-  const [news] = await connection.query(query, [subject, tag, lead, text, idUser]);
+  const [news] = await connection.query(query, [subject, category, lead, text, idUser, photo, thumb]);
   connection.release();
   return news;
 }
@@ -23,8 +23,9 @@ async function getNewById(idNew) {
 
 async function getNews() {
   const connection = await getPool();
-  const query = `SELECT * FROM noticias`;
+  const query = `SELECT * FROM noticias ORDER BY fecha_publicacion DESC`;
   const [news] = await connection.query(query);
+
   connection.release();
   return news;
 }

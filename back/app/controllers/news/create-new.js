@@ -2,19 +2,42 @@
 
 const createJsonError = require('../errors/create-json-errors');
 const { createNews } = require('../../repositories/news-repository');
+const { uploadImage } = require('../../../helpers');
 
 async function addNews(req, res, next) {
   try {
-    const { subject, tag, lead, text, idUser } = req.body;
+    const { subject, category, lead, text } = req.body;
+    const { id } = req.auth;
 
     // Comprobamos que nos llegan todos los campos requeridos.
-    if (!subject || !tag || !lead || !text) {
+    // TODO: validar con Joi
+    if (!subject || !category || !lead || !text) {
       const error = new Error('Faltan campos.');
       error.httpStatus = 400;
       throw error;
     }
 
-    await createNews(subject, tag, lead, text, idUser);
+    // Comprobamos si se subió una foto
+    let newPhoto;
+    let newThumbnail;
+
+    if (req.files && req.files.foto) {
+      //Procesamos la foto y generamos las dos versiones
+      newPhoto = await uploadImage({
+        imageData: req.files.foto.data,
+        directory: process.env.PATH_NEWS_IMAGE,
+        width: 800,
+      });
+
+      newThumbnail = await uploadImage({
+        imageData: req.files.foto.data,
+        directory: process.env.PATH_NEWS_IMAGE,
+        width: 300,
+        height: 300,
+      });
+    }
+
+    await createNews(subject, category, lead, text, id, newPhoto, newThumbnail);
 
     //esto es una prueba si github esta funcionando
 

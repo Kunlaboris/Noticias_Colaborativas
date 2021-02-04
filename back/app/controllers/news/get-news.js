@@ -7,7 +7,7 @@ const { getNews } = require('../../repositories/news-repository');
 
 async function getNew(req, res, next) {
   try {
-    const [result] = await getNews();
+    const result = await getNews();
 
     res.send({
       status: 'ok',
