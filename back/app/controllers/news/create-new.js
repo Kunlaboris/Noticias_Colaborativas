@@ -1,8 +1,9 @@
 'use strict';
 
 const getPool = require('../../infrastructure/database');
+const { createNews } = require('../../repositories/news-repository');
 
-async function createNew(req, res, next) {
+async function addNews(req, res, next) {
   let connection;
 
   try {
@@ -17,13 +18,7 @@ async function createNew(req, res, next) {
       throw error;
     }
 
-    await connection.query(
-      `
-        INSERT INTO noticias (titulo, id_categoria, entradilla, texto, id_usuario)
-        VALUES (?, ?, ?, ?, ?)
-      `,
-      [subject, tag, lead, text, idUser]
-    );
+    await createNews(subject, tag, lead, text, idUser);
 
     //esto es una prueba si github esta funcionando
 
@@ -38,4 +33,4 @@ async function createNew(req, res, next) {
   }
 }
 
-module.exports = createNew;
+module.exports = addNews;

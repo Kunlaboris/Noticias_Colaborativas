@@ -8,7 +8,7 @@ async function createComment(req, res, next) {
   try {
     connection = await getPool();
 
-    const { text, idUser } = req.body;
+    const { text, idNews, idUser } = req.body;
 
     // Comprobamos que nos llegan todos los campos requeridos.
     if (!text) {
@@ -19,10 +19,10 @@ async function createComment(req, res, next) {
 
     await connection.query(
       `
-        INSERT INTO comentario (texto, id_usuario)
-        VALUES (?, ?)
+     INSERT INTO comentarios (comentario, fecha_comentario, id_noticia, id_usuario)
+        VALUES (?, current_timestamp(), ?, ?)
       `,
-      [text, idUser]
+      [text, idNews, idUser]
     );
 
     res.send({

@@ -2,8 +2,9 @@
 
 // Para crear una conexion
 const getPool = require('../../infrastructure/database');
+const { removeNewById } = require('../../repositories/news-repository');
 
-async function removeNewById(req, res, next) {
+async function removeNewsById(req, res, next) {
   let connection;
 
   try {
@@ -11,7 +12,7 @@ async function removeNewById(req, res, next) {
 
     const { idNew } = req.params;
 
-    await connection.query(`DELETE FROM noticias WHERE id=?;`, [idNew]);
+    await removeNewById(idNew);
 
     res.send({
       status: 'ok',
@@ -24,4 +25,4 @@ async function removeNewById(req, res, next) {
   }
 }
 
-module.exports = removeNewById;
+module.exports = removeNewsById;

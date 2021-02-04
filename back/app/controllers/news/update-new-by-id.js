@@ -2,8 +2,9 @@
 
 // Para crear una conexion
 const getPool = require('../../infrastructure/database');
+const { updateNewById } = require('../../repositories/news-repository');
 
-async function updateNewById(req, res, next) {
+async function updateNewsById(req, res, next) {
   let connection;
 
   try {
@@ -13,7 +14,7 @@ async function updateNewById(req, res, next) {
 
     let { subject, tag, lead, text } = req.body;
 
-    const [currentNew] = await connection.query(`SELECT * FROM noticias WHERE id=?;`, [idNew]);
+    const [currentNew] = await updateNewById(idNew);
 
     if (!subject) subject = currentNew[0].subject;
     if (!tag) tag = currentNew[0].tag;
@@ -39,4 +40,4 @@ async function updateNewById(req, res, next) {
   }
 }
 
-module.exports = updateNewById;
+module.exports = updateNewsById;

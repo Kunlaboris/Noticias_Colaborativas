@@ -2,8 +2,9 @@
 
 //Para crear una conexion
 const getPool = require('../../infrastructure/database');
+const { getNewById } = require('../../repositories/news-repository');
 
-async function getNewById(req, res, next) {
+async function getNewsById(req, res, next) {
   let connection;
 
   try {
@@ -11,7 +12,7 @@ async function getNewById(req, res, next) {
 
     const { idNew } = req.params;
 
-    const [currentNew] = await connection.query(`SELECT * FROM noticias WHERE id=?;`, [idNew]);
+    const [currentNew] = await getNewById(idNew);
 
     res.send({
       status: 'ok',
@@ -24,7 +25,7 @@ async function getNewById(req, res, next) {
   }
 }
 
-module.exports = getNewById;
+module.exports = getNewsById;
 
 /* const Joi = require("joi");
 const { findById } = require("../repositories/news-repository");
