@@ -2,6 +2,7 @@
 
 // Para crear una conexion
 const getPool = require('../../infrastructure/database');
+const { deleteCommentById } = require('../../repositories/comment-repository');
 
 async function removeCommentById(req, res, next) {
   let connection;
@@ -9,10 +10,9 @@ async function removeCommentById(req, res, next) {
   try {
     connection = await getPool();
 
-    const { idNew } = req.params;
-    //const { idComment } = req.params;
-    await connection.query(`DELETE FROM noticias WHERE id=?;`, [idNew]);
-    //await connection.query(`DELETE FROM comentario WHERE id=?;`, [idComment]);
+    const { idComment } = req.params;
+
+    await deleteCommentById(idComment);
 
     res.send({
       status: 'ok',
