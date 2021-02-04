@@ -60,11 +60,10 @@ async function deleteOldVerificationCode(id) {
 }
 
 async function updateUserById(data) {
-  const { firstname, lastname, surname, nickname, email, birthDate, passwordHash, biography } = data;
+  const { firstname, lastname, surname, nickname, email, birthDate, password, biography, id } = data;
   const connection = await getPool();
-  const updateQuery = `UPDATE usuario
-  SET nombre = ?, apellido_1 = ?, apellido_2 = ?, nickname = ?, email = ?, fecha_nacimiento=?, contrasena = ?, biografia=? WHERE id=?
-  WHERE id = ?`;
+  const updateQuery =
+    'UPDATE usuarios SET nombre = ?, apellido_1 = ?, apellido_2 = ?, nickname = ?, email = ?, fecha_nacimiento=?, contrasena = ?, biografia=? WHERE id = ?';
   await connection.query(updateQuery, [
     firstname,
     lastname,
@@ -72,8 +71,9 @@ async function updateUserById(data) {
     nickname,
     email,
     birthDate,
-    passwordHash,
+    password,
     biography,
+    id,
   ]);
 
   connection.release();

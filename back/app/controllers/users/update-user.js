@@ -8,12 +8,12 @@ const {
   findUserByEmail,
   updateUserById,
   findUserById,
-  addVerificationCode,
-  deleteOldVerificationCode,
+  // addVerificationCode,
+  // deleteOldVerificationCode,
 } = require('../../repositories/users-repository');
 
 const createJsonError = require('../errors/create-json-errors');
-const { sendEmailRegistration } = require('../../../mail-smtp');
+//const { sendEmailRegistration } = require('../../../mail-smtp');
 
 const schema = Joi.object().keys({
   firstname: Joi.string().min(3).max(40).required(),
@@ -22,14 +22,9 @@ const schema = Joi.object().keys({
   nickname: Joi.string().min(3).max(40).required(),
   email: Joi.string().email().required(),
   birthDate: Joi.date().less('now'),
-  password: Joi.string().min(4).max(100).required(),
+  password: Joi.string().min(4).max(100).allow(null, ''),
   repeatPassword: Joi.ref('password'),
   biography: Joi.string().max(250),
-});
-
-const schemaPassword = Joi.object().keys({
-  password: Joi.string().min(4).max(100).required(),
-  repeatPassword: Joi.ref('password'),
 });
 
 async function updateUser(req, res) {
@@ -37,7 +32,7 @@ async function updateUser(req, res) {
     const { id } = req.auth;
 
     await schema.validateAsync(req.body);
-    const { nickname, email, password, repeatPassword } = req.body;
+    const { firstname, lastname, surname, nickname, email, birthDate, password, repeatPassword, biography } = req.body;
 
     const userById = await findUserById(id);
     const user = await findUserByEmail(email);
@@ -48,9 +43,8 @@ async function updateUser(req, res) {
       throw error;
     }
 
-    let updatedPassword = userById.password;
+    let updatedPassword = userById.contrasena;
     if (password) {
-      await schemaPassword.validateAsync({ password, repeatPassword });
       const passwordHash = await bcrypt.hash(password, 12);
 
       updatedPassword = passwordHash;
@@ -58,14 +52,24 @@ async function updateUser(req, res) {
 
     if (email !== userById.email) {
       const verificationCode = cryptoRandomString({ length: 64 });
-      await sendEmailRegistration(nickname, email, verificationCode);
-      await deleteOldVerificationCode(id);
-      await addVerificationCode(id, verificationCode);
+      // await sendEmailRegistration(nickname, email, verificationCode);
+      // await deleteOldVerificationCode(id);
+      //await addVerificationCode(id, verificationCode);
     }
 
-    await updateUserById({ id, nickname, email, password: updatedPassword });
+    await updateUserById({
+      firstname,
+      lastname,
+      surname,
+      nickname,
+      email,
+      birthDate,
+      biography,
+      password: updatedPassword,
+      id,
+    });
 
-    res.send({ id, nickname, email, role: userById.role });
+    res.send({ id, nickname, email, firstname, lastname });
   } catch (err) {
     createJsonError(err, res);
   }
