@@ -38,10 +38,10 @@ async function removeNewById(idNew) {
   return news;
 }
 
-async function updateNewById(subject, tag, lead, text, idNew) {
+async function updateNewById(subject, category, lead, text, idNew) {
   const connection = await getPool();
   const query = `UPDATE noticias SET titulo=?, id_categoria=?, entradilla=?, texto=? WHERE id=?;`;
-  const [news] = await connection.query(query, [subject, tag, lead, text, idNew]);
+  const [news] = await connection.query(query, [subject, category, lead, text, idNew]);
   connection.release();
   return news;
 }

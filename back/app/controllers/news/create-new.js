@@ -1,11 +1,21 @@
 'use strict';
 
+const Joi = require('joi');
 const createJsonError = require('../errors/create-json-errors');
 const { createNews } = require('../../repositories/news-repository');
 const { uploadImage } = require('../../../helpers');
 
+const schema = Joi.object().keys({
+  subject: Joi.string().min(12).max(50).required(),
+  category: Joi.number().min(1).max(10).required(),
+  lead: Joi.string().min(10).max(300).required(),
+  text: Joi.string().min(300).max(1000).required(),
+});
+
 async function addNews(req, res, next) {
   try {
+    await schema.validateAsync(req.body);
+
     const { subject, category, lead, text } = req.body;
     const { id } = req.auth;
 
