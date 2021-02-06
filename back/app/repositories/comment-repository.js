@@ -15,23 +15,20 @@ async function addComment(text, idUser, idNews) {
 async function findCommentByIdNew(idNew) {
   const connection = await getPool();
   const query = `SELECT C.*
-  FROM noticias N RIGHT JOIN comentarios C 
-  ON N.id = C.id_noticia WHERE id_noticia = ? ORDER BY fecha_comentario DESC;`;
-  const [category] = await connection.query(query, idNew);
+  FROM comentarios C  INNER JOIN noticias N
+  ON N.id = C.id_noticia WHERE id_noticia = 1 ORDER BY fecha_comentario DESC`;
+  const [comments] = await connection.query(query, idNew);
   connection.release();
-  return category[0];
+  return comments;
 }
 
-//***********************ERRRRRRRRROOOOOOORRRRR */
-
-async function findCommentByIdUser(idUser) {
+async function findCommentByIdUser(id) {
   const connection = await getPool();
-  const query = `SELECT C.*
-  FROM comentarios C RIGHT JOIN usuarios U
-  ON U.id = C.id_usuario WHERE id_noticia = ? ORDER BY fecha_comentario DESC;`;
-  const [category] = await connection.query(query, idUser);
+  const query = `SELECT *
+  FROM comentarios WHERE id_usuario = ? ORDER BY fecha_comentario DESC`;
+  const comments = await connection.query(query, id);
   connection.release();
-  return category[0];
+  return comments;
 }
 
 async function deleteCommentById(idComment) {

@@ -49,8 +49,6 @@ async function addNews(req, res, next) {
 
     await createNews(subject, category, lead, text, id, newPhoto, newThumbnail);
 
-    //esto es una prueba si github esta funcionando
-
     res.send({
       status: 'ok',
       message: 'Se ha agregado una nueva noticia.',

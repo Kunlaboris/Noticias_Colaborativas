@@ -17,7 +17,6 @@ async function uploadImageProfile(req, res) {
     }
 
     const avatar = req.files.avatar;
-
     if (!avatar.mimetype.startsWith('image')) {
       const error = new Error('El fichero subido no es una imagen');
       error.status = 400;

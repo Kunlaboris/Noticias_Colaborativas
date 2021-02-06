@@ -18,6 +18,7 @@ app.use(express.static('public'));
 const usersRouter = require('./app/routes/users-routes');
 const newsRouter = require('./app/routes/news-routes');
 const categoriesRouter = require('./app/routes/categories-routes');
+const commentsRouter = require('./app/routes/comments-routes');
 const votingRouter = require('./app/routes/voting-routes');
 
 const port = process.env.SERVER_PORT || 3000;
@@ -27,6 +28,7 @@ app.use(morgan('combined', { stream: accessLogStream }));
 
 app.use('/api/v1/users/', usersRouter);
 app.use('/api/v1/news/', newsRouter);
+app.use('/api/v1/', commentsRouter);
 app.use('/api/v1/categories/', categoriesRouter);
 app.use('/api/v1/voting/', votingRouter);
 

@@ -32,7 +32,6 @@ async function loginUser(req, res) {
       throw error;
     }
 
-    // console.log(user);
     // hay que validar el PASSWORD
     const isValidPassword = await bcrypt.compare(password, user.contrasena);
     if (!isValidPassword) {

@@ -6,6 +6,7 @@ const getCategories = require('../controllers/categories/get-categories');
 const getCategoryById = require('../controllers/categories/get-category-by-id');
 const updateCategory = require('../controllers/categories/update-category-by-id');
 const deleteCategoryById = require('../controllers/categories/delete-category-by-id');
+const { validateAuth } = require('../middlewares/validate-auth');
 
 const router = express.Router();
 
@@ -13,15 +14,15 @@ const router = express.Router();
 router.route('/').get((req, res) => getCategories(req, res));
 router.route('/:id').get((req, res) => getCategoryById(req, res));
 
-//privadas
+//privadas solo por admin
 router
   .route('/')
-  //.all(validateAuth)
+  .all(validateAuth)
   .post((req, res) => createCategory(req, res));
 
 router
   .route('/:id')
-  // .all(validateAuth)
+  .all(validateAuth)
   // .get((req, res) => getCategoryById(req, res))
   .patch((req, res) => updateCategory(req, res))
   .delete((req, res) => deleteCategoryById(req, res));

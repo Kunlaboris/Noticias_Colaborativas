@@ -1,7 +1,8 @@
 'use strict';
 
 const express = require('express');
-const newsControllers = require('../controllers/news');
+const getCommentByIdNew = require('../controllers/comments/get-comment-by-id-new');
+const getCommentByIdUser = require('../controllers/comments/get-comments-by-id-user');
 const isNew = require('../middlewares/isNew');
 const { validateAuth, isUser } = require('../middlewares/validate-auth');
 
@@ -9,12 +10,18 @@ const router = express.Router();
 
 // Listar todos los comentario de un evento concreto.
 router
-  .get('/api/v1/news/:idNew/comments', (req, res) => newsControllers.getNews(req, res))
+  .get('/news/:idNew/comments', (req, res) => getCommentByIdNew(req, res))
+  //Listar todos los comentarios del usuario activo
+  .get('/user/comments', validateAuth, (req, res) => getCommentByIdUser(req, res))
+  //Listar todos los comentarios del usuario
+  .get('/user/:idUser/comments', (req, res) => getCommentByIdUser(req, res))
   // TODO: Crear un comentario.
-  .post('/api/v1/news/:idNew/comment', isNew, validateAuth, isUser, (req, res) => newsControllers.getNews(req, res));
+  .post('/:idNew/comment', isNew, validateAuth, isUser, (req, res) => getCommentByIdUser(req, res));
 
 // TODO: Editar un comentario.
 // app.put('/api/v1/news/:idNew/comments/:idComment');
 
 // TODO: Eliminar un comentario.
 // app.delete('/api/v1/news/:idNew/comments/:idComment');
+
+module.exports = router;

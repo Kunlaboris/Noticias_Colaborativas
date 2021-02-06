@@ -2,7 +2,7 @@
 
 const Joi = require('joi');
 const bcrypt = require('bcryptjs');
-const cryptoRandomString = require('crypto-random-string');
+// const cryptoRandomString = require('crypto-random-string');
 
 const {
   findUserByEmail,
@@ -32,7 +32,7 @@ async function updateUser(req, res) {
     const { id } = req.auth;
 
     await schema.validateAsync(req.body);
-    const { firstname, lastname, surname, nickname, email, birthDate, password, repeatPassword, biography } = req.body;
+    const { firstname, lastname, surname, nickname, email, birthDate, password, biography } = req.body;
 
     const userById = await findUserById(id);
     const user = await findUserByEmail(email);
@@ -50,12 +50,12 @@ async function updateUser(req, res) {
       updatedPassword = passwordHash;
     }
 
-    if (email !== userById.email) {
-      const verificationCode = cryptoRandomString({ length: 64 });
-      // await sendEmailRegistration(nickname, email, verificationCode);
-      // await deleteOldVerificationCode(id);
-      //await addVerificationCode(id, verificationCode);
-    }
+    // if (email !== userById.email) {
+    //   const verificationCode = cryptoRandomString({ length: 64 });
+    //   await sendEmailRegistration(nickname, email, verificationCode);
+    //   await deleteOldVerificationCode(id);
+    //   await addVerificationCode(id, verificationCode);
+    // }
 
     await updateUserById({
       firstname,

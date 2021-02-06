@@ -18,8 +18,6 @@ async function addVotingByIdUser(req, res) {
     const { idNews, valuePositive, valueNegative } = req.body;
     await schema.validateAsync(req.body);
 
-    console.log(id, idNews, valuePositive, valueNegative);
-
     const existNews = await findNewsById(idNews);
 
     if (!existNews) {

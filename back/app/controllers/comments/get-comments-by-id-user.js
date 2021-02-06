@@ -1,26 +1,31 @@
 'use strict';
+const Joi = require('joi');
 
-// Para crear una conexion
-const getPool = require('../../infrastructure/database');
+const createJsonError = require('../errors/create-json-errors');
 const { findCommentByIdUser } = require('../../repositories/comment-repository');
 
+const schema = Joi.number().positive();
+
 async function getCommentByIdUser(req, res, next) {
-  let connection;
-
   try {
-    connection = await getPool();
+    const { idUser } = req.params;
+    await schema.validateAsync(idUser);
+    let id;
 
-    const { id } = req.auth;
+    if (idUser) {
+      id = idUser;
+    } else {
+      id = req.auth.id;
+    }
+
     const [result] = await findCommentByIdUser(id);
 
     res.send({
       status: 'ok',
-      data: result,
+      data: result[0],
     });
   } catch (err) {
-    next(err);
-  } finally {
-    if (connection) connection.release();
+    createJsonError(err, res);
   }
 }
 

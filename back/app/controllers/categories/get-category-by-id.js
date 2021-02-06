@@ -18,7 +18,7 @@ async function getCategoryById(req, res) {
       throw error;
     }
 
-    res.status(201).send(`According to your id, ${category.nombre} is the category searched`);
+    res.status(201).send(category);
     // res.status(201).send(nameCategory);
   } catch (err) {
     createJsonError(err, res);

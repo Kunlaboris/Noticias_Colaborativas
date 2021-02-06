@@ -109,7 +109,7 @@ async function main() {
     // Insertamos usuarios de prueba.
     await connection.query(`
       INSERT INTO usuarios (nombre, apellido_1, apellido_2, fecha_nacimiento, email, nickname, contrasena)
-      VALUES("monica", "papp", "paz", current_timestamp(), "ppm0007@hotmail", "monik", "12345");`);
+      VALUES("monica", "papp", "paz", current_timestamp(), "ppm0007@hotmail.com", "monik", "$2a$12$pn8i2VYlhmeWsco91rfwL.MckeUtc1Qrqzv5nDnloEagpv6k/61iG");`);
 
     await connection.query(`
       INSERT INTO usuarios (nombre, apellido_1, apellido_2, fecha_nacimiento, email, nickname, contrasena)
