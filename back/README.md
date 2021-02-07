@@ -1,3 +1,5 @@
+Todas las contraseñas son iguales que la del admin
+
 ## Aplicación
 
 - **GET** - [/news] - Obtener el listado de las noticias. ✅

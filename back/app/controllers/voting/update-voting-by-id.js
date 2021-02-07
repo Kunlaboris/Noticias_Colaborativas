@@ -1,7 +1,7 @@
 'use strict';
 
 const Joi = require('joi');
-const { addVoteByIdUser, findVotesByIdUser } = require('../../repositories/voting-repository');
+const { updateVotingById } = require('../../repositories/voting-repository');
 const { findNewsById } = require('../../repositories/news-repository');
 const createJsonError = require('../errors/create-json-errors');
 
@@ -10,21 +10,15 @@ const schema = Joi.object().keys({
   valuePositive: Joi.number(),
   valueNegative: Joi.number(),
 });
+const schemaIdVoting = Joi.number().positive().required();
 
-async function addVotingByIdUser(req, res) {
+async function updateVoting(req, res) {
   try {
-    const { id } = req.auth;
+    const { idVoting } = req.params;
 
     const { idNews, valuePositive, valueNegative } = req.body;
     await schema.validateAsync(req.body);
-
-    const alreadyVotingUser = await findVotesByIdUser(id, idNews);
-
-    if (alreadyVotingUser[0][0].count !== 0) {
-      const error = new Error('The user has already voted this news');
-      error.status = 409;
-      throw error;
-    }
+    await schemaIdVoting.validateAsync(idVoting);
 
     const existsNews = await findNewsById(idNews);
 
@@ -34,11 +28,14 @@ async function addVotingByIdUser(req, res) {
       throw error;
     }
 
-    await addVoteByIdUser(id, idNews, valuePositive, valueNegative);
-    res.status(201).send('Your vote has been registered');
+    await updateVotingById(valuePositive, valueNegative, idVoting);
+    res.status(201).send({
+      status: 'ok',
+      message: 'The vote has been updated correctly',
+    });
   } catch (err) {
     createJsonError(err, res);
   }
 }
 
-module.exports = addVotingByIdUser;
+module.exports = updateVoting;

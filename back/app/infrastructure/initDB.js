@@ -108,32 +108,36 @@ async function main() {
 
     // Insertamos usuarios de prueba.
     await connection.query(`
-      INSERT INTO usuarios (nombre, apellido_1, apellido_2, fecha_nacimiento, email, nickname, contrasena)
-      VALUES("monica", "papp", "paz", current_timestamp(), "ppm0007@hotmail.com", "monik", "$2a$12$pn8i2VYlhmeWsco91rfwL.MckeUtc1Qrqzv5nDnloEagpv6k/61iG");`);
+      INSERT INTO usuarios (nombre, apellido_1, apellido_2, fecha_nacimiento, email, nickname, contrasena, rol)
+      VALUES("noticias", "colaborativas", "", current_timestamp(), "kunlaboris@gmail.com", "kunlaboris", "$2a$12$pn8i2VYlhmeWsco91rfwL.MckeUtc1Qrqzv5nDnloEagpv6k/61iG", "admin");`);
 
     await connection.query(`
       INSERT INTO usuarios (nombre, apellido_1, apellido_2, fecha_nacimiento, email, nickname, contrasena)
-      VALUES("marte", "perez", "gomez", current_timestamp(), "ppm087@hotmail", "marta", "67891");`);
+      VALUES("monica", "papp", "paz", current_timestamp(), "monik@yoomail.com", "monik", "$2a$12$pn8i2VYlhmeWsco91rfwL.MckeUtc1Qrqzv5nDnloEagpv6k/61iG");`);
+
+    await connection.query(`
+      INSERT INTO usuarios (nombre, apellido_1, apellido_2, fecha_nacimiento, email, nickname, contrasena)
+      VALUES("marte", "perez", "gomez", current_timestamp(), "marta@yoomail.com", "marta", "$2a$12$pn8i2VYlhmeWsco91rfwL.MckeUtc1Qrqzv5nDnloEagpv6k/61iG");`);
 
     await connection.query(`
       INSERT INTO usuarios (nombre, apellido_1, fecha_nacimiento, email, nickname, contrasena)
-      VALUES("anna", "vaduva", current_timestamp(), "valvuda@hotmail", "valvuda", "22356");`);
+      VALUES("anna", "vaduva", current_timestamp(), "vaduva@yoomail.com", "vaduva", "$2a$12$pn8i2VYlhmeWsco91rfwL.MckeUtc1Qrqzv5nDnloEagpv6k/61iG");`);
 
     await connection.query(`
       INSERT INTO usuarios (nombre, apellido_1, apellido_2, fecha_nacimiento, email, nickname, contrasena)
-      VALUES("armando", "numa", "medina", current_timestamp(), "armando68@hotmail", "numa", "23456");`);
+      VALUES("armando", "numa", "medina", current_timestamp(), "numa@yoomail.com", "numa", "$2a$12$pn8i2VYlhmeWsco91rfwL.MckeUtc1Qrqzv5nDnloEagpv6k/61iG");`);
 
     await connection.query(`
       INSERT INTO usuarios (nombre, apellido_1, apellido_2, fecha_nacimiento, email, nickname, contrasena)
-      VALUES("david", "silva", "torres", current_timestamp(), "torressilva@hotmail", "davidte", "67891");`);
+      VALUES("david", "silva", "torres", current_timestamp(), "davidte@yoomail.com", "davidte", "$2a$12$pn8i2VYlhmeWsco91rfwL.MckeUtc1Qrqzv5nDnloEagpv6k/61iG");`);
 
     await connection.query(`
       INSERT INTO usuarios (nombre, apellido_1, apellido_2, fecha_nacimiento, email, nickname, contrasena)
-      VALUES("marco", "perez", "gonzalez", current_timestamp(), "marcpp@hotmail", "mppg", "9874");`);
+      VALUES("marco", "perez", "gonzalez", current_timestamp(), "mppg@yoomail.com", "mppg", "$2a$12$pn8i2VYlhmeWsco91rfwL.MckeUtc1Qrqzv5nDnloEagpv6k/61iG");`);
 
     await connection.query(`
       INSERT INTO usuarios (nombre, apellido_1, apellido_2, fecha_nacimiento, email, nickname, contrasena)
-      VALUES("sandra", "velasquez", "izaguirre", current_timestamp(), "sandrabebe@hotmail", "sandrita", "Sv.54978");`);
+      VALUES("sandra", "velasquez", "izaguirre", current_timestamp(), "sandrita@yoomail.com", "sandrita", "$2a$12$pn8i2VYlhmeWsco91rfwL.MckeUtc1Qrqzv5nDnloEagpv6k/61iG");`);
 
     // Insertamos categorías de prueba.
     await connection.query(`INSERT INTO categorias (nombre) VALUES("economía");`);
@@ -170,7 +174,17 @@ async function main() {
 
     //Insertamos comentarios de prueba.
     await connection.query(`INSERT INTO comentarios (comentario, fecha_comentario, id_noticia, id_usuario)
-      VALUES ("Texto comentario", current_timestamp(), 1, 1);`);
+      VALUES ("Texto comentario noticia 1 y usuario 1", current_timestamp(), 1, 1);`);
+    await connection.query(`INSERT INTO comentarios (comentario, fecha_comentario, id_noticia, id_usuario)
+      VALUES ("Texto comentario noticia 2 y usuario 1", current_timestamp(), 2, 1);`);
+    await connection.query(`INSERT INTO comentarios (comentario, fecha_comentario, id_noticia, id_usuario)
+      VALUES ("Texto comentario noticia 3 y usuario 1", current_timestamp(), 3, 1);`);
+    await connection.query(`INSERT INTO comentarios (comentario, fecha_comentario, id_noticia, id_usuario)
+      VALUES ("Texto comentario noticia 1 y usuario 2", current_timestamp(), 1, 2);`);
+    await connection.query(`INSERT INTO comentarios (comentario, fecha_comentario, id_noticia, id_usuario)
+      VALUES ("Texto comentario noticia 2 y usuario 2", current_timestamp(), 2, 2);`);
+    await connection.query(`INSERT INTO comentarios (comentario, fecha_comentario, id_noticia, id_usuario)
+      VALUES ("Texto comentario noticia 3 y usuario 2", current_timestamp(), 3, 2);`);
 
     //Insertamos valoraciones de prueba
 
