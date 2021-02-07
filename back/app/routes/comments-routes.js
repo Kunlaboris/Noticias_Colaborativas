@@ -2,8 +2,12 @@
 
 const express = require('express');
 const getCommentByIdNew = require('../controllers/comments/get-comment-by-id-new');
-const getCommentByIdUser = require('../controllers/comments/get-comments-by-id-user');
-const isNew = require('../middlewares/isNew');
+const getCommentByIdUser = require('../controllers/comments/get-comment-by-id-user');
+const createComment = require('../controllers/comments/create-comment');
+const updateComment = require('../controllers/comments/update-comment');
+const removeComment = require('../controllers/comments/remove-comment-by-id');
+
+// const isNew = require('../middlewares/isNew');
 const { validateAuth, isUser } = require('../middlewares/validate-auth');
 
 const router = express.Router();
@@ -15,13 +19,10 @@ router
   .get('/user/comments', validateAuth, (req, res) => getCommentByIdUser(req, res))
   //Listar todos los comentarios del usuario
   .get('/user/:idUser/comments', (req, res) => getCommentByIdUser(req, res))
-  // TODO: Crear un comentario.
-  .post('/:idNew/comment', isNew, validateAuth, isUser, (req, res) => getCommentByIdUser(req, res));
-
-// TODO: Editar un comentario.
-// app.put('/api/v1/news/:idNew/comments/:idComment');
-
-// TODO: Eliminar un comentario.
-// app.delete('/api/v1/news/:idNew/comments/:idComment');
+  // Crear un comentario.
+  .post('/news/:idNew/comments', validateAuth, isUser, (req, res) => createComment(req, res))
+  //Editar un comentario.
+  .put('/news/:idNew/comments/:idComment', validateAuth, isUser, (req, res) => updateComment(req, res))
+  .delete('news/:idNew/comments/:idComment', validateAuth, isUser, (req, res) => removeComment(req, res));
 
 module.exports = router;

@@ -2,14 +2,22 @@
 
 const getPool = require('../infrastructure/database');
 
-async function addComment(text, idUser, idNews) {
+async function addComment(comment, idNew, id) {
   const connection = await getPool();
   const insertQuery = `INSERT
-    INTO comentario (comentario, id_usuario, id_noticia, fecha_comentario)
-    VALUES (?, ?, ?, current_timestamp())`;
-  const [created] = await connection.query(insertQuery, [text, idUser, idNews]);
+    INTO comentarios (comentario, id_noticia, id_usuario)
+    VALUES (?, ?, ?)`;
+  const [created] = await connection.query(insertQuery, [comment, idNew, id]);
   connection.release();
   return created.insertId;
+}
+
+async function findUserComment(idComment) {
+  const connection = await getPool();
+  const query = 'SELECT id_usuario FROM comentarios WHERE id = ? ';
+  const [comments] = await connection.query(query, idComment);
+  connection.release();
+  return comments[0];
 }
 
 async function findCommentByIdNew(idNew) {
@@ -31,9 +39,17 @@ async function findCommentByIdUser(id) {
   return comments;
 }
 
+async function updateCommentById(comment, idComment) {
+  const connection = await getPool();
+  const query = 'UPDATE comentarios SET comentario = ? WHERE id = ?';
+  const comments = await connection.query(query, [comment, idComment]);
+  connection.release();
+  return comments;
+}
+
 async function deleteCommentById(idComment) {
   const connection = await getPool();
-  const query = `DELETE FROM comentarios WHERE id=?`;
+  const query = 'DELETE FROM comentarios WHERE id=?';
   const [category] = await connection.query(query, idComment);
   connection.release();
   return category[0];
@@ -41,7 +57,9 @@ async function deleteCommentById(idComment) {
 
 module.exports = {
   addComment,
+  findUserComment,
   findCommentByIdNew,
   findCommentByIdUser,
   deleteCommentById,
+  updateCommentById,
 };
