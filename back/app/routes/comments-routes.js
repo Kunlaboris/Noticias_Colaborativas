@@ -23,6 +23,6 @@ router
   .post('/news/:idNew/comments', validateAuth, isUser, (req, res) => createComment(req, res))
   //Editar un comentario.
   .put('/news/:idNew/comments/:idComment', validateAuth, isUser, (req, res) => updateComment(req, res))
-  .delete('news/:idNew/comments/:idComment', validateAuth, isUser, (req, res) => removeComment(req, res));
+  .delete('/news/:idNew/comments/:idComment', validateAuth, isUser, (req, res) => removeComment(req, res));
 
 module.exports = router;

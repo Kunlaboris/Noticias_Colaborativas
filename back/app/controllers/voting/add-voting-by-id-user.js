@@ -7,8 +7,8 @@ const createJsonError = require('../errors/create-json-errors');
 
 const schema = Joi.object().keys({
   idNews: Joi.number().positive().required(),
-  valuePositive: Joi.number(),
-  valueNegative: Joi.number(),
+  valuePositive: Joi.number().min(0).max(1),
+  valueNegative: Joi.number().min(0).max(1),
 });
 
 async function addVotingByIdUser(req, res) {
