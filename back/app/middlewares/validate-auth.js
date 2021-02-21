@@ -12,7 +12,9 @@ function validateAuth(req, res, next) {
     // El Bearer vienen por que postman simula que viene de un servidor
 
     if (!authorization || !authorization.startsWith('Bearer')) {
-      return next();
+      const error = new Error('Authorization required');
+      error.status = 403;
+      throw error;
     }
     // se separa la cadena donde hay un espacio y coge el primer elemento donde hay nuestro token
     const accessToken = authorization.split(' ')[1];
