@@ -2,57 +2,207 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Cabecera Fija</title>
+    <title>Kunlaboris</title>
     <link rel="stylesheet" href="./style.css" />
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet"/>
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,700;1,300;1,700&display=swap"
+      rel="stylesheet"
+    />
     <script src="https://kit.fontawesome.com/a707f6320c.js" crossorigin="anonymous"></script>
   </head>
-  <body></body>
-</html>
-
-<header-top >
-    <div class="loguin">
-   <nav class="inicio">
-        <ul>
-          <li>
-          <form>
-            <fieldset>
-              <input type="search" placeholder="Search"/>
-              <button type="submit">
-              <i class="fa fa-search"></i>
-              </button>
-            </fieldset>
-          </form>
-          </li>
-            <li> 
-              <div class="profile">
-                 <img src="./img/iconousuario.jpg" alt= "icono usuario" class="imagen">
-                </div>
-            </li>
-            <li><a href="#">Hola! Estoy Estresada</a></li>
-        </ul>
-        </nav>
+  <body>
+    <!-- Barra superior de login y busqueda -->
+    <header>
+      <div id="topBar">
+        <form>
+          <fieldset>
+            <input type="search" placeholder="Buscar..." />
+            <button type="submit">
+              <i class="fas fa-search"></i>
+            </button>
+          </fieldset>
+        </form>
+        <div id="avatar-user">
+          <img src="./img/avatar-kunlaboris.svg" alt="Avatar" />
+          <div id="nameAvatar">Nombre Apellido1</div>
         </div>
+      </div>
+      <nav>
+        <a href="./index.html" class="logo">
+          <img src="./img/Logo-Kunlaboris-negativo-80x428px.png" alt="logo" class="logo" />
+        </a>
+        <input class="menu-btn" type="checkbox" id="menu-btn" />
+        <label class="menu-icon" for="menu-btn"><span class="navicon"></span></label>
+        <ul class="menu">
+          <li><a href="#">Más populares</a></li>
+          <li><a href="#">Por Tema</a></li>
+          <li><a href="#">Más Recientes</a></li>
+        </ul>
+      </nav>
+    </header>
 
-</header-top>
+    <main>
+      <section id="news">
+        <h1>Últimas noticias colaborativas</h1>
+        <div id="filter">
+          <h3>Filtrado:</h3>
+          <input type="date" name="filter-date" id="filter-date" />
+          <select name="filter-category" id="filter-category">
+            <option value="ciencia">ciencia</option>
+            <option value="tecnologia">tecnologia</option>
+            <option value="arte">arte</option>
+          </select>
+        </div>
+        <article>
+          <div id="header-article">
+            <img class="movil" src="img/Foto-Prueba-Kunlaboris.jpg" alt="foto-noticia" />
+            <img class="tablet" src="img/Foto-Prueba-Kunlaboris-peq.jpg" alt="foto-noticia" />
+            <div id="voting">
+              <div class="vote-positive">
+                <h3># votos</h3>
+              </div>
+              <div class="vote-negative">
+                <h3># votos</h3>
+              </div>
+            </div>
+          </div>
+          <div id="body-article">
+            <div class="avatar">
+              <img src="./img/avatar-kunlaboris.svg" alt="Avatar" />
+              <div class="data-name">
+                <h4 class="data">02/05/2021</h4>
+                <h2 class="name">Nombre Apellido1 Apellido2</h2>
+              </div>
+            </div>
+            <h1 class="title">
+              <a href=""
+                >Lorem ipsum dolor sit amet consectetur, adipiscing elit mi cum odio, vestibulum aliquet in dis</a
+              >
+            </h1>
+            <p class="excerpt">
+              Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido
+              el texto de relleno estándar de las industrias desde el año 1500, cuando un impresor (N. de persona que se
+              dedica a la imprenta) desconocido usó una galería de textos y los mezcló de tal manera.
+            </p>
+          </div>
+        </article>
+        <article>
+          <div id="header-article">
+            <img src="img/Foto-Prueba-Kunlaboris.jpg" alt="foto-noticia" />
+            <div id="voting">
+              <div class="vote-positive">
+                <h3># votos</h3>
+              </div>
+              <div class="vote-negative">
+                <h3># votos</h3>
+              </div>
+            </div>
+          </div>
+          <div id="body-article">
+            <div class="avatar">
+              <img src="./img/avatar-kunlaboris.svg" alt="Avatar" />
+              <div class="data-name">
+                <h4 class="data">02/05/2021</h4>
+                <h2 class="name">Nombre Apellido1 Apellido2</h2>
+              </div>
+            </div>
+            <h1 class="title">
+              <a href=""
+                >Lorem ipsum dolor sit amet consectetur, adipiscing elit mi cum odio, vestibulum aliquet in dis</a
+              >
+            </h1>
+            <p class="excerpt">
+              Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido
+              el texto de relleno estándar de las industrias desde el año 1500, cuando un impresor (N. de persona que se
+              dedica a la imprenta) desconocido usó una galería de textos y los mezcló de tal manera.
+            </p>
+          </div>
+        </article>
+        <article>
+          <div id="header-article">
+            <img src="img/Foto-Prueba-Kunlaboris.jpg" alt="foto-noticia" />
+            <div id="voting">
+              <div class="vote-positive">
+                <h3># votos</h3>
+              </div>
+              <div class="vote-negative">
+                <h3># votos</h3>
+              </div>
+            </div>
+          </div>
+          <div id="body-article">
+            <div class="avatar">
+              <img src="./img/avatar-kunlaboris.svg" alt="Avatar" />
+              <div class="data-name">
+                <h4 class="data">02/05/2021</h4>
+                <h2 class="name">Nombre Apellido1 Apellido2</h2>
+              </div>
+            </div>
+            <h1 class="title">
+              <a href=""
+                >Lorem ipsum dolor sit amet consectetur, adipiscing elit mi cum odio, vestibulum aliquet in dis</a
+              >
+            </h1>
+            <p class="excerpt">
+              Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido
+              el texto de relleno estándar de las industrias desde el año 1500, cuando un impresor (N. de persona que se
+              dedica a la imprenta) desconocido usó una galería de textos y los mezcló de tal manera.
+            </p>
+          </div>
+        </article>
+      </section>
+    </main>
+    <aside>
+      <section id="container-category">
+        <h3 class="title-category">Por temas</h3>
+        <ul class="category">
+          <li>
+            <a href=""><i class="fas fa-bookmark"></i>Economía</a>
+          </li>
+          <li>
+            <a href=""><i class="fas fa-bookmark"></i>Educación</a>
+          </li>
+          <li>
+            <a href=""><i class="fas fa-bookmark"></i>Ciencia</a>
+          </li>
+          <li>
+            <a href=""><i class="fas fa-bookmark"></i>Tecnología</a>
+          </li>
+          <li>
+            <a href=""><i class="fas fa-bookmark"></i>Cultura</a>
+          </li>
+          <li>
+            <a href=""><i class="fas fa-bookmark"></i>Deportes</a>
+          </li>
+          <li>
+            <a href=""><i class="fas fa-bookmark"></i>Televisión</a>
+          </li>
+          <li>
+            <a href=""><i class="fas fa-bookmark"></i>Gente</a>
+          </li>
+          <li>
+            <a href=""><i class="fas fa-bookmark"></i>Opinión</a>
+          </li>
+          <li>
+            <a href=""><i class="fas fa-bookmark"></i>Internacional</a>
+          </li>
+        </ul>
+      </section>
 
+      <section id="calendar"></section>
 
-
-<header class="header">
-  <a href="" class="logo">
-    <img src="./img/Kunlaboris.png" alt="logo" class="logo">
-  </a>
-  <input class="menu-btn" type="checkbox" id="menu-btn" />
-  <label class="menu-icon" for="menu-btn"><span class="navicon"></span></label>
-  <ul class="menu">
-    <li><a href="#">Más populares</a></li>
-    <li><a href="#">Por Tema</a></li>
-    <li><a href="#">Más Recientes</a></li>
-  </ul>
-
-
-</header>
-<main style="height: 1800 px;"></main>
-</body>
+      <!-- <section id="week-category">
+          <h2 class="title-category">tema de la semana</h2>
+          <img src="img/economia.png" class="photo-tema" />
+          <section id="tema-final">
+            <h3 class="pie-tema">Economía</h3>
+            <section id="tema-post">
+              <h4 class="notas">hay 250 noticias esta semana</h4>
+            </section> -->
+    </aside>
+    <footer></footer>
+  </body>
 </html>

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Kunlaboris</title>
+    <link rel="stylesheet" href="./style.css" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,700;1,300;1,700&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://kit.fontawesome.com/a707f6320c.js" crossorigin="anonymous"></script>
+  </head>
+  <body>
+    <!-- Barra superior de login y busqueda -->
+    <header>
+      <div id="topBar">
+        <form>
+          <fieldset>
+            <input type="search" placeholder="Buscar..." />
+            <button type="submit">
+              <i class="fas fa-search"></i>
+            </button>
+          </fieldset>
+        </form>
+        <div id="avatar-user">
+          <img src="./img/avatar-kunlaboris.svg" alt="Avatar" />
+          <div id="nameAvatar">Nombre Apellido1</div>
+        </div>
+      </div>
+      <nav>
+        <a href="./index.html" class="logo">
+          <img src="./img/Logo-Kunlaboris-negativo-80x428px.png" alt="logo" class="logo" />
+        </a>
+        <input class="menu-btn" type="checkbox" id="menu-btn" />
+        <label class="menu-icon" for="menu-btn"><span class="navicon"></span></label>
+        <ul class="menu">
+          <li><a href="#">Más populares</a></li>
+          <li><a href="#">Por Tema</a></li>
+          <li><a href="#">Más Recientes</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <main>
+<div class="tab">
+  <button class="tablinks" onclick="openCity(event, 'London')">mis noticias</button>
+  <button class="tablinks" onclick="openCity(event, 'Paris')">mis votaciones</button>
+  <button class="tablinks" onclick="openCity(event, 'Tokyo')">mis comentarios</button>
+</div>
+<div id="London" class="tabcontent">
+  <form action="" method="">
+    <label for="title">Titular:
+      <input type="text" name="title" id="title-new">
+    </label>
+    <label for="category">Tema:
+      <select name="category" id="category">
+        <option value="economia">Economía</option>
+        <option value="educacion">Educación</option>
+      </select>
+    </label> 
+    <label for="image-news">Imágen:
+      <input type="file" name="image-news" id="image-news">
+    </label>
+    <label for="excerpt">Entradilla:
+      <textarea name="excerpt" id="excerpt" cols="30" rows="10"></textarea>
+    </label>
+    <label for="text-news">Texto:
+      <textarea name="text-news" id="text-news" cols="30" rows="10"></textarea>
+    </label>
+    <button type="submit">Guardar noticia</button>
+  </form>
+</div>
+
+    </main>
+
+    </aside>
+    <footer></footer>
+  </body>
+</html>
