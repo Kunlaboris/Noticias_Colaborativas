@@ -44,35 +44,47 @@
       </nav>
     </header>
 
+    <aside class="user-panel">
+
+    </aside>
+
     <main>
-<div class="tab">
-  <button class="tablinks" onclick="openCity(event, 'London')">mis noticias</button>
-  <button class="tablinks" onclick="openCity(event, 'Paris')">mis votaciones</button>
-  <button class="tablinks" onclick="openCity(event, 'Tokyo')">mis comentarios</button>
-</div>
-<div id="London" class="tabcontent">
+      <!-- sección tabs de crear del usuario -->
+      <div class="tab">
+        <button class="tablinks news active" onclick="openSection(event, 'news')">mis noticias</button>
+        <button class="tablinks voting" onclick="openSection(event, 'voting')">mis votaciones</button>
+        <button class="tablinks comentary" onclick="openSection(event, 'comentary')">mis comentarios</button>
+      </div>
+
+
+<!-- sección de nueva noticia formulario --> 
+<section id="new-post" class="new">
+  <div class="title-section">
+    <h1><i class="fas fa-edit"></i>Añadir noticias colaborativas</h1>
+  </div>
   <form action="" method="">
-    <label for="title">Titular:
-      <input type="text" name="title" id="title-new">
-    </label>
-    <label for="category">Tema:
+    <div class="row">
+      <label for="title">Titular:</label>
+      <div class="input-group input-group-icon">
+      <input type="text" name="title" id="title-new" placeholder="Titular de la noticia (200 caracteres)">
+      <div class="input-icon"><i class="fas fa-user"></i></div>
+    </div>
+    
+    <div class="col-half">
+    <label for="category">Tema:</label> 
       <select name="category" id="category">
         <option value="economia">Economía</option>
         <option value="educacion">Educación</option>
       </select>
-    </label> 
-    <label for="image-news">Imágen:
+    
+    <label for="image-news">Imágen:</label>
       <input type="file" name="image-news" id="image-news">
-    </label>
-    <label for="excerpt">Entradilla:
-      <textarea name="excerpt" id="excerpt" cols="30" rows="10"></textarea>
-    </label>
-    <label for="text-news">Texto:
-      <textarea name="text-news" id="text-news" cols="30" rows="10"></textarea>
-    </label>
-    <button type="submit">Guardar noticia</button>
+    </div>
+
+    
+    
   </form>
-</div>
+</section>
 
     </main>
 
