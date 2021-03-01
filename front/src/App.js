@@ -1,16 +1,19 @@
-import "./App.css";
-
-import React from "react";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import React from 'react';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import './App.css';
+import { Home } from './pages/Home';
+import { AddNews } from './pages/AddNews';
 
 function App() {
   return (
     <Router>
       <div>
         <Switch>
-          <Route path="/"></Route>
+          <Route path="/news">
+            <AddNews />
+          </Route>
           <Route path="/">
-            <h1>hola</h1>
+            <Home />
           </Route>
         </Switch>
       </div>

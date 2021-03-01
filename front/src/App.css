@@ -1,3 +1,63 @@
-.App {
-  text-align: center;
+body {
+  background-color: #fff;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 14px;
+  line-height: 21px;
+  letter-spacing: 0.25px;
+  align-items: Center;
+  min-width: 414px;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  /* box-sizing: border-box; */
+  border-style: none;
+}
+
+header {
+  position: -webkit-sticky;
+  position: sticky;
+  top: -66px;
+  z-index: 3000;
+}
+
+main {
+  margin: 40px 0px;
+}
+
+@media (min-width: 780px) {
+  article {
+    margin: 10px 10px;
+    border-radius: 6px;
+    box-shadow: 0px 6px 12px 1px rgba(0, 0, 0, 0.15);
+    display: flex;
+    justify-content: flex-start;
+    align-items: stretch;
+    padding-bottom: 0px;
+    margin-bottom: 40px;
+  }
+}
+
+@media (min-width: 1024px) {
+  /* body {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: flex-start;
+  } */
+  header {
+    flex-basis: 100%;
+  }
+  main {
+    flex: 0 1 80%;
+    max-width: 1024px;
+  }
+  aside {
+    display: inline;
+    margin: 170px 2%;
+    flex: 0 1 15%;
+  }
 }

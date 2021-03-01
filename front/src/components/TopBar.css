@@ -1,0 +1,84 @@
+div#topBar {
+  background-color: #56ccf2;
+  height: 66px;
+  width: 100%;
+  display: flex;
+  position: static;
+  top: 0;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+fieldset {
+  flex: 0 1 auto;
+  display: inline-block;
+  background: #2d9cdb;
+  border-radius: 4px;
+  padding: 0px 0 0 16px;
+  margin-top: 6px;
+  list-style: none;
+}
+#topBar input,
+#topBar button {
+  position: relative;
+  float: left;
+  width: 120px;
+  height: 30px;
+}
+#topBar input {
+  color: #fff;
+  background-color: #2d9cdb;
+  border: none;
+  z-index: 1;
+}
+#topBar input::placeholder {
+  color: #56ccf2;
+}
+#topBar button {
+  font-size: 0.8em;
+  width: 40px;
+  border: none;
+  border-radius: 2px;
+  background: #fff;
+  transform: translate(-55px, 0);
+  transition-duration: 0.3s;
+}
+.fa-search {
+  color: #2f80ed;
+  transform: translate(-80, 0);
+  transition: all 0.2s ease-in-out;
+}
+#topBar input:focus,
+#topBar button:focus {
+  outline: none;
+}
+
+#topBar input:focus + button {
+  transform: translate(0, 0);
+  transition-duration: 0.3s;
+}
+
+#topBar input:focus + button .fa {
+  transform: translate(-80, 0);
+  transition-duration: 0.5s;
+}
+
+#avatar-user {
+  height: 40px;
+  padding: 0px 20px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+#avatar-user img {
+  width: 40px;
+  border-radius: 100%;
+  margin-right: 10px;
+  display: inline;
+}
+
+#nameAvatar {
+  display: inline;
+  color: #fff;
+}
