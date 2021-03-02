@@ -9,7 +9,7 @@ function App() {
     <Router>
       <div>
         <Switch>
-          <Route path="/news">
+          <Route path="/addnews">
             <AddNews />
           </Route>
           <Route path="/">

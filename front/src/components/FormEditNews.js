@@ -18,16 +18,16 @@ export const FormEditNews = () => {
 
           <div class="row">
             <div class="col-half">
-              <h4>Tema:</h4>
-              <div class="input-group">
+              <h4>Imagen:</h4>
+              <div class="input-group input-group-icon">
                 <input type="file" />
                 <div class="input-icon">
-                  <i class="fa fa-user"></i>
+                  <i class="fa fa-cloud-upload-alt"></i>
                 </div>
               </div>
             </div>
             <div class="col-half">
-              <h4>Categoría</h4>
+              <h4>Tema:</h4>
               <div class="input-group">
                 <select>
                   <option>Educación</option>
@@ -37,35 +37,19 @@ export const FormEditNews = () => {
             </div>
           </div>
           <div class="row">
-            <h4>Payment Details</h4>
-
+            <h4>Entradilla de la noticia:</h4>
             <div class="input-group input-group-icon">
-              <textarea placeholder="Card Number" />
-            </div>
-            <div class="col-half">
-              <div class="input-group input-group-icon">
-                <input type="text" placeholder="Card CVC" />
-                <div class="input-icon">
-                  <i class="fa fa-user"></i>
-                </div>
-              </div>
-            </div>
-            <div class="col-half">
-              <div class="input-group">
-                <select>
-                  <option>01 Jan</option>
-                  <option>02 Jan</option>
-                </select>
-                <select>
-                  <option>2015</option>
-                  <option>2016</option>
-                </select>
-              </div>
+              <textarea placeholder="Entradilla (200 caracteres)" />
             </div>
           </div>
           <div class="row">
-            <button>Enviar</button>
-            {/* <input type="submit">Enviar</input> */}
+            <h4>Texto de la noticia:</h4>
+            <div class="input-group input-group-icon">
+              <textarea class="new" placeholder="Cuerpo de la noticias" />
+            </div>
+          </div>
+          <div class="row">
+            <button id="new">Enviar</button>
           </div>
         </form>
       </div>

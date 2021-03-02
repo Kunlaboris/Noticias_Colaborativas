@@ -1,0 +1,25 @@
+#mini-box-bio {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  border: 1px solid #e0e0e0;
+  padding: 8px 10px;
+}
+
+#mini-box-bio img {
+  flex: 0 1 auto;
+  margin-right: 8px;
+}
+
+#mini-box-bio #box-name {
+  flex: 0 1 auto;
+}
+
+#mini-box-bio #box-name h3 {
+  color: #2f80ed;
+  font-size: 14px;
+}
+#mini-box-bio #box-name p {
+  color: rgba(0, 0, 0, 0.54);
+  font-size: 12px;
+}
