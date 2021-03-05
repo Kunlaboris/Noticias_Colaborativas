@@ -3,14 +3,14 @@ import './Menu.css';
 export const Menu = () => {
   return (
     <nav>
-      <a href="./" class="logo">
-        <img src="./img/Logo-Kunlaboris-negativo-80x428px.png" alt="logo" class="logo" />
+      <a href="./" className="logo">
+        <img src="./img/Logo-Kunlaboris-negativo-80x428px.png" alt="logo" className="logo" />
       </a>
-      <input class="menu-btn" type="checkbox" id="menu-btn" />
-      <label class="menu-icon" for="menu-btn">
-        <span class="navicon"></span>
+      <input className="menu-btn" type="checkbox" id="menu-btn" />
+      <label className="menu-icon" htmlFor="menu-btn">
+        <span className="navicon"></span>
       </label>
-      <ul class="menu">
+      <ul className="menu">
         <li>
           <a href="#">Más populares</a>
         </li>

@@ -1,0 +1,51 @@
+.face-round {
+  width: 54px;
+  height: 54px;
+  border-radius: 100%;
+  margin-bottom: 20px;
+  cursor: pointer;
+  display: inline-block;
+  margin: 0 20px;
+}
+.face-square {
+  width: 98px;
+  height: 100px;
+  cursor: pointer;
+}
+
+.happy {
+  background-color: #219653;
+  background-image: url('../img/true.png');
+  background-size: 40px;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.sad {
+  background-color: #eb5757;
+  background-image: url('../img/false.png');
+  background-size: 40px;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.face-square.happy,
+.face-square.sad {
+  background-size: 60px;
+}
+
+p.round {
+  font-size: 10px;
+  font-weight: 100;
+  letter-spacing: 1.5px;
+  padding-top: 52px;
+  text-align: center;
+}
+
+p.square {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  padding-top: 75px;
+  text-align: center;
+}
