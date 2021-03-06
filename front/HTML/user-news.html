@@ -21,7 +21,7 @@
           <fieldset>
             <input type="search" placeholder="Buscar..." />
             <button type="submit">
-              <i class="fas fa-search"></i>
+              <i className="fas fa-search"></i>
             </button>
           </fieldset>
         </form>
@@ -31,12 +31,12 @@
         </div>
       </div>
       <nav>
-        <a href="./index.html" class="logo">
-          <img src="./img/Logo-Kunlaboris-negativo-80x428px.png" alt="logo" class="logo" />
+        <a href="./index.html" className="logo">
+          <img src="./img/Logo-Kunlaboris-negativo-80x428px.png" alt="logo" className="logo" />
         </a>
-        <input class="menu-btn" type="checkbox" id="menu-btn" />
-        <label class="menu-icon" for="menu-btn"><span class="navicon"></span></label>
-        <ul class="menu">
+        <input className="menu-btn" type="checkbox" id="menu-btn" />
+        <label className="menu-icon" for="menu-btn"><span className="navicon"></span></label>
+        <ul className="menu">
           <li><a href="#">Más populares</a></li>
           <li><a href="#">Por Tema</a></li>
           <li><a href="#">Más Recientes</a></li>
@@ -44,33 +44,33 @@
       </nav>
     </header>
 
-    <aside class="user-panel">
+    <aside className="user-panel">
 
     </aside>
 
     <main>
       <!-- sección tabs de crear del usuario -->
-      <div class="tab">
-        <button class="tablinks news active" onclick="openSection(event, 'news')">mis noticias</button>
-        <button class="tablinks voting" onclick="openSection(event, 'voting')">mis votaciones</button>
-        <button class="tablinks comentary" onclick="openSection(event, 'comentary')">mis comentarios</button>
+      <div className="tab">
+        <button className="tablinks news active" onclick="openSection(event, 'news')">mis noticias</button>
+        <button className="tablinks voting" onclick="openSection(event, 'voting')">mis votaciones</button>
+        <button className="tablinks comentary" onclick="openSection(event, 'comentary')">mis comentarios</button>
       </div>
 
 
 <!-- sección de nueva noticia formulario --> 
-<section id="new-post" class="new">
-  <div class="title-section">
-    <h1><i class="fas fa-edit"></i>Añadir noticias colaborativas</h1>
+<section id="new-post" className="new">
+  <div className="title-section">
+    <h1><i className="fas fa-edit"></i>Añadir noticias colaborativas</h1>
   </div>
   <form action="" method="">
-    <div class="row">
+    <div className="row">
       <label for="title">Titular:</label>
-      <div class="input-group input-group-icon">
+      <div className="input-group input-group-icon">
       <input type="text" name="title" id="title-new" placeholder="Titular de la noticia (200 caracteres)">
-      <div class="input-icon"><i class="fas fa-user"></i></div>
+      <div className="input-icon"><i className="fas fa-user"></i></div>
     </div>
     
-    <div class="col-half">
+    <div className="col-half">
     <label for="category">Tema:</label> 
       <select name="category" id="category">
         <option value="economia">Economía</option>
