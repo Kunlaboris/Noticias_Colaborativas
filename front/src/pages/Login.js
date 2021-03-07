@@ -3,8 +3,8 @@ import { AvatarKunlaboris } from '../components/AvatarKunlaboris';
 import { TopBar } from '../components/TopBar';
 import { Menu } from '../components/Menu';
 import { FormLogin } from '../components/FormLogin';
-import { AuthContext } from '../components/AuthProvider';
-import { UserContext } from '../components/UserProvider';
+//import { AuthContext } from '../components/AuthProvider';
+//import { UserContext } from '../components/UserProvider';
 //import { Link, Redirect } from 'react-router-dom';
 
 export const Login = () => {
