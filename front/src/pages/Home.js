@@ -2,10 +2,11 @@ import React from 'react';
 import { TopBar } from '../components/TopBar';
 import { Menu } from '../components/Menu';
 import { BoxBiography } from '../components/BoxBiography';
-import { FaceKunla } from '../components/FaceKunla';
 import { ArticleNews } from '../components/ArticleNew';
+import { useUploadNews } from '../api/useUploadNews';
 
 export const Home = () => {
+  const { news, setNews, errorNews } = useUploadNews();
   return (
     <>
       <header>
@@ -13,11 +14,9 @@ export const Home = () => {
         <Menu />
       </header>
       <main>
-        <ArticleNews />
-        {/* <FaceKunla format="round" state="happy" vote="10" />
-        <FaceKunla format="round" state="sad" vote="8" />
-        <FaceKunla format="square" state="happy" vote="6" />
-        <FaceKunla format="square" state="sad" vote="12" /> */}
+        {news.map((post) => (
+          <ArticleNews key={post.id} new={post} />
+        ))}
       </main>
 
       <footer>

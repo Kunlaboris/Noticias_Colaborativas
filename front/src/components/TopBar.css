@@ -62,23 +62,3 @@ fieldset {
   transform: translate(-80, 0);
   transition-duration: 0.5s;
 }
-
-#avatar-user {
-  height: 40px;
-  padding: 0px 20px;
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-}
-
-#avatar-user img {
-  width: 40px;
-  border-radius: 100%;
-  margin-right: 10px;
-  display: inline;
-}
-
-#nameAvatar {
-  display: inline;
-  color: #fff;
-}

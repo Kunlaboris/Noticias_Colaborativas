@@ -42,6 +42,7 @@
   "devDependencies": {
     "@fortawesome/free-solid-svg-icons": "^5.15.2",
     "@fortawesome/react-fontawesome": "^0.1.14",
+    "babel-eslint": "^10.1.0",
     "eslint": "^7.21.0",
     "eslint-plugin-react": "^7.22.0"
   }

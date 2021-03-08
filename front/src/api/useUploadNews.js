@@ -1,8 +1,8 @@
-import React from 'react';
+import { useState, useEffect } from 'react';
 
 // MUESTRA LAS NOTICIAS EN LA HOME
 
-export const UploadNews = () => {
+export const useUploadNews = () => {
   // las funciones que manejan los eventos van siempre dentro del componente
   // y antes de que se pinte JSX
 
@@ -14,24 +14,26 @@ export const UploadNews = () => {
   // GET 200, POST 201 ES LOS MÁS HABITUAL
 
   const [news, setNews] = useState([]);
-
   const [errorNews, setErrorNews] = useState('');
 
-  const loadNews = async () => {
-    const response = await fetch('http://localhost:30/api/v1/news');
-    if (response.status === 200) {
-      const json = await response.json();
-      setNews(json);
-      // para que borre el mensaje de error cuando devuelve la lista
-      setErrorNews('');
-    } else {
-      setErrorNews('Ha sucedido un error');
-    }
-  };
-  return (
-    <div>
-      {errorNews}
-      <button onClick={loadNews}>Cargar noticias</button>
-    </div>
-  );
+  useEffect(() => {
+    const loadNews = async () => {
+      const response = await fetch('http://localhost:3050/api/v1/news', {
+        method: 'GET',
+      });
+      if (response.status === 200) {
+        const json = await response.json();
+        setNews(json);
+
+        // para que borre el mensaje de error cuando devuelve la lista
+        setErrorNews('');
+      } else {
+        setErrorNews('Ha sucedido un error');
+      }
+      console.log('Actualizado...');
+    };
+    loadNews();
+  }, []);
+
+  return { news, setNews, errorNews };
 };

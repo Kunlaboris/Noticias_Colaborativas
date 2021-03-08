@@ -2,3 +2,65 @@ color-avatar {
   color: aqua;
   background-color: aquamarine;
 }
+
+#avatar-user {
+  height: 40px;
+  padding: 0px 20px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+#avatar-user img {
+  width: 40px;
+  border-radius: 100%;
+  margin-right: 10px;
+  display: inline;
+}
+
+#nameAvatar {
+  display: inline;
+  color: #fff;
+}
+
+#avatar-data {
+  height: 40px;
+  margin-top: 5px;
+  padding: 0px 20px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+#avatar-data img {
+  margin-right: 10px;
+  height: 40px;
+  display: inline;
+}
+
+#dataAvatar {
+  display: inline;
+  color: #333;
+}
+
+#body-article .avatar {
+  margin: 20px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: stretch;
+}
+
+#body-article .data-name {
+}
+
+#body-article .data {
+  display: block;
+  font-size: 10px;
+  font-weight: 300;
+  letter-spacing: 1.5px;
+}
+#body-article .name {
+  color: #333333;
+  font-size: 16px;
+  font-weight: 400;
+}

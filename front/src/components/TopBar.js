@@ -14,7 +14,7 @@ export const TopBar = () => {
           </button>
         </fieldset>
       </form>
-      <AvatarKunlaboris model="user" />
+      <AvatarKunlaboris model="user" idUser="1" />
     </div>
   );
 };
