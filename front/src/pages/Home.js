@@ -4,6 +4,8 @@ import { Menu } from '../components/Menu';
 import { BoxBiography } from '../components/BoxBiography';
 import { ArticleNews } from '../components/ArticleNew';
 import { useUploadNews } from '../api/useUploadNews';
+import { BoxNotiVotos } from '../components/BoxNotiVotos';
+import { BoxUser } from '../components/BoxUser';
 
 export const Home = () => {
   const { news, setNews, errorNews } = useUploadNews();
@@ -21,6 +23,7 @@ export const Home = () => {
 
       <footer>
         <BoxBiography />
+        <BoxNotiVotos />
       </footer>
     </>
   );

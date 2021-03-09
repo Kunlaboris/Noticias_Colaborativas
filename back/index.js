@@ -9,11 +9,14 @@ const path = require('path');
 const app = express();
 app.use(express.json());
 
+const cors = require('cors');
+
 //middleware de procesador de subida de ficheros
 app.use(fileUpload());
 
 //middleware para servir archivos estáticos
 app.use(express.static('public'));
+app.use(cors());
 
 const usersRouter = require('./app/routes/users-routes');
 const newsRouter = require('./app/routes/news-routes');
