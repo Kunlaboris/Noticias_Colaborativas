@@ -1,6 +1,7 @@
 import React from 'react';
 import { TopBar } from '../components/TopBar';
 import { Menu } from '../components/Menu';
+
 import { BoxBiography } from '../components/BoxBiography';
 import { ArticleNews } from '../components/ArticleNew';
 import { useUploadNews } from '../api/useUploadNews';
