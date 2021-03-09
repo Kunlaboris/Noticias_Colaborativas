@@ -1,5 +1,6 @@
-/back/node_modules
+**/node_modules
 /back/public/images
 /back/.env
 /back/access.log
 .DS_Store
+**/.vscode

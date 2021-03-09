@@ -1,0 +1,30 @@
+#box-voted {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  border: 1px solid #e0e0e0;
+  padding: 8px 10px;
+  box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.2), 0px 3px 4px rgba(0, 0, 0, 0.12), 0px 2px 4px rgba(0, 0, 0, 0.14);
+}
+
+h2 {
+  font-family: Robotto;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 30px;
+  line-height: 40px;
+  color: #27ae60;
+}
+#box-voted img {
+  flex: 0 1 auto;
+  margin-right: 8px;
+}
+
+#box-voted #box-data {
+  flex: 0 1 auto;
+}
+
+#box-voted p {
+  color: rgba(0, 0, 0, 0.54);
+  font-size: 12px;
+}
