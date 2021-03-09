@@ -25,7 +25,7 @@ export const Home = () => {
 
       <footer>
         <BoxBiography />
-        <BoxNotiVotos />
+        {<BoxNotiVotos />}
       </footer>
     </>
   );

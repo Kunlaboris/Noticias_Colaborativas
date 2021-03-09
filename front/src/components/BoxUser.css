@@ -71,7 +71,7 @@ h4 {
   color: #219653;
 }
 
-h3 {
+#box-users-edit h3 {
   margin-top: -80px;
 }
 
@@ -84,11 +84,11 @@ h3 {
   color: #2f80ed;
 }
 
-h4 {
+#box-users-edit h4 {
   margin-top: -170px;
 }
 
-p {
+#box-users-edit p.box-user {
   margin-top: -215px;
 }
 

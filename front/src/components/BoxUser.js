@@ -13,7 +13,7 @@ export const BoxUser = () => {
         <span>Id:</span> 123456
       </p>
       <h4>Biografia</h4>
-      <p>
+      <p className="box-user">
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Commodi exercitationem veritatis quis dolorem! Quod
         ducimus consequatur nisi. Possimus fugiat, aspernatur saepe quisquam cupiditate sed dolore recusandae corporis
         voluptatibus labore natus?
