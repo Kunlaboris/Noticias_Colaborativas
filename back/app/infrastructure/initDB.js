@@ -149,28 +149,73 @@ async function main() {
 
     // Insertamos noticias de prueba.
     await connection.query(`INSERT INTO noticias (titulo, id_categoria, entradilla, texto, id_usuario)
-      VALUES ("Mi economía", 1, "Lorem ipsum dolor sit amet", "Lorem ipsum dolor sit amet es veridictum", 3);`);
+      VALUES ("Descubre los mejores remedios caseros para el dolor de muelas", 8, "Un dolor intenso, 
+      de difícil control, palpitante… ¿Te suena? Sí, es el conocido comúnmente como “dolor de muelas”.
+      Esa molestia que muchas veces aparece de manera incipiente sin preaviso y que no sabemos ni cómo 
+      gestionar ni cómo hacer desaparecer.", "Un dolor de muelas puede resultar muy intenso, deberse a 
+      múltiples causas que no son fáciles de diagnosticar e incluso en algunos casos desembocar en un 
+      cuadro grave, por lo que requiere una visita inaplazable al dentista. Cuando surge de pronto, y 
+      no es posible acudir enseguida al odontólogo, es aconsejable conocer unas medidas básicas sobre 
+      lo que conviene pero también lo que no conviene hacer en estos casos.", 3);`);
 
     await connection.query(`INSERT INTO noticias (titulo, id_categoria, entradilla, texto, id_usuario)
-      VALUES ("Mi educación", 3, "Lorem ipsum dolor sit amet", "Lorem ipsum dolor sit amet es veridictum", 5);`);
+      VALUES ("Mi educación", 2, "Lorem ipsum dolor sit amet", "Lorem ipsum dolor sit amet es veridictum", 5);`);
 
     await connection.query(`INSERT INTO noticias (titulo, id_categoria, entradilla, texto, id_usuario)
-      VALUES ("Ciencia", 6, "Lorem ipsum dolor sit amet", "Lorem ipsum dolor sit amet es veridictum", 1);`);
+      VALUES ("Las 10 series de Netflix con mejores críticas según la web IMDB", 7, "Netflix está que echa humo. 
+      Aunque cada día os contemos los estrenos y las series que están por llegar, nunca hay que olvidar a aquellas
+      series que han convertido a Netflix en lo que es ahora. Con la cantidad de series que estrena cada semana, es 
+      muy difícil de estar al día con su catálogo.", "2020 ha sido un año muy complicado por la pandemia del coronavirus. 
+      Aunque muchísimas empresas de todo el mundo se han visto obligadas a cerrar sus puertas, otras como Netflix se han 
+      visto beneficiadas por el confinamiento. Las horas en casa durante dos meses hicieron que la plataforma sumara miles
+      de nuevos usuarios, y los datos de audiencia de las series más vistas de Netflix en 2020 son espectaculares.", 1);`);
 
     await connection.query(`INSERT INTO noticias (titulo, id_categoria, entradilla, texto, id_usuario)
-      VALUES ("Tecnología", 4, "Lorem ipsum dolor sit amet", "Lorem ipsum dolor sit amet es veridictum", 6);`);
+      VALUES ("Ocho apps de realidad aumentada para poder jugar con nuestro móvil o tablet", 4, "El confinamiento ha 
+      supuesto todo un desafío para la conciliación y a la hora de mantener a los niños entretenidos, y puede que nos 
+      hayamos podido quedar sin ideas en algún momento tras agotar juegos,libros y otros recursos anteriores. Pero quizás 
+      no hayamos sacado partido a las apps.", "La Realidad Aumentada es algo que lleva existiendo muchos años, pero ha sido
+      con la llegada de ARCore cuando realmente los dispositivos Android han empezado a sacarle tanto partido como los usuarios
+      de iOS con el ARKit de Apple. En este sentido, juegos como 'Pokémon GO' o 'Angry Birds AR: Isle of Pigs' han contribuido 
+      a despertar un gran interés por ella hasta tal punto que en Google Play podemos encontrar actualmente cientos de aplicaciones 
+      que aprovechan sus posibilidades.", 6);`);
 
     await connection.query(`INSERT INTO noticias (titulo, id_categoria, entradilla, texto, id_usuario)
-      VALUES ("Libro recomendado", 5, "Lorem ipsum dolor sit amet", "Lorem ipsum dolor sit amet es veridictum", 2);`);
+      VALUES ("Inteligencia artificial y neurociencia, las nuevas fronteras del cerebro", 3, "Los avances en inteligencia artificial, 
+      robótica y neurociencia nos acercan cada vez más a escenarios propios de los grandes clásicos de la ciencia ficción. ¿Estamos 
+      preparados para un mundo en el que la ciencia y la tecnología pueda modificar la voluntad humana?", "Los avances en inteligencia 
+      artificial, robótica y neurociencia nos acercan cada vez más a escenarios propios de los grandes clásicos de la ciencia ficción.
+      Para entender mejor dónde están los límites actualmente hablamos con el neurobiólogo Rafael Yuste, responsable del proyecto BRAIN, 
+      sobre lo que sabemos de nuestro cerebro a día de hoy. ¿Estamos preparados para un mundo en el que la ciencia y la tecnología pueda
+      modificar la voluntad humana?.", 2);`);
 
     await connection.query(`INSERT INTO noticias (titulo, id_categoria, entradilla, texto, id_usuario)
-      VALUES ("Leyendas del deporte", 3, "Lorem ipsum dolor sit amet", "Lorem ipsum dolor sit amet es veridictum", 5);`);
+      VALUES ("Leyendas del deporte", 6, "A lo largo de la historia, hemos visto como deportistas y amantes de la aventura han dedicado 
+      su vida a desafiar a la naturaleza y llevar hasta el límite sus habilidades físicas, y muchos de ellos han marcado hitos históricos 
+      que nos dejan han dejado completamente impresionados con su talento.", "Tony Hawk is without a doubt one of the greatest skateboarding 
+      legends. He has been the only skateboarder in history to get sponsors at the young age of 12, become a professional at 14 and become the
+      best skateboarder in the world at 16. Originally from San Diego, California, Hawk led a career of more than 17 years, in which he won more 
+      than 70 skateboarding competitions, and obtained a gold medal at the X Games in 1995 and 1997. In addition, he was crowned world champion 
+      of skateboardingin modality vertical by 12 consecutive years.", 5);`);
 
     await connection.query(`INSERT INTO noticias (titulo, id_categoria, entradilla, texto, id_usuario)
-      VALUES ("Más allá del Universo", 2, "Lorem ipsum dolor sit amet", "Lorem ipsum dolor sit amet es veridictum", 4);`);
+      VALUES ("Más allá del Universo", 2, "Últimamente es habitual desear que alguien nos lance no solo al espacio sino al límite del universo, 
+      hasta donde sea posible llegar para salir de este sueño febril que es la vida en la Tierra. Pero, ¿qué nos esperaría ahí arriba, en la 
+      Cosmológica?¿Es acaso una frontera, o un tipo de techo?", "No hay ningún borde en el universo, por lo que sabemos. Hay un borde en el 
+      universo observable: solo podemos ver hasta cierto punto. Esto se debe a que la luz viaja a una velocidad finita (un año luz por año), 
+      por lo que al mirar cosas distantes también estamos mirando hacia atrás en el tiempo. Con el tiempo vemos lo estaba sucediendo hace casi
+      14000 millones de años, la radiación remanente del Big Bang. Ese es el fondo de microondas cósmico, que nos rodea por todos lados. Pero 
+      en realidad no es un “borde” físico en ningún sentido.", 4);`);
 
     await connection.query(`INSERT INTO noticias (titulo, id_categoria, entradilla, texto, id_usuario)
-      VALUES ("Mi medicina", 1, "Lorem ipsum dolor sit amet", "Lorem ipsum dolor sit amet es veridictum", 3);`);
+      VALUES ("La educación política en la antigüedad clásica griega", 9, "En la Antigüedad clásica la participación política era considerada 
+      de la máxima importancia y definitoria del hombre libre; ser hombre era ser ciudadano. Esto implicaba a su vez la necesidad e importancia 
+      determinante de una formación orientada en dos dimensiones: participación ciudadana.","Los principales filósofos políticos de entonces han 
+      tratado profunda y muy acertadamente este asunto; tanto es así, que muchos especialistas contemporáneos afirman con pesimismo: «hoy día la 
+      única novedad son los clásicos», también porque abordaron temas de gran actualidad para hoy avant la lettre. Incluso un apretado resumen, 
+      como se ofrece en este artículo, acerca del modo que abordaron esta educación política los principales autores griegos de ese período, puede 
+      ayudar a exhumar interesantes ideas que son como un rico filón de inspiración para programas hodiernos de formación política inspirados en 
+    los clásicos.", 3);`);
 
     //Insertamos comentarios de prueba.
     await connection.query(`INSERT INTO comentarios (comentario, fecha_comentario, id_noticia, id_usuario)
