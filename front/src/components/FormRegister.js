@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import './FormRegister.css';
 //import { useLocalStorage } from '../components/useLocalStorage';
 
 //import { AuthContext } from '../components/AuthProvider';
@@ -86,7 +87,7 @@ export const FormRegister = () => {
   // fetch quse se conecta al back encodeURI, inpus enviar Email, se cargue POST al servidor
   return (
     <>
-      <div>
+      <div class="container">
         <h2>Crea tu cuenta</h2>
       </div>
       <div>
