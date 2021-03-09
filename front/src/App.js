@@ -6,35 +6,35 @@ import { AddNews } from './pages/AddNews';
 import { Register } from './pages/Register';
 import { Login } from './pages/Login';
 
-/* import { AuthProvider } from './components/AuthProvider';
-import { UserProvider } from './components/UserProvider'; */
+import { AuthProvider } from './components/AuthProvider';
+import { UserProvider } from './components/UserProvider';
 
 function App() {
   return (
-    //<AuthProvider>
-    // <UserProvider>
-    <Router>
-      <div>
-        <Switch>
-          <Route path="/register">
-            <Register />
-          </Route>
+    <AuthProvider>
+      <UserProvider>
+        <Router>
+          <div>
+            <Switch>
+              <Route path="/register">
+                <Register />
+              </Route>
 
-          <Route path="/login">
-            <Login />
-          </Route>
+              <Route path="/login">
+                <Login />
+              </Route>
 
-          <Route path="/addnews">
-            <AddNews />
-          </Route>
-          <Route path="/">
-            <Home />
-          </Route>
-        </Switch>
-      </div>
-    </Router>
-    // </UserProvider>
-    //</AuthProvider>
+              <Route path="/addnews">
+                <AddNews />
+              </Route>
+              <Route path="/">
+                <Home />
+              </Route>
+            </Switch>
+          </div>
+        </Router>
+      </UserProvider>
+    </AuthProvider>
   );
 }
 

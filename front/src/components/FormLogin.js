@@ -1,18 +1,23 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { useLocalStorage } from '../components/useLocalStorage';
 import { AuthContext } from '../components/AuthProvider';
 import { UserContext } from '../components/UserProvider';
+
+import { useHistory } from 'react-router-dom';
 
 export const FormLogin = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
+  const history = useHistory();
+
   //NO ESTOY SEGURA QUE LOS NECESITO
 
   /* const { selectedPerson } = React.useContext(UserContext);
+   */
+
   const [token, setToken] = useContext(AuthContext);
- */
-  const [errorMsg, serErrorMsg] = useState('');
+  const [errorMsg, setErrorMsg] = useState('');
 
   // ?????
 
@@ -32,27 +37,37 @@ export const FormLogin = () => {
         password: password,
       }),
     });
-    if (resp.status === 201) {
+    if (resp.ok) {
       const responseBody = await resp.json();
       // onSuccess(responseBody);
       setEmail('');
       setPassword('');
       setErrorMsg('');
+
+      setToken(responseBody.accessToken);
+
+      history.push('/');
     } else {
       const errorMsg = await resp.json();
-      setErrorMsg('Se ha producido un error');
+      setErrorMsg(errorMsg.error);
     }
   };
   return (
     <form onSubmit={handleLoginUser}>
       <div>
         <label htmlFor="email">Email</label>
-        <input name="email" type="email" value={email} onChange={(e) => setEmail(e.target.value)}></input>
+        <input name="email" type="email" value={email} onChange={(e) => setEmail(e.target.value)} required></input>
       </div>
 
       <div>
         <label htmlFor="password">Contraseña</label>
-        <input name="password" type="password" value={password} onChange={(e) => setPassword(e.target.value)}></input>
+        <input
+          name="password"
+          type="password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+          required
+        ></input>
       </div>
       {errorMsg && <div>{errorMsg}</div>}
       <button type="submit">Enviar</button>

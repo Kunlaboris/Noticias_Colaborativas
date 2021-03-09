@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import './FormRegister.css';
+import { useHistory } from 'react-router-dom';
 //import { useLocalStorage } from '../components/useLocalStorage';
 
-//import { AuthContext } from '../components/AuthProvider';
+import { AuthContext } from '../components/AuthProvider';
 
 // igual que en clases tenemos className en React, para formularios se usa htmlFor , y tiene que tener un name con el mismo valor que html for
 // para que sea un input controlado, value = {algo}, este algo viene del estado
@@ -13,6 +14,8 @@ export const FormRegister = () => {
   // onChange para que pueda escribir y cambiar el estado
   //handleChange es una función que recibe un evento
   // hasta que no use setEmail no veo ningún cambio en mi formulario
+
+  const history = useHistory();
 
   const [firstname, setFirstname] = useState('');
   const [lastname, setLastname] = useState('');
@@ -27,10 +30,10 @@ export const FormRegister = () => {
   // estado para guardar el token en el local storage
   // cada vez que uso setToken se me guarda el token en el localStorage
 
-  //const [token, setToken] = useLocalStorage('token', '');
+  // const [token, setToken] = useLocalStorage('token', '');
 
   // ahora lo saco del AuthContext
-  //const [token, setToken] = useContext(AuthContext);
+  const [token, setToken] = useContext(AuthContext);
 
   // estado para mensaje de error
 
@@ -59,11 +62,14 @@ export const FormRegister = () => {
         biography: biography,
       }),
     });
-    if (resp.status === 201) {
+    if (resp.ok) {
       // me quedo con el body de la respuesta
       const responseBody = await resp.json();
       // guardar el token
       //setToken(responseBody.accessToken);
+
+      //TODO: meter en el usercontext el nombre y esas cosas...
+
       // porque ha ido todo bien, borro el email, el password, el resto de los elementos y el error, las vuelvo al valor inicial e.g. vacias
       setFirstname('');
       setLastname('');
@@ -75,6 +81,9 @@ export const FormRegister = () => {
       setRepeatPassword('');
       setBiography('');
       setErrorMsg('');
+
+      //redirigimos a la portada
+      history.push('/login');
     } else {
       // mostrar mensaje de error
       setErrorMsg('Se ha producido un error');
@@ -104,7 +113,13 @@ export const FormRegister = () => {
 
           <div>
             <label htmlFor="lastname">Primer apellido</label>
-            <input name="lastname" type="text" value={lastname} onChange={(e) => setLastname(e.target.value)}></input>
+            <input
+              name="lastname"
+              type="text"
+              value={lastname}
+              onChange={(e) => setLastname(e.target.value)}
+              required
+            />
           </div>
 
           <div>
