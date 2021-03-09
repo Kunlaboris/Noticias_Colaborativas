@@ -9,10 +9,7 @@ async function getNew(req, res, next) {
   try {
     const result = await getNews();
 
-    res.send({
-      status: 'ok',
-      data: result,
-    });
+    res.send(result);
   } catch (err) {
     createJsonError(err, res);
   }

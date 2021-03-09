@@ -15,6 +15,7 @@ const deleteUserById = require('../controllers/users/delete-user-by-id');
 
 const uploadImageProfile = require('../controllers/users/upload-image-profile');
 const getUserProfile = require('../controllers/users/get-user-profile');
+const getUser = require('../controllers/users/get-user');
 const updateUser = require('../controllers/users/update-user');
 
 const router = express.Router();
@@ -26,6 +27,8 @@ const router = express.Router();
 router.route('/register').post((req, res) => registerUsers(req, res));
 router.route('/login').post((req, res) => loginUser(req, res));
 router.route('/activation').get((req, res) => activateUser(req, res));
+
+router.route('/').get((req, res) => getUser(req, res));
 
 //PRIVADAS
 

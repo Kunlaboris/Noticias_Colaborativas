@@ -23,7 +23,13 @@ async function getNewById(idNew) {
 
 async function getNews() {
   const connection = await getPool();
-  const query = `SELECT * FROM noticias ORDER BY fecha_publicacion DESC`;
+  const query = `SELECT *
+  FROM noticias N 
+  LEFT JOIN (SELECT id as id_user, nombre, apellido_1, apellido_2, biografia FROM usuarios) U
+  ON N.id_usuario = U.id_user
+  LEFT JOIN (SELECT id as id_cat, nombre as nombre_categoria FROM categorias) C
+  ON N.id_categoria = C.id_cat
+  ORDER BY fecha_publicacion DESC`;
   const [news] = await connection.query(query);
 
   connection.release();

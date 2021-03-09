@@ -2,6 +2,19 @@
 
 const getPool = require('../infrastructure/database');
 
+async function findVotesNews(idNews) {
+  const connection = await getPool();
+  const query = `SELECT id_noticia, 
+  SUM(valoraciones_positivas) AS votos_positivos,
+  SUM(valoraciones_negativas) AS votos_negativas,
+  COUNT(id_usuario) AS total_votos
+  FROM valoraciones GROUP BY id_noticia ORDER BY total_votos DESC`;
+  const [voting] = await connection.query(query, idNews);
+
+  connection.release();
+  return voting;
+}
+
 async function addVoteByIdUser(idUser, idNews, valuePositive, valueNegative) {
   const connection = await getPool();
   const insertQuery = `INSERT
@@ -13,10 +26,28 @@ async function addVoteByIdUser(idUser, idNews, valuePositive, valueNegative) {
   return create.insertId;
 }
 
-async function findVotesByIdUser(id, idNews) {
+async function findVotesByIdNew(idNews) {
+  const connection = await getPool();
+  const query = `SELECT * FROM valoraciones WHERE id_noticia = ?`;
+  const [voting] = await connection.query(query, idNews);
+
+  connection.release();
+  return voting;
+}
+
+async function findVotesByIdUser(idUser, idNews) {
+  const connection = await getPool();
+  const query = `SELECT * FROM valoraciones WHERE id_usuario = ? AND id_noticia = ?`;
+  const [voting] = await connection.query(query, [idUser, idNews]);
+
+  connection.release();
+  return voting;
+}
+
+async function findVotesByIdUser2(idUser, idNews) {
   const connection = await getPool();
   const query = `SELECT COUNT(*) AS "count" FROM valoraciones WHERE id_usuario = ? AND id_noticia = ?`;
-  const voting = await connection.query(query, [id, idNews]);
+  const [voting] = await connection.query(query, [idUser, idNews]);
 
   connection.release();
   return voting;
@@ -61,8 +92,11 @@ async function removeVotingById(idVoting) {
 module.exports = {
   addVoteByIdUser,
   findVotesByIdUser,
-  findVotesPositiveByIdNews,
+  findVotesByIdUser2,
+  findVotesByIdNew,
   findVotesNegativeByIdNews,
+  findVotesNews,
+  findVotesPositiveByIdNews,
   removeVotingById,
   updateVotingById,
 };

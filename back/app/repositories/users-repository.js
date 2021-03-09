@@ -83,8 +83,11 @@ async function updateUserById(data) {
 //////////////////////////////////////////////////////////
 
 async function findAllUsers() {
-  //llamar base de datos
-  return 'getUsers';
+  const connection = await getPool();
+  const query = 'SELECT id, nombre, apellido_1, apellido_2, biografia, foto FROM usuarios ORDER BY fecha_creacion DESC';
+  const [users] = await connection.query(query);
+  connection.release();
+  return users;
 }
 
 async function findUserByEmail(email) {
