@@ -8,6 +8,7 @@ import { BoxNotiVotos } from '../components/BoxNotiVotos';
 import { BoxUser } from '../components/BoxUser';
 
 export const Home = () => {
+  console.log('borrame');
   const { news, setNews, errorNews } = useUploadNews();
   return (
     <>
