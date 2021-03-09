@@ -23,11 +23,9 @@ const newsRouter = require('./app/routes/news-routes');
 const categoriesRouter = require('./app/routes/categories-routes');
 const commentsRouter = require('./app/routes/comments-routes');
 const votingRouter = require('./app/routes/voting-routes');
-const cors = require('cors');
 
 const port = process.env.SERVER_PORT || 3000;
 
-app.use(cors());
 const accessLogStream = fs.createWriteStream(path.join(__dirname, './access.log'), { flags: 'a' });
 app.use(morgan('combined', { stream: accessLogStream }));
 
