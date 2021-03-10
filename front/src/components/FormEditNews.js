@@ -1,30 +1,38 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import './FormEditNews.css';
 
 import { useRemoteCategory } from '../api/useRemoteCategory';
+import { useUploadNews } from '../api/useUploadNews';
+import { AuthContext } from './AuthProvider';
 
 export const FormEditNews = () => {
+  const [token] = useContext(AuthContext);
+
   const { categories, setCategories } = useRemoteCategory([{ id: 1, nombre: 'economía' }]);
+  const { news, setNews, errorNews } = useUploadNews();
 
   async function handleSubmit(e) {
+    e.preventDefault();
+    console.log(e.target.title.value);
     const contentBody = {
-      subject: 'contenido',
-      category: 'categoria',
-      lead: 'contenido',
-      text: 'contenido texto',
+      subject: e.target.title.value,
+      category: e.target.category.value,
+      // foto: e.target.files[0],
+      lead: e.target.excerpt.value,
+      text: e.target.textnews.value,
     };
 
-    const response = await fetch('http://localhost:3000/api/v1/voting', {
+    const response = await fetch('http://localhost:3050/api/v1/news/', {
       method: 'POST',
       headers: {
         'Content-type': 'application/json',
-        // "Authorization": `Bearer ${token}`
+        Authorization: `Bearer ${token}`,
       },
       body: JSON.stringify(contentBody),
     });
     const resNew = await response.json();
-    const newPost = [...messages, resNew];
-    setMessages(nuevaListaDeMensajesLocal);
+    const newPost = [...news, resNew];
+    setNews(newPost);
   }
 
   return (
@@ -34,7 +42,7 @@ export const FormEditNews = () => {
           <div className="row">
             <h4>Titular:</h4>
             <div className="input-group input-group-icon">
-              <input type="text" placeholder="Titular (200 caracteres)" />
+              <input type="text" placeholder="Titular (200 caracteres)" name="title" />
               <div className="input-icon">
                 <i className="fa fa-heading"></i>
               </div>
@@ -54,9 +62,11 @@ export const FormEditNews = () => {
             <div className="col-half">
               <h4>Tema:</h4>
               <div className="input-group">
-                <select>
+                <select name="category">
                   {categories.map((cat) => (
-                    <option key={cat.id}>{cat.nombre}</option>
+                    <option key={cat.id} value={cat.id}>
+                      {cat.nombre}
+                    </option>
                   ))}
                 </select>
               </div>
@@ -65,17 +75,19 @@ export const FormEditNews = () => {
           <div className="row">
             <h4>Entradilla de la noticia:</h4>
             <div className="input-group input-group-icon">
-              <textarea placeholder="Entradilla (200 caracteres)" />
+              <textarea placeholder="Entradilla (200 caracteres)" name="excerpt" />
             </div>
           </div>
           <div className="row">
             <h4>Texto de la noticia:</h4>
             <div className="input-group input-group-icon">
-              <textarea className="new" placeholder="Cuerpo de la noticias" />
+              <textarea className="new" placeholder="Cuerpo de la noticias" name="textnews" />
             </div>
           </div>
           <div className="row">
-            <button id="new">Enviar</button>
+            <button id="new" type="submit">
+              Enviar
+            </button>
           </div>
         </form>
       </div>
