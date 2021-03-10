@@ -13,15 +13,14 @@ export const FormLogin = () => {
 
   //NO ESTOY SEGURA QUE LOS NECESITO
 
-  /* const { selectedPerson } = React.useContext(UserContext);
-   */
+  const { selectedPerson, setSelectedPerson } = React.useContext(UserContext);
 
   const [token, setToken] = useContext(AuthContext);
   const [errorMsg, setErrorMsg] = useState('');
 
   // ?????
 
-  //const onSuccess = (responseBody) => setToken(responseBody.accessToken);
+  // const onSuccess = (responseBody) => setToken(responseBody.accessToken);
 
   ///////
 
@@ -39,12 +38,14 @@ export const FormLogin = () => {
     });
     if (resp.ok) {
       const responseBody = await resp.json();
+      // console.log(responseBody);
       // onSuccess(responseBody);
       setEmail('');
       setPassword('');
       setErrorMsg('');
 
       setToken(responseBody.accessToken);
+      setSelectedPerson(responseBody.user);
 
       history.push('/');
     } else {

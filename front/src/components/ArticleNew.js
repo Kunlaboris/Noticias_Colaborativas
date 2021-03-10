@@ -21,7 +21,6 @@ export const ArticleNews = (props) => {
               {!votingNews ? '0' : votingNews.votos_positivos}
             </FaceKunla>
             <FaceKunla format="square" state="sad" idNew={props.new.id}>
-              {' '}
               {!votingNews ? '0' : votingNews.votos_negativas}
             </FaceKunla>
           </div>

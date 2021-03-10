@@ -19,7 +19,7 @@ fieldset {
   list-style: none;
 }
 #topBar input,
-#topBar button {
+#topBar button.search {
   position: relative;
   float: left;
   width: 120px;
@@ -34,7 +34,7 @@ fieldset {
 #topBar input::placeholder {
   color: #56ccf2;
 }
-#topBar button {
+#topBar button.search {
   font-size: 0.8em;
   width: 40px;
   border: none;
@@ -49,16 +49,35 @@ fieldset {
   transition: all 0.2s ease-in-out;
 }
 #topBar input:focus,
-#topBar button:focus {
+#topBar button.search:focus {
   outline: none;
 }
 
-#topBar input:focus + button {
+#topBar input:focus + button.search {
   transform: translate(0, 0);
   transition-duration: 0.3s;
 }
 
-#topBar input:focus + button .fa {
+#topBar input:focus + button.search .fa {
   transform: translate(-80, 0);
   transition-duration: 0.5s;
+}
+button.login {
+  height: 30px;
+  margin: 0px 5px 0px 10px;
+  padding: 0px 5px;
+  color: #219653;
+  border-radius: 4px;
+  border: 1px solid #219653;
+  cursor: pointer;
+}
+button.register {
+  height: 30px;
+  margin: 0px 10px 0px 5px;
+  padding: 0px 5px;
+  background-color: #219653;
+  color: #ffffff;
+  border-radius: 4px;
+  border: 1px solid #219653;
+  cursor: pointer;
 }

@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 
 export const useRemoteUser = (initialList) => {
-  const [user, setUser] = useState(initialList);
+  const [userPerson, setUser] = useState(initialList);
   const [errorUser, setErrorUser] = useState('');
 
   useEffect(() => {
@@ -19,5 +19,5 @@ export const useRemoteUser = (initialList) => {
     };
     loadUser();
   }, []);
-  return { user, setUser, errorUser };
+  return { userPerson, setUser, errorUser };
 };

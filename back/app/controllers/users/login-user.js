@@ -49,6 +49,7 @@ async function loginUser(req, res) {
     const response = {
       accessToken: token,
       expiresIn: jwtTokenExpiration,
+      user: user,
     };
     res.send(response);
 

@@ -1,27 +1,27 @@
-import React from 'react';
+import React, { useContext, useEffect } from 'react';
 import { useRemoteUser } from '../api/useRemoteUser';
 import './AvatarKunlaboris.css';
+import { UserContext } from './UserProvider';
 
 export const AvatarKunlaboris = (props) => {
-  const { model, idUser, data } = props;
+  const { model, idUser, data, selectedPerson } = props;
+  console.log(selectedPerson);
+  const { userPerson } = useRemoteUser();
 
-  const { user } = useRemoteUser();
-
-  if (!user) {
+  if (!userPerson) {
     return null;
   } else {
-    const userName = user.find((user) => idUser === user.id);
     if (model === 'user') {
       return (
         <div id="avatar-user">
           <img src="./img/avatar-kunlaboris.svg" alt="Avatar" className="color-avatar" />
-          <div id="nameAvatar">
-            {user[0].nombre} {user[0].apellido_1} {user[0].apellido_2}
+          <div id="nameAvatar" key={selectedPerson.id}>
+            {selectedPerson.nombre} {selectedPerson.apellido_1} {selectedPerson.apellido_2}
           </div>
         </div>
       );
     } else if (model === 'data') {
-      const userName = user.find((user) => idUser === user.id);
+      const userName = userPerson.find((user) => idUser === user.id);
 
       return (
         <div id="avatar-data">
