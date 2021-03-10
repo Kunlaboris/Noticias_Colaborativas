@@ -4,9 +4,12 @@ import SearchIcon from '@material-ui/icons/Search';
 import { AvatarKunlaboris } from './AvatarKunlaboris';
 import { UserContext } from './UserProvider';
 import { useHistory } from 'react-router-dom';
+import { AuthContext } from './AuthProvider';
 
 export const TopBar = () => {
-  const { selectedPerson } = useContext(UserContext);
+  const { selectedPerson, logout } = useContext(UserContext);
+  const [, , tokenLogout] = useContext(AuthContext);
+
   const history = useHistory();
 
   return (
@@ -20,7 +23,13 @@ export const TopBar = () => {
         </fieldset>
       </form>
       {selectedPerson ? (
-        <form onSubmit={(e) => localStorage.clear()}>
+        <form
+          onSubmit={(e) => {
+            e.preventDefault();
+            logout();
+            tokenLogout();
+          }}
+        >
           <AvatarKunlaboris model="user" selectedPerson={selectedPerson} />
           <button type="submit">Salir</button>
         </form>

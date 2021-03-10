@@ -44,7 +44,7 @@ router
 router
   .route('/upload')
   .all(validateAuth, isUser)
-  .put((req, res) => uploadImageProfile(req, res));
+  .patch((req, res) => uploadImageProfile(req, res));
 
 // PROFILE
 router

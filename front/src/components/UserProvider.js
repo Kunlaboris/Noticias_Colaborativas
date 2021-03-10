@@ -7,5 +7,10 @@ export const UserContext = React.createContext();
 export const UserProvider = (props) => {
   const { children } = props;
   const [selectedPerson, setSelectedPerson] = useLocalStorage('selectedPerson');
-  return <UserContext.Provider value={{ selectedPerson, setSelectedPerson }}>{children}</UserContext.Provider>;
+
+  const logout = () => {
+    setSelectedPerson(null);
+  };
+
+  return <UserContext.Provider value={{ selectedPerson, setSelectedPerson, logout }}>{children}</UserContext.Provider>;
 };

@@ -5,9 +5,11 @@ import { Home } from './pages/Home';
 import { AddNews } from './pages/AddNews';
 import { Register } from './pages/Register';
 import { Login } from './pages/Login';
+import { UserProfilePage } from './pages/UserProfilePage';
 
 import { AuthProvider } from './components/AuthProvider';
 import { UserProvider } from './components/UserProvider';
+import { EditUserProfilePage } from './pages/EditUserProfilePage';
 
 function App() {
   return (
@@ -22,6 +24,14 @@ function App() {
 
               <Route path="/login">
                 <Login />
+              </Route>
+
+              <Route path="/users/:id/edit">
+                <EditUserProfilePage />
+              </Route>
+
+              <Route path="/users/:id">
+                <UserProfilePage />
               </Route>
 
               <Route path="/addnews">

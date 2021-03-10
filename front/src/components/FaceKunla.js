@@ -1,14 +1,9 @@
-import { Children, useEffect } from 'react';
-import { useRemoteVote } from '../api/useRemoteVote';
-import { useRemoteVoting } from '../api/useRemoteVotingNews';
+import { useState } from 'react';
+
 import './FaceKunla.css';
 
 export const FaceKunla = (props) => {
-  const { setVoting } = useRemoteVoting();
-  const idUser = 9;
-  const token =
-    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6OSwibmlja25hbWUiOiJKYXZpUGUiLCJyb2wiOiJyZWFkZXIiLCJpYXQiOjE2MTUwODU4NjYsImV4cCI6MTYxNTk0OTg2Nn0.X-hSORoH8iqNrf83X2UNtXKFpoR5j-7akSnIku9j0tM';
-
+  const [votes, setVotes] = useState(props.vote || 0);
   const { format, state, idNew } = props;
 
   let className = '';
@@ -17,7 +12,6 @@ export const FaceKunla = (props) => {
   } else {
     className = 'face-square ' + state;
   }
-  let voteInNew = `${props.children}`;
 
   async function voteNews(e) {
     // e.preventDefault();
@@ -45,20 +39,20 @@ export const FaceKunla = (props) => {
     console.log(res);
   }
 
-  const loadVoted = async () => {
-    const response = await fetch(`http://localhost:3050/api/v1/voting/${idUser}/${props.idNew}`);
-    const json = await response.json();
-    if (json.length === 0) {
-    } else {
-    }
-  };
+  // const loadVoted = async () => {
+  //   const response = await fetch(`http://localhost:3050/api/v1/voting/${idUser}/${props.idNew}`);
+  //   const json = await response.json();
+  //   if (json.length === 0) {
+  //   } else {
+  //   }
+  // };
 
-  loadVoted();
+  // loadVoted();
 
   return (
     <>
       <div className={className} onClick={(e) => voteNews(props.state)}>
-        <p className={format}>{voteInNew} Votos</p>
+        <p className={format}>{votes} Votos</p>
       </div>
     </>
   );
