@@ -1,0 +1,58 @@
+#box-coment-new {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  border: 1px solid #e0e0e0;
+  padding: 8px 10px;
+  box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.2), 0px 3px 4px rgba(0, 0, 0, 0.12), 0px 2px 4px rgba(0, 0, 0, 0.14);
+  font-family: Robotto;
+  font-style: normal;
+}
+
+#titulo-box h2 {
+  font-family: Robotto;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 10px;
+  line-height: 14px;
+  color: #2f80ed;
+}
+#box-coment-new img {
+  flex: 0 1 auto;
+  margin-right: 8px;
+}
+
+#box-coment-new h3 {
+  font-family: Robotto;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 20px;
+  line-height: 30px;
+  color: rgba(0, 0, 0, 0.87);
+  margin-top: -2px;
+}
+
+#box-coment-new #box-coment-user {
+  flex: 0 1 auto;
+}
+
+#box-coment-user .mailto {
+  color: rgba(0, 0, 0, 0.54);
+  margin-top: -23px;
+  font-size: 15px;
+  line-height: 15px;
+}
+
+#box-coment-user .fecha-hora {
+  color: rgba(0, 0, 0, 0.54);
+  font-size: 10px;
+  line-height: 15px;
+  margin-top: -10px;
+}
+
+#box-coment-user p {
+  color: rgba(0, 0, 0, 0.54);
+  font-size: 12px;
+  line-height: 15px;
+  text-align: justify;
+}
