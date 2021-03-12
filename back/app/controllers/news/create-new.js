@@ -36,14 +36,14 @@ async function addNews(req, res, next) {
       newPhoto = await uploadImage({
         imageData: req.files.foto.data,
         directory: process.env.PATH_NEWS_IMAGE,
-        width: 800,
+        width: 480,
       });
 
       newThumbnail = await uploadImage({
         imageData: req.files.foto.data,
         directory: process.env.PATH_NEWS_IMAGE,
-        width: 300,
-        height: 300,
+        width: 177,
+        height: 200,
       });
     }
 

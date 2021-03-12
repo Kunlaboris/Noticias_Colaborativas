@@ -4,13 +4,10 @@ import { MiniBoxBio } from './MiniBoxBio';
 
 export const BoxBiography = () => {
   const { userPerson } = useRemoteUser();
-  console.log(userPerson);
 
   if (!userPerson) {
     return null;
   } else {
-    // const orderUser = userPerson.sort((a, b) => a.fechas > b.fechas);
-    // const orderUser = userPerson.sort((a, b) => a.id < b.id);
     const threeUser = userPerson.slice(0, 3);
 
     return (

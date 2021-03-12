@@ -4,13 +4,14 @@ const Joi = require('joi');
 const createJsonError = require('../errors/create-json-errors');
 
 // Para crear una conexion
-const { updateNewById } = require('../../repositories/news-repository');
+const { updateNewById, findNewsById } = require('../../repositories/news-repository');
+const { uploadImage } = require('../../../helpers');
 
 const schema = Joi.object().keys({
-  subject: Joi.string().min(12).max(50).required(),
-  category: Joi.number().min(1).max(10).required(),
-  lead: Joi.string().min(10).max(300).required(),
-  text: Joi.string().min(300).max(1000).required(),
+  subject: Joi.string().min(12).max(50),
+  category: Joi.number().min(1).max(10),
+  lead: Joi.string().min(10).max(300),
+  text: Joi.string().min(300).max(1000),
 });
 
 async function updateNewsById(req, res, next) {
@@ -18,17 +19,38 @@ async function updateNewsById(req, res, next) {
     await schema.validateAsync(req.body);
 
     const { idNew } = req.params;
+    console.log(idNew);
 
     let { subject, category, lead, text } = req.body;
 
-    const currentNew = await updateNewById(idNew);
+    // Comprobamos si se subió una foto
+    let newPhoto;
+    let newThumbnail;
 
-    if (!subject) subject = currentNew[0].subject;
-    if (!category) category = currentNew[0].category;
-    if (!lead) lead = currentNew[0].lead;
-    if (!text) text = currentNew[0].text;
+    if (req.files && req.files.foto) {
+      //Procesamos la foto y generamos las dos versiones
+      newPhoto = await uploadImage({
+        imageData: req.files.foto.data,
+        directory: process.env.PATH_NEWS_IMAGE,
+        width: 480,
+      });
 
-    await updateNewById(subject, category, lead, text, idNew);
+      newThumbnail = await uploadImage({
+        imageData: req.files.foto.data,
+        directory: process.env.PATH_NEWS_IMAGE,
+        width: 177,
+        height: 200,
+      });
+    }
+
+    const currentNew = await findNewsById(idNew);
+
+    if (!subject) subject = currentNew[0].titulo;
+    if (!category) category = currentNew[0].id_categoria;
+    if (!lead) lead = currentNew[0].entradilla;
+    if (!text) text = currentNew[0].texto;
+
+    await updateNewById(subject, category, lead, text, newPhoto, newThumbnail, idNew);
 
     res.send({
       status: 'ok',
