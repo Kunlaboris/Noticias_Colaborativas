@@ -1,0 +1,183 @@
+#ppal {
+  font-family: 'Roboto', sans-serif;
+  position: absolute;
+  width: 90%;
+  height: auto;
+  overflow: hidden;
+  border-radius: 8px;
+  margin: 10px auto;
+  background: #fafafa;
+  box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.2), 0px 3px 4px rgba(0, 0, 0, 0.12), 0px 2px 4px rgba(0, 0, 0, 0.14);
+}
+
+#publicacion {
+  left: 34.1%;
+  right: 0.92%;
+  top: 63%;
+  bottom: 6%;
+  width: auto;
+  height: auto;
+  overflow: hidden;
+  border: 1px solid #fafafa;
+  margin-top: 10px auto;
+  float: left;
+}
+.encabezado {
+  font-size: 32px;
+  line-height: 40px;
+  letter-spacing: 0.1px;
+  color: #27ae60;
+  font-family: 'Roboto', sans-serif;
+  font-style: normal;
+  font-weight: bold;
+  font-weight: 900;
+  margin-left: 9px;
+}
+
+/* icono de usuario, autor, bibliografia,votos */
+
+#publicacion .imagen-1 {
+  width: 472px;
+  height: 431px;
+  border-radius: 8px;
+  float: left;
+  margin: 1px 1px 1px 0px;
+  padding: 5px;
+  margin-left: 8px;
+  margin-right: 20px;
+}
+
+.temas {
+  font-size: 14px;
+  line-height: 12px;
+  font-family: 'Roboto', sans-serif;
+  color: #2f80ed;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  font-weight: bold;
+}
+
+.imagen-2 {
+  width: 40px;
+  margin-top: 13px;
+}
+.author {
+  height: 28px;
+  left: 51px;
+  right: 37px;
+  font-family: 'Roboto', sans-serif;
+  color: rgba(0, 0, 0, 0.87);
+  letter-spacing: 1.5px;
+  line-height: 30px;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+}
+
+#data {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  padding: 8px 10px;
+}
+
+#data .imagen-2 {
+  flex: 0 1 auto;
+  margin-right: 8px;
+}
+
+#data h3 {
+  font-family: 'Roboto', sans-serif;
+  font-style: normal;
+  font-size: 10px;
+  line-height: 12px;
+  color: rgba(0, 0, 0, 0.54);
+  margin-top: 16px;
+}
+
+#data #user {
+  flex: 0 1 auto;
+}
+
+#data .name-last-name {
+  color: rgba(0, 0, 0, 0.87);
+  margin-top: -5px;
+  font-size: 15px;
+  line-height: 15px;
+  font-weight: bold;
+}
+
+#author p {
+  color: rgba(0, 0, 0, 0.54);
+  font-size: 12px;
+  line-height: 15px;
+  text-align: justify;
+}
+
+.bio {
+  font-family: 'Roboto', sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 21px;
+  letter-spacing: 0.25px;
+  color: rgba(0, 0, 0, 0.6);
+  margin-top: 80px;
+}
+
+.fecha-pulicada {
+  font-family: 'Roboto', sans-serif;
+  font-style: normal;
+  font-size: 10px;
+  line-height: 12px;
+  color: rgba(0, 0, 0, 0.54);
+  margin-top: 16px;
+  margin-right: -8px;
+}
+
+#publication h4 {
+  font-family: 'Roboto', sans-serif;
+  font-style: normal;
+  font-size: 10px;
+  line-height: 12px;
+  color: rgba(0, 0, 0, 0.54);
+}
+
+.day-and-time {
+  font-family: 'Roboto', sans-serif;
+  font-style: normal;
+  font-size: 16px;
+  line-height: 12px;
+  color: #000000;
+  font-weight: bold;
+}
+
+#publication .imagen-3 {
+  float: left;
+  margin-right: 40px;
+}
+
+.entradilla {
+  font-family: 'Roboto', sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 21px;
+  letter-spacing: 0.25px;
+  color: rgba(0, 0, 0, 0.6);
+  font-weight: bold;
+  margin-top: 180px;
+  margin-left: 8px;
+}
+
+#texto-noticia p {
+  font-family: 'Roboto', sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 21px;
+  letter-spacing: 0.25px;
+  color: rgba(0, 0, 0, 0.6);
+  white-space: pre-line;
+  margin-left: 8px;
+}
