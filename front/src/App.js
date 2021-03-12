@@ -3,13 +3,15 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import './App.css';
 import { Home } from './pages/Home';
 import { AddNews } from './pages/AddNews';
-import { Register } from './pages/Register';
+import { RegisterPage } from './pages/RegisterPage';
 import { Login } from './pages/Login';
 import { UserProfilePage } from './pages/UserProfilePage';
 
 import { AuthProvider } from './components/AuthProvider';
 import { UserProvider } from './components/UserProvider';
 import { EditUserProfilePage } from './pages/EditUserProfilePage';
+import { SingleNewsPage } from './pages/SingleNewsPage';
+import { EditSingleNewsPage } from './pages/EditSingleNewsPage';
 
 function App() {
   return (
@@ -19,7 +21,7 @@ function App() {
           <div>
             <Switch>
               <Route path="/register">
-                <Register />
+                <RegisterPage />
               </Route>
 
               <Route path="/login">
@@ -32,6 +34,14 @@ function App() {
 
               <Route path="/users/:id">
                 <UserProfilePage />
+              </Route>
+
+              <Route path="/news/:id/edit">
+                <EditSingleNewsPage />
+              </Route>
+
+              <Route path="/news/:id">
+                <SingleNewsPage />
               </Route>
 
               <Route path="/addnews">

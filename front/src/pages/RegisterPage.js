@@ -4,7 +4,7 @@ import { Menu } from '../components/Menu';
 import { AuthContext } from '../components/AuthProvider';
 import { FormRegister } from '../components/FormRegister';
 
-export const Register = () => {
+export const RegisterPage = () => {
   // const [token, setToken] = useContext(AuthContext);
   return (
     <>

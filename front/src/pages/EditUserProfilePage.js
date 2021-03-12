@@ -7,6 +7,8 @@ import { useParams } from 'react-router-dom';
 
 export const EditUserProfilePage = () => {
   // const [token, setToken] = useContext(AuthContext);
+
+  // es un hook de React Router que se utiliza para acceder a la url
   const { id } = useParams();
   return (
     <>
