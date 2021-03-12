@@ -9,7 +9,7 @@ const schema = Joi.object().keys({
   subject: Joi.string().min(12).max(50).required(),
   category: Joi.number().min(1).max(10).required(),
   lead: Joi.string().min(10).max(300).required(),
-  text: Joi.string().min(300).max(1000).required(),
+  text: Joi.string().min(300).max(3000).required(),
 });
 
 async function addNews(req, res, next) {
