@@ -30,8 +30,15 @@ export const TopBar = () => {
             tokenLogout();
           }}
         >
-          <AvatarKunlaboris model="user" selectedPerson={selectedPerson} />
-          <button type="submit">Salir</button>
+          <AvatarKunlaboris
+            className="avatar-user"
+            name={`${selectedPerson.nombre} ${selectedPerson.apellido_1}`}
+            photo={selectedPerson.foto}
+            id={selectedPerson.id}
+          />
+          <button type="submit" className="close">
+            Salir
+          </button>
         </form>
       ) : (
         <>

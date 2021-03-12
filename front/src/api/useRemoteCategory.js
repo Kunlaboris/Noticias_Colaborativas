@@ -5,7 +5,6 @@ export const useRemoteCategory = (initialList) => {
   useEffect(async () => {
     const response = await fetch('http://localhost:3050/api/v1/categories');
     const json = await response.json();
-    console.log(json);
     setCategories(json);
   }, []);
 

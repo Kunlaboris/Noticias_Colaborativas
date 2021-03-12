@@ -1,39 +1,29 @@
-color-avatar {
-  color: aqua;
-  background-color: aquamarine;
-}
-
-#avatar-user {
-  height: 40px;
-  padding: 0px 20px;
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-}
-
-#avatar-user img {
-  width: 40px;
-  border-radius: 100%;
-  margin-right: 10px;
-  display: inline;
-}
-
-#nameAvatar {
+.avatar-user p a {
   display: inline;
   color: #fff;
+  text-decoration: none;
+  padding-right: 10px;
+}
+.avatar-user p a:hover {
+  color: #56ccf2;
 }
 
-#avatar-data {
+#avatar.avatar-user {
+  background-color: #2f80ed;
+  border-radius: 20px 0px 0px 20px;
+}
+
+#avatar {
   height: 40px;
   margin-top: 5px;
-  padding: 0px 20px;
   display: flex;
   justify-content: flex-start;
   align-items: center;
 }
 
-#avatar-data img {
+#avatar img {
   margin-right: 10px;
+  border-radius: 100%;
   height: 40px;
   display: inline;
 }
@@ -43,23 +33,20 @@ color-avatar {
   color: #333;
 }
 
-#body-article .avatar {
+#body-article #avatar {
   margin: 20px;
   display: flex;
   justify-content: flex-start;
   align-items: stretch;
 }
 
-#body-article .data-name {
-}
-
-#body-article .data {
+#body-article h5 {
   display: block;
   font-size: 10px;
   font-weight: 300;
   letter-spacing: 1.5px;
 }
-#body-article .name {
+#body-article p {
   color: #333333;
   font-size: 16px;
   font-weight: 400;

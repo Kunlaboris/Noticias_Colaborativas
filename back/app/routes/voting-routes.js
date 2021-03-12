@@ -13,7 +13,7 @@ const router = express.Router();
 
 //privadas
 router
-  .get('/:idUser/:idNews', (req, res) => getVotingByIdNews(req, res))
+  .get('/news/:idNews', (req, res) => getVotingByIdNews(req, res))
   .get('/news', (req, res) => getVotingNews(req, res))
   .post('/', validateAuth, (req, res) => addVoteByIdUser(req, res));
 
