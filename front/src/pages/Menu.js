@@ -18,7 +18,7 @@ export const Menu = () => {
           <a href="#">Por Tema</a>
         </li>
         <li>
-          <a href="/latestnews">Más Recientes</a>
+          <a href="#">Más Recientes</a>
         </li>
       </ul>
     </nav>

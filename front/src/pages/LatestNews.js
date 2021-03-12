@@ -9,27 +9,26 @@ import { BoxNotiVotos } from '../components/BoxNotiVotos';
 import { BoxUser } from '../components/BoxUser';
 import { useRemoteCategory } from '../api/useRemoteCategory';
 
-export const Home = () => {
+export const LatestNews = () => {
   const { categories } = useRemoteCategory([{ id: 1, nombre: 'economía' }]);
   const { news, setNews, errorNews } = useUploadNews();
   const [dateToFilter, setDateToFilter] = useState(new Date());
   const [categoryToFilter, setCategoryToFilter] = useState('');
-  // setDateToFilter();
-  console.log(new Date(dateToFilter).toLocaleDateString());
 
-  // ************************************ hay que activarlo
   //momentjs
   //date-fns
 
   const filteredNews = news
     .filter(
-      (post) =>
-        new Date(dateToFilter).toLocaleDateString() === new Date().toLocaleDateString() ||
-        new Date(post.fecha_publicacion).toLocaleDateString() === new Date(dateToFilter).toLocaleDateString()
+      (post) => new Date(post.fecha_publicacion).toLocaleDateString() === new Date(dateToFilter).toLocaleDateString()
     )
     .filter((post) => categoryToFilter === '' || parseInt(categoryToFilter) === post.id_cat);
 
-  // console.log(filteredNews);
+  // if (filteredNews === []) {
+  //   <div>Ninguna noticia</div>;
+  // }
+
+  console.log(!filteredNews);
 
   return (
     <>
@@ -46,7 +45,6 @@ export const Home = () => {
             </option>
           ))}
         </select>
-        <input type="date" onChange={(e) => setDateToFilter(e.target.value)}></input>
         {filteredNews.map((post) => (
           <ArticleNews key={post.id} new={post} />
         ))}

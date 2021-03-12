@@ -38,6 +38,9 @@ export const FormEditNews = () => {
   return (
     <section id="new-post" className="new">
       <div className="container">
+        <h2>
+          <i className="fas fa-edit"></i>Añadir noticias colaborativas
+        </h2>
         <form onSubmit={handleSubmit}>
           <div className="row">
             <h4>Titular:</h4>
