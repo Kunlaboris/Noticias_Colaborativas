@@ -4,8 +4,11 @@ import './BoxUser.css';
 import { AuthContext } from './AuthProvider';
 import { UserContext } from './UserProvider';
 
+// FALTA PINTAR EL AVATAR EN UN DIV
+
 export const UserProfile = (props) => {
   const { selectedPerson, setSelectedPerson } = useContext(UserContext);
+  const { REACT_APP_API_URL } = process.env;
 
   const [profile, setProfile] = useState();
   const [token] = useContext(AuthContext);
@@ -34,40 +37,57 @@ export const UserProfile = (props) => {
     loadUser();
   }, []);
 
-  console.log({ profile, selectedPerson, id });
+  //console.log({ profile, selectedPerson, id });
+
   if (!profile) {
-    return <div>Cargando...</div>;
+    return (
+      <div>
+        <div>Tienes que hacer login para ver tu perfil</div>
+        <div>
+          <Link to={'/login'}>
+            <button>Login</button>
+          </Link>
+        </div>
+      </div>
+    );
   }
 
   return (
     <>
-      <h2>{profile.nombre}</h2>;<h2>{profile.apellido_1}</h2>;<h2>{profile.nickname}</h2>;
+      {/* <h2>{profile.nombre}</h2>;<h2>{profile.apellido_1}</h2>;<h2>{profile.nickname}</h2>; */}
       <div id="box-users-edit">
         <div id="caja-datos">
           <h2 class="user">
             {profile.nombre} {profile.apellido_1} {profile.apellido_2}
           </h2>
         </div>
-        <img src="avatar-kunlaboris.svg" widht="100px" alt="avatar" />
+        {profile.foto && (
+          <div>
+            <img src={`${REACT_APP_API_URL}/images/profiles/${profile.foto}`} widht="100px" alt="avatar" />
+          </div>
+        )}
         <h3>Nombre de usuario:</h3>
-        <p class="nick">Nickname</p>
+        <p class="nick">{profile.nickname}</p>
         <p class="id">
-          <span>Id:</span> 123456
+          <div>Tu ID de usuario</div>
+          <span>{profile.id}</span>
         </p>
         <h4>Biografia</h4>
-        <p className="box-user">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Commodi exercitationem veritatis quis dolorem! Quod
-          ducimus consequatur nisi. Possimus fugiat, aspernatur saepe quisquam cupiditate sed dolore recusandae corporis
-          voluptatibus labore natus?
-        </p>
-        <div class="correo">
-          <span>Email:</span> dirección@dominio.com
-        </div>
+        <p className="box-user">{profile.biografia}</p>
+        <div class="correo">{profile.email}</div>
         <div class="fecha">
           <span>Fecha de nacimiento:</span>
-          15 de septiembre de 1978
+          {profile.fecha_nacimiento}
         </div>
-        {parseInt(id) === selectedPerson.id && <Link to={`/users/${id}/edit`}></Link>}
+        <div class="fecha">
+          <span>Usuario Kunlaboris desde:</span>
+          {profile.fecha_creacion}
+        </div>
+        {parseInt(id) === selectedPerson.id && (
+          <Link to={`/users/${id}/edit`}>
+            <button className="editProfile">Edita tu perfil</button>
+          </Link>
+        )}
       </div>
     </>
   );

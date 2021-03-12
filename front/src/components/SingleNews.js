@@ -1,53 +1,41 @@
-import React from 'react';
+import { useContext, useEffect, useState } from 'react';
+import { useParams, Link } from 'react-router-dom';
+import { UserContext } from './UserProvider';
+import { AuthContext } from './AuthProvider';
+
 import './SingleNews.css';
 
-const NewsDate = () => {
-    return (
-        {newDate().toLocaleTimeString()}
-    )
-}
+// hacemos una petición al servidor para obtener los detalles de ese usuario
 
-export const SingleNews = () => {
+export const SingleNews = (props) => {
+  const { selectedPerson, setSelectedPerson } = useContext(UserContext);
+  //const id = props.id;
+  const { REACT_APP_API_URL } = process.env;
+
+  const [news, setNews] = useState();
+  const [token] = useContext(AuthContext);
+  const { id } = useParams;
+
+  /*   useEffect(() =>
+
+  ); */
+
   return (
-    <section className="singleNews">
-      <div className="titleNews">
-        <h1>Título de la noticia</h1>
-      </div>
-
-      <div className="newsData">
-        <div className="newsImage">
-          <img src=""></img>
+    <>
+      <div>
+        <div>Título de la Noticia</div>
+        <div>
+          <img src="" />
         </div>
+        <div>Entradilla de la noticia</div>
+        <div>Cuerpo de la noticia</div>
 
-        <div className="newsDetails">
-          <div className="newsCategory">Categoría</div>
-          <div className="newsAuthor">
-            <div className="avatar">
-              {' '}
-              <img src="" />
-            </div>
-            <div className="name">Nombre, Apellido 1, Apellido 2</div>
-            <div className="biography">Soy escritor, poeta y periodista, me encanta escribir noticias online</div>
-          </div>
-          <div className="newsDate">Fecha</div>
-          <div className="newsVotes">
-            <div className="positiveVotes">
-              <div className="positiveImg">
-                <img src="" />
-              </div>
-              <div className="countPositive">10 Votos</div>
-            </div>
-            <div className="negativeVotes">
-              <div className="negativeImg">
-                <img src="" />
-              </div>
-              <div className="countNegative">8 Votos</div>
-            </div>
-          </div>
-          <div className="newsLead">Esta es la entradilla de la noticia</div>
-          <div className="newsBody"> Esto es el cuerpo de la noticia</div>
-        </div>
+        {parseInt(id) === selectedPerson.id && (
+          <Link to={`/news/${id}/edit`}>
+            <button>Edita la noticia</button>
+          </Link>
+        )}
       </div>
-    </section>
+    </>
   );
 };

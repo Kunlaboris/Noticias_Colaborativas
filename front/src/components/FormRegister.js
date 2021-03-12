@@ -108,7 +108,8 @@ export const FormRegister = () => {
               type="text"
               value={firstname}
               onChange={(e) => setFirstname(e.target.value)}
-            ></input>
+              required
+            />
           </div>
 
           <div>
@@ -124,27 +125,28 @@ export const FormRegister = () => {
 
           <div>
             <label htmlFor="surname">Segundo apellido</label>
-            <input name="surname" type="text" value={surname} onChange={(e) => setSurname(e.target.value)}></input>
+            <input name="surname" type="text" value={surname} onChange={(e) => setSurname(e.target.value)} />
           </div>
 
           <div>
             <label htmlFor="nickname">Nombre de usuario</label>
-            <input name="nickname" type="text" value={nickname} onChange={(e) => setNickname(e.target.value)}></input>
+            <input
+              name="nickname"
+              type="text"
+              value={nickname}
+              onChange={(e) => setNickname(e.target.value)}
+              required
+            />
           </div>
 
           <div>
             <label htmlFor="email">Email</label>
-            <input name="email" type="email" value={email} onChange={(e) => setEmail(e.target.value)}></input>
+            <input name="email" type="email" value={email} onChange={(e) => setEmail(e.target.value)} required />
           </div>
 
           <div>
             <label htmlFor="birthDate">Fecha de nacimiento</label>
-            <input
-              name="birthDate"
-              type="date"
-              value={birthdate}
-              onChange={(e) => setBirthDate(e.target.value)}
-            ></input>
+            <input name="birthDate" type="date" value={birthdate} onChange={(e) => setBirthDate(e.target.value)} />
           </div>
 
           <div>
@@ -154,7 +156,8 @@ export const FormRegister = () => {
               type="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-            ></input>
+              required
+            />
           </div>
 
           <div>
@@ -164,7 +167,8 @@ export const FormRegister = () => {
               type="password"
               value={repeatPassword}
               onChange={(e) => setRepeatPassword(e.target.value)}
-            ></input>
+              required
+            />
           </div>
 
           <div>

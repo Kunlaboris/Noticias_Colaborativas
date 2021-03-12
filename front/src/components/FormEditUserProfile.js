@@ -1,22 +1,23 @@
 import React, { useState, useContext, useEffect } from 'react';
-import './FormRegister.css';
 import { useHistory } from 'react-router-dom';
 //import { useLocalStorage } from '../components/useLocalStorage';
 
 import { AuthContext } from '../components/AuthProvider';
 
-// igual que en clases tenemos className en React, para formularios se usa htmlFor , y tiene que tener un name con el mismo valor que html for
-// para que sea un input controlado, value = {algo}, este algo viene del estado
+// !!!!!! FALTA METER EL AVATAR, BOTÓN UPLOAD FOTO
+// FALTA EL FALLO DE LA FECHA
 
 export const FormEditUserProfile = (props) => {
   const { idUser: id } = props;
-  console.log('la id antes', id);
+  const { REACT_APP_API_URL } = process.env;
 
   // defino un nuevo estado para manejar el contenido de este input
   // como el contenido del input es de tipo texto, el contenido inicial del estado va a ser la cadena vacia (" ")
   // onChange para que pueda escribir y cambiar el estado
   //handleChange es una función que recibe un evento
   // hasta que no use setEmail no veo ningún cambio en mi formulario
+  const [token, setToken] = useContext(AuthContext);
+  const [errorMsg, setErrorMsg] = useState('');
 
   const history = useHistory();
 
@@ -25,7 +26,6 @@ export const FormEditUserProfile = (props) => {
   const [surname, setSurname] = useState('');
   const [nickname, setNickname] = useState('');
   const [email, setEmail] = useState('');
-  const [birthdate, setBirthDate] = useState('');
   const [password, setPassword] = useState('');
   const [repeatPassword, setRepeatPassword] = useState('');
   const [biography, setBiography] = useState('');
@@ -41,41 +41,28 @@ export const FormEditUserProfile = (props) => {
       });
       if (response.status === 200) {
         const json = await response.json();
-        console.log(json, json.user.nombre);
         setFirstname(json.user.nombre);
-        // const avatarImage = photo ? `${REACT_APP_API_URL}/images/profiles/${photo}` : './img/avatar-kunlaboris.svg';
-
-        // para que borre el mensaje de error cuando devuelve la lista
-        //   setErrorUser('');
+        setLastname(json.user.apellido_1);
+        setSurname(json.user.apellido_2);
+        setNickname(json.user.nickname);
+        setEmail(json.user.email);
+        //setBirthDate(new Date(json.user.fecha_nacimiento).toLocaleDateString());
+        setPassword(json.user.constrasena);
+        setBiography(json.user.biografia);
       } else {
-        //   setErrorUser('Ha sucedido un error');
+        setErrorMsg('Ha sucedido un error');
       }
     };
     loadUser();
   }, []);
 
-  // estado para guardar el token en el local storage
-  // cada vez que uso setToken se me guarda el token en el localStorage
-
-  // const [token, setToken] = useLocalStorage('token', '');
-
-  // ahora lo saco del AuthContext
-  const [token, setToken] = useContext(AuthContext);
-
-  // estado para mensaje de error
-
-  const [errorMsg, setErrorMsg] = useState('');
-
-  // la petición POST se dispara en base a mi formulario submit
-  // tengo que hacer otro manejador de evento de tipo (e)
-
-  const handleRegisterUser = async (e) => {
-    // esto se pone para que navegador no haga un GET por decefto
+  const handleEditUserProfile = async (e) => {
     e.preventDefault();
-    const resp = await fetch('http://localhost:3050/api/v1/users/register', {
-      method: 'PATCH',
+    const resp = await fetch(`http://localhost:3050/api/v1/users/${id}`, {
+      method: 'PUT',
       headers: {
         'Content-type': 'application/json',
+        Authorization: `Bearer ${token}`,
       },
       body: JSON.stringify({
         firstname: firstname,
@@ -83,105 +70,64 @@ export const FormEditUserProfile = (props) => {
         surname: surname,
         nickname: nickname,
         email: email,
-        birthDate: birthdate,
+        birthDate: '',
         password: password,
         repeatPassword: repeatPassword,
         biography: biography,
       }),
     });
     if (resp.ok) {
-      // me quedo con el body de la respuesta
       const responseBody = await resp.json();
-      // guardar el token
-      //setToken(responseBody.accessToken);
 
-      //TODO: meter en el usercontext el nombre y esas cosas...
-
-      // porque ha ido todo bien, borro el email, el password, el resto de los elementos y el error, las vuelvo al valor inicial e.g. vacias
-      setFirstname('');
-      setLastname('');
-      setSurname('');
-      setNickname('');
-      setEmail('');
-      setBirthDate('');
-      setPassword('');
-      setRepeatPassword('');
-      setBiography('');
-      setErrorMsg('');
-
-      //redirigimos a la portada
-      history.push('/login');
+      /*  setFirstname('');
+      setLastname(json.user.apellido_1);
+      setSurname(json.user.apellido_2);
+      setNickname(json.user.nickname);
+      setEmail(json.user.email);
+      setBirthDate(json.user.fecha_nacimiento);
+      setPassword(json.user.contrasena);
+      setBiography(json.user.biografia); */
     } else {
+      history.push('/');
       // mostrar mensaje de error
-      setErrorMsg('Se ha producido un error');
+      setErrorMsg('Error 1');
     }
   };
-
-  /* const handleChange = (event) => {
-    setEmail(event.target.value);
-  }; */
-  // fetch quse se conecta al back encodeURI, inpus enviar Email, se cargue POST al servidor
   return (
     <>
       <div class="container">
-        <h2>Crea tu cuenta</h2>
+        <h2>Edita tu perfil</h2>
       </div>
       <div>
-        <form onSubmit={handleRegisterUser}>
+        <form onSubmit={handleEditUserProfile}>
           <div>
             <label htmlFor="firstname">Nombre</label>
-            <input
-              name="firstname"
-              type="text"
-              value={firstname}
-              onChange={(e) => setFirstname(e.target.value)}
-            ></input>
+            <input name="firstname" type="text" value={firstname} onChange={(e) => setFirstname(e.target.value)} />
           </div>
 
           <div>
             <label htmlFor="lastname">Primer apellido</label>
-            <input
-              name="lastname"
-              type="text"
-              value={lastname}
-              onChange={(e) => setLastname(e.target.value)}
-              required
-            />
+            <input name="lastname" type="text" value={lastname} onChange={(e) => setLastname(e.target.value)} />
           </div>
 
           <div>
             <label htmlFor="surname">Segundo apellido</label>
-            <input name="surname" type="text" value={surname} onChange={(e) => setSurname(e.target.value)}></input>
+            <input name="surname" type="text" value={surname} onChange={(e) => setSurname(e.target.value)} />
           </div>
 
           <div>
             <label htmlFor="nickname">Nombre de usuario</label>
-            <input name="nickname" type="text" value={nickname} onChange={(e) => setNickname(e.target.value)}></input>
+            <input name="nickname" type="text" value={nickname} onChange={(e) => setNickname(e.target.value)} />
           </div>
 
           <div>
             <label htmlFor="email">Email</label>
-            <input name="email" type="email" value={email} onChange={(e) => setEmail(e.target.value)}></input>
-          </div>
-
-          <div>
-            <label htmlFor="birthDate">Fecha de nacimiento</label>
-            <input
-              name="birthDate"
-              type="date"
-              value={birthdate}
-              onChange={(e) => setBirthDate(e.target.value)}
-            ></input>
+            <input name="email" type="email" value={email} onChange={(e) => setEmail(e.target.value)} />
           </div>
 
           <div>
             <label htmlFor="password">Contraseña</label>
-            <input
-              name="password"
-              type="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-            ></input>
+            <input name="password" type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
           </div>
 
           <div>
@@ -191,7 +137,7 @@ export const FormEditUserProfile = (props) => {
               type="password"
               value={repeatPassword}
               onChange={(e) => setRepeatPassword(e.target.value)}
-            ></input>
+            />
           </div>
 
           <div>
@@ -202,11 +148,11 @@ export const FormEditUserProfile = (props) => {
               rows="8"
               value={biography}
               onChange={(e) => setBiography(e.target.value)}
-            ></textarea>
+            />
           </div>
           {errorMsg && <div>{errorMsg}</div>}
 
-          <button type="submit">Enviar</button>
+          <button type="submit">Guardar</button>
         </form>
       </div>
     </>
