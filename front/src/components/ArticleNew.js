@@ -3,8 +3,6 @@ import { AvatarKunlaboris } from './AvatarKunlaboris';
 import { FaceKunla } from './FaceKunla';
 
 export const ArticleNews = (props) => {
-  console.log(props);
-
   const { REACT_APP_API_URL } = process.env;
   const newImage = props.new.miniatura
     ? `${REACT_APP_API_URL}/images/news/${props.new.miniatura}`
@@ -16,15 +14,27 @@ export const ArticleNews = (props) => {
         <img src={newImage} alt="foto-noticia" />
 
         <div id="voting">
-          <FaceKunla format="square" state="happy" idNew={props.new.id} vote={props.new.vpos} />
-          <FaceKunla format="square" state="sad" idNew={props.new.id} vote={props.new.vneg} />
+          <FaceKunla
+            format="square"
+            state="happy"
+            idNew={props.new.id}
+            vote={props.new.vpos}
+            idUser={props.new.id_user}
+          />
+          <FaceKunla
+            format="square"
+            state="sad"
+            idNew={props.new.id}
+            vote={props.new.vneg}
+            idUser={props.new.id_user}
+          />
         </div>
       </div>
       <div id="body-article">
         <AvatarKunlaboris
           className="avatar"
           date={props.new.fecha_publicacion}
-          name={`${props.new.nombre} ${props.new.apellido_1}`}
+          name={`${props.new.nombre} ${props.new.apellido_1} ${props.new.apellido_2}`}
           photo={props.new.avatar}
           id={props.new.id_usuario}
         />

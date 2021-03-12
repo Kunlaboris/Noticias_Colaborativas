@@ -15,7 +15,7 @@ export const Home = () => {
   const [dateToFilter, setDateToFilter] = useState(new Date());
   const [categoryToFilter, setCategoryToFilter] = useState('');
   /* setDateToFilter('2021-03-11 07:02:16'); */
-  console.log(dateToFilter);
+  // console.log(dateToFilter);  ************************************ hay que activarlo
   //momentjs
   //date-fns
 

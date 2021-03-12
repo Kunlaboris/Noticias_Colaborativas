@@ -19,7 +19,8 @@ async function addVotingByIdUser(req, res) {
     await schema.validateAsync(req.body);
 
     const alreadyVotingUser = await findVotesByIdUser2(id, idNews);
-    console.log(alreadyVotingUser[0].count);
+
+    console.log('son iguales?', id, alreadyVotingUser[0].count);
 
     if (parseInt(alreadyVotingUser[0].count) !== 0) {
       const error = new Error('The user has already voted this news');
@@ -36,7 +37,10 @@ async function addVotingByIdUser(req, res) {
     }
 
     await addVoteByIdUser(id, idNews, valuePositive, valueNegative);
-    res.status(201).send('Your vote has been registered');
+    res.status(201).send({
+      valuePositive: valuePositive,
+      valueNegative: valueNegative,
+    });
   } catch (err) {
     createJsonError(err, res);
   }
