@@ -14,8 +14,8 @@ export const Home = () => {
   const { news, setNews, errorNews } = useUploadNews();
   const [dateToFilter, setDateToFilter] = useState(new Date());
   const [categoryToFilter, setCategoryToFilter] = useState('');
-  // setDateToFilter();
-  console.log(new Date(dateToFilter).toLocaleDateString());
+  // // setDateToFilter();
+  // console.log(new Date(dateToFilter).toLocaleDateString());
 
   // ************************************ hay que activarlo
   //momentjs
@@ -30,7 +30,6 @@ export const Home = () => {
     .filter((post) => categoryToFilter === '' || parseInt(categoryToFilter) === post.id_cat);
 
   // console.log(filteredNews);
-
   return (
     <>
       <header>
@@ -38,15 +37,20 @@ export const Home = () => {
         <Menu />
       </header>
       <main>
-        <select onChange={(e) => setCategoryToFilter(e.target.value)}>
-          <option value="">Todos los temas</option>
-          {categories.map((cat) => (
-            <option key={cat.id} value={cat.id}>
-              {cat.nombre}
-            </option>
-          ))}
-        </select>
-        <input type="date" onChange={(e) => setDateToFilter(e.target.value)}></input>
+        <div className="filter-bar">
+          <h2>
+            <i className="fas fa-newspaper"></i> Filtros
+          </h2>
+          <select onChange={(e) => setCategoryToFilter(e.target.value)} className="filter">
+            <option value="">Todos los temas</option>
+            {categories.map((cat) => (
+              <option key={cat.id} value={cat.id}>
+                {cat.nombre}
+              </option>
+            ))}
+          </select>
+          <input type="date" onChange={(e) => setDateToFilter(e.target.value)} className="filter"></input>
+        </div>
         {filteredNews.map((post) => (
           <ArticleNews key={post.id} new={post} />
         ))}
@@ -55,9 +59,11 @@ export const Home = () => {
       </main>
 
       <footer>
+        <BoxNotiVotos face="happy" news={news} />
+        <BoxNotiVotos face="sad" news={news} />
         <BoxBiography />
-        {<BoxNotiVotos />}
       </footer>
+      <div className="top-footer">Trabajo realizado por: Anamaria, Monica y Armando</div>
     </>
   );
 };

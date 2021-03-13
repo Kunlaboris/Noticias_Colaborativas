@@ -49,10 +49,6 @@ function App() {
                 <AddNews />
               </Route>
 
-              <Route path="/addnews">
-                <AddNews />
-              </Route>
-
               <Route path="/latestnews">
                 <LatestNews />
               </Route>

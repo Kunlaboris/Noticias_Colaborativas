@@ -1,4 +1,4 @@
-import './BoxUser.css';
+// import './BoxUser.css';
 
 export const BoxUser = () => {
   return (

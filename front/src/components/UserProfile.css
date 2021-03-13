@@ -1,27 +1,89 @@
 #box-users-edit {
-  display: grid;
-  gap: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: flex-start;
+  margin: 0px auto;
   width: 275px;
+  box-shadow: 0px 0px 12px 2px rgba(0, 0, 0, 0.2);
+  border-radius: 16px;
+  background-color: #fafafa;
+
+  /* display: grid;
+  gap: 20px;
   height: 725px;
   left: 60px;
   right: 73.83%;
   bottom: 28.39%;
-  box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.2), 0px 3px 4px rgba(0, 0, 0, 0.12), 0px 2px 4px rgba(0, 0, 0, 0.14);
   border-radius: 8px;
   margin: 0;
   text-align: center;
   font-size: 10px;
   line-height: 14px;
-  font-family: Roboto;
+  font-family: Roboto;  */
 }
 
-#caja-datos {
-  width: 278px;
+.box-name {
+  flex: 1 1 auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: flex-start;
   height: 140px;
   background: linear-gradient(108.28deg, #2f80ed 24.66%, #56ccf2 89.14%);
   border-radius: 16px;
 }
 
+.box-name h2 {
+  flex: 1 1 auto;
+  text-align: center;
+  color: #ffffff;
+  padding: 50px 20px;
+}
+.box-name h2.login {
+  padding: 20px 20px;
+}
+
+.user-avatar img {
+  width: 110px;
+  border-radius: 100%;
+  border: 6px solid #fff;
+  flex: 0 1 auto;
+  display: inline;
+  margin: 0px auto;
+  position: relative;
+  top: -40px;
+}
+
+.user-data {
+  text-align: center;
+  padding: 0px 20px 40px 20px;
+}
+.user-data h3 {
+  color: #219653;
+  font-weight: 700;
+  font-size: 11px;
+}
+
+.user-data p {
+  color: #4f4f4f;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 16px;
+  margin-bottom: 40px;
+}
+
+.user-data p.nick {
+  color: #2f80ed;
+  font-size: 18px;
+  font-weight: 700;
+}
+.user-data span {
+  color: #219653;
+  font-weight: 700;
+}
+
+/* 
 .user {
   height: 80px;
   margin: auto;
@@ -97,4 +159,4 @@
 }
 .fecha {
   margin-top: -215px;
-}
+} */
