@@ -1,8 +1,8 @@
 import { useContext, useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
-import './BoxUser.css';
 import { AuthContext } from './AuthProvider';
 import { UserContext } from './UserProvider';
+import './BoxUser.css';
 
 // FALTA PINTAR EL AVATAR EN UN DIV
 
@@ -12,7 +12,6 @@ export const UserProfile = (props) => {
 
   const [profile, setProfile] = useState();
   const [token] = useContext(AuthContext);
-
   const { id } = useParams();
 
   useEffect(() => {

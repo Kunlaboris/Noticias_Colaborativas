@@ -40,6 +40,10 @@ function App() {
                 <EditSingleNewsPage />
               </Route>
 
+              {/*  <Route path="/news/:id/delete">
+                <DeleteNewsPage />
+              </Route>
+ */}
               <Route path="/news/:id">
                 <SingleNewsPage />
               </Route>
