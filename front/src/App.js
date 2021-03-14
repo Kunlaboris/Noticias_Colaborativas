@@ -10,6 +10,7 @@ import { UserProfilePage } from './pages/UserProfilePage';
 import { AuthProvider } from './components/AuthProvider';
 import { UserProvider } from './components/UserProvider';
 import { EditUserProfilePage } from './pages/EditUserProfilePage';
+import { ListNewsByUser } from './pages/ListNewsByUser';
 
 function App() {
   return (
@@ -37,6 +38,11 @@ function App() {
               <Route path="/addnews">
                 <AddNews />
               </Route>
+
+              <Route path="/listnews">
+                <ListNewsByUser />
+              </Route>
+
               <Route path="/">
                 <Home />
               </Route>
