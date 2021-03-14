@@ -9,13 +9,13 @@ export const BoxNotiVotos = (props) => {
   if (!news) {
     return null;
   } else {
-    const threeNews = face === 'happy' ? news.slice(0, 3) : news.slice(indexNews - 3, indexNews);
+    const threeNews = face === 'happy' ? news.slice(0, 3) : news.slice(indexNews - 3, indexNews).reverse();
 
     return (
       <div id="box-voto">
         <h2>Noticias más votadas {face === 'happy' ? 'positivamente' : 'negativamente'}</h2>
 
-        {threeNews.reverse().map((post) => (
+        {threeNews.map((post) => (
           <MiniBoxVoto face={face} key={post.id} news={post} />
         ))}
       </div>

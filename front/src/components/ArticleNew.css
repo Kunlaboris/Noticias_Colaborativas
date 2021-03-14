@@ -23,11 +23,16 @@ article {
   display: block;
   flex: 0 1 auto;
 }
+
+#body-article {
+  flex: 1 1 auto;
+}
 #body-article h1.title {
   margin: 20px;
   font-size: 20px;
   line-height: 22px;
   text-align: left;
+  flex: 1 1 auto;
 }
 
 #body-article h1.title a {
@@ -42,6 +47,25 @@ article {
   color: #828282;
   line-height: 22px;
   margin: 20px;
+}
+
+.button-edit {
+  position: relative;
+  display: contents;
+}
+.button-edit button {
+  margin: 10px;
+  border-radius: 6px;
+  background-color: #27ae60;
+  color: #fff;
+  padding: 20px;
+  border: 4px solid #fff;
+}
+
+.button-edit button:hover {
+  background-color: #219653;
+  color: #fff;
+  padding: 20px;
 }
 
 @media (min-width: 780px) {

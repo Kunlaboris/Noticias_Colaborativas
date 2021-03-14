@@ -134,7 +134,7 @@ export const FormEditUserProfile = (props) => {
       setPassword(json.user.contrasena);
       setBiography(json.user.biografia); */
 
-      // history.push(`/users/${id}`);
+      history.push(`/users/${id}`);
     } else {
       // mostrar mensaje de error
       setErrorMsg('Error 1');

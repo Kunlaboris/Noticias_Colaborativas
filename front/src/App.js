@@ -13,6 +13,7 @@ import { EditUserProfilePage } from './pages/EditUserProfilePage';
 import { LatestNews } from './pages/LatestNews';
 import { SingleNewsPage } from './pages/SingleNewsPage';
 import { EditSingleNewsPage } from './pages/EditSingleNewsPage';
+import { UserListNews } from './pages/UserListNews';
 
 function App() {
   return (
@@ -47,6 +48,10 @@ function App() {
 
               <Route path="/addnews">
                 <AddNews />
+              </Route>
+
+              <Route path="/userlistnews">
+                <UserListNews />
               </Route>
 
               <Route path="/latestnews">
