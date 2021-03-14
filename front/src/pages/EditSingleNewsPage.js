@@ -1,9 +1,10 @@
 import React from 'react';
 import { TopBar } from '../components/TopBar';
 import { Menu } from '../components/Menu';
-import { FormEditNews } from '../components/FormEditNews';
+import { EditSingleNews } from '../components/EditSingleNews';
+import { DeleteNews } from '../components/DeleteNews';
 
-export const AddNews = () => {
+export const EditSingleNewsPage = () => {
   return (
     <>
       <header>
@@ -11,7 +12,7 @@ export const AddNews = () => {
         <Menu />
       </header>
       <main>
-        <FormEditNews />
+        <EditSingleNews />
       </main>
     </>
   );

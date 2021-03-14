@@ -2,7 +2,7 @@ import React from 'react';
 
 export const DeleteNews = (props) => {
   const { news, setNews, idKey } = props;
-  let newNews = [...news];
+  const newNews = [...news];
   async function deleteNews(id) {
     // const indexNews = news.findIndex((news) => news.id === event);
     // const deleteOfList = newNews.splice(indexNews, 1);
@@ -10,7 +10,7 @@ export const DeleteNews = (props) => {
 
     /// COMPROBAR LA URL
 
-    await fetch(`http://localhost:3050/news/${id}`, {
+    await fetch(`http://localhost:3050/api/v1/news/${id}`, {
       method: 'DELETE',
     });
     return setNews(newNews);

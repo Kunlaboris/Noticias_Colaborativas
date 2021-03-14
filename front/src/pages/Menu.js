@@ -4,7 +4,7 @@ export const Menu = () => {
   return (
     <nav>
       <a href="./" className="logo">
-        <img src="../img/Logo-Kunlaboris-negativo-80x428px.png" alt="logo" className="logo" />
+        <img src="./img/Logo-Kunlaboris-negativo-80x428px.png" alt="logo" className="logo" />
       </a>
       <input className="menu-btn" type="checkbox" id="menu-btn" />
       <label className="menu-icon" htmlFor="menu-btn">
@@ -18,7 +18,7 @@ export const Menu = () => {
           <a href="#">Por Tema</a>
         </li>
         <li>
-          <a href="/latestnews">Más Recientes</a>
+          <a href="#">Más Recientes</a>
         </li>
       </ul>
     </nav>

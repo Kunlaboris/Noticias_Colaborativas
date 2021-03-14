@@ -1,9 +1,9 @@
 import React from 'react';
 import { TopBar } from '../components/TopBar';
 import { Menu } from '../components/Menu';
-import { FormEditNews } from '../components/FormEditNews';
+import { SingleNews } from '../components/SingleNews';
 
-export const AddNews = () => {
+export const SingleNewsPage = () => {
   return (
     <>
       <header>
@@ -11,7 +11,7 @@ export const AddNews = () => {
         <Menu />
       </header>
       <main>
-        <FormEditNews />
+        <SingleNews />
       </main>
     </>
   );

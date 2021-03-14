@@ -1,12 +1,18 @@
 #box-bio {
-  width: 374px;
+  flex: 1 1 auto;
   margin: 20px;
   box-shadow: 0px 6px 12px 1px rgba(0, 0, 0, 0.2);
-  border-radius: 4px;
 }
 
 #box-bio h2 {
   padding-top: 10px;
   margin: 10px 20px;
   color: #27ae60;
+}
+
+@media (min-width: 780px) {
+  #box-bio {
+    max-width: 400px;
+    border-radius: 6px;
+  }
 }

@@ -17,6 +17,7 @@ async function addNews(req, res, next) {
     await schema.validateAsync(req.body);
 
     const { subject, category, lead, text } = req.body;
+
     const { id } = req.auth;
 
     // Comprobamos que nos llegan todos los campos requeridos.

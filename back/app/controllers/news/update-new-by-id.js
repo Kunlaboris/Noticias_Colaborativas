@@ -8,9 +8,9 @@ const { updateNewById, findNewsById } = require('../../repositories/news-reposit
 const { uploadImage } = require('../../../helpers');
 
 const schema = Joi.object().keys({
-  subject: Joi.string().min(12).max(50),
+  subject: Joi.string().min(12).max(200),
   category: Joi.number().min(1).max(10),
-  lead: Joi.string().min(10).max(300),
+  lead: Joi.string().min(10).max(255),
   text: Joi.string().min(300).max(1000),
 });
 

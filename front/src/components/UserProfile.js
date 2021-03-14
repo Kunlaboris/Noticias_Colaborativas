@@ -1,15 +1,18 @@
 import { useContext, useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
-import './BoxUser.css';
+import './UserProfile.css';
 import { AuthContext } from './AuthProvider';
 import { UserContext } from './UserProvider';
+import { Button } from '@material-ui/core';
+
+// FALTA PINTAR EL AVATAR EN UN DIV
 
 export const UserProfile = (props) => {
   const { selectedPerson, setSelectedPerson } = useContext(UserContext);
+  const { REACT_APP_API_URL } = process.env;
 
-  const [profile, setProfile] = useState();
+  const [profile, setProfile] = useState(0);
   const [token] = useContext(AuthContext);
-
   const { id } = useParams();
 
   useEffect(() => {
@@ -34,41 +37,60 @@ export const UserProfile = (props) => {
     loadUser();
   }, []);
 
-  console.log({ profile, selectedPerson, id });
-  if (!profile) {
-    return <div>Cargando...</div>;
+  const avatarImage = profile.foto
+    ? `${REACT_APP_API_URL}/images/profiles/${profile.foto}`
+    : '../img/avatar-kunlaboris.svg';
+
+  const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+  //console.log({ profile, selectedPerson, id });
+
+  if (profile === 0) {
+    return (
+      <div id="box-users-edit">
+        <div className="box-name login">
+          <h2 className="login">Tienes que hacer login para ver tu perfil</h2>
+          <Button variant="outlined" color="primary" href={`/login`}>
+            Login
+          </Button>
+        </div>
+      </div>
+    );
   }
 
   return (
-    <>
-      <h2>{profile.nombre}</h2>;<h2>{profile.apellido_1}</h2>;<h2>{profile.nickname}</h2>;
-      <div id="box-users-edit">
-        <div id="caja-datos">
-          <h2 class="user">
-            {profile.nombre} {profile.apellido_1} {profile.apellido_2}
-          </h2>
-        </div>
-        <img src="avatar-kunlaboris.svg" widht="100px" alt="avatar" />
-        <h3>Nombre de usuario:</h3>
-        <p class="nick">Nickname</p>
-        <p class="id">
-          <span>Id:</span> 123456
-        </p>
-        <h4>Biografia</h4>
-        <p className="box-user">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Commodi exercitationem veritatis quis dolorem! Quod
-          ducimus consequatur nisi. Possimus fugiat, aspernatur saepe quisquam cupiditate sed dolore recusandae corporis
-          voluptatibus labore natus?
-        </p>
-        <div class="correo">
-          <span>Email:</span> dirección@dominio.com
-        </div>
-        <div class="fecha">
-          <span>Fecha de nacimiento:</span>
-          15 de septiembre de 1978
-        </div>
-        {parseInt(id) === selectedPerson.id && <Link to={`/users/${id}/edit`}></Link>}
+    <div id="box-users-edit">
+      <div className="box-name">
+        <h2>
+          {profile.nombre} {profile.apellido_1} {profile.apellido_2}
+        </h2>
       </div>
-    </>
+      <div className="user-avatar">
+        <img src={avatarImage} widht="120px" alt="avatar" />
+      </div>
+      <div className="user-data">
+        <h3>Nombre de usuario:</h3>
+        <p className="nick">{profile.nickname}</p>
+        <p className="id-by-user">
+          <span>Tu ID de usuario:</span> {profile.id}
+        </p>
+        <h3>Biografia</h3>
+        <p className="biography">{profile.biografia}</p>
+        <p className="email">
+          <span>Email:</span> {profile.email}
+        </p>
+
+        <h3>Fecha de nacimiento:</h3>
+        <p>{new Date(profile.fecha_nacimiento).toLocaleString('es-ES', options)}</p>
+
+        <h3>Usuario Kunlaboris desde:</h3>
+        <p> {new Date(profile.fecha_creacion).toLocaleDateString('es-ES', options)}</p>
+
+        {parseInt(id) === selectedPerson.id && (
+          <Button variant="outlined" color="default" href={`/users/${id}/edit`}>
+            Edita tu perfil
+          </Button>
+        )}
+      </div>
+    </div>
   );
 };

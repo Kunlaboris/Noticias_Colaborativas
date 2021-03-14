@@ -96,7 +96,7 @@ button.close:hover {
   color: #2f80ed;
 }
 
-form {
+div#topBar form {
   display: flex;
   justify-content: center;
   align-items: center;
