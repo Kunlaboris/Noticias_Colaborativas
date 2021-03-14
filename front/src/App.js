@@ -10,6 +10,7 @@ import { UserProfilePage } from './pages/UserProfilePage';
 import { AuthProvider } from './components/AuthProvider';
 import { UserProvider } from './components/UserProvider';
 import { EditUserProfilePage } from './pages/EditUserProfilePage';
+import { ListNewsByUser } from './pages/ListNewsByUser';
 import { LatestNews } from './pages/LatestNews';
 import { SingleNewsPage } from './pages/SingleNewsPage';
 import { EditSingleNewsPage } from './pages/EditSingleNewsPage';
@@ -42,6 +43,11 @@ function App() {
                 <EditSingleNewsPage />
               </Route>
 
+              {/*  <Route path="/news/:id/delete">
+                <DeleteNewsPage />
+              </Route>
+              */}
+
               <Route path="/news/:id">
                 <SingleNewsPage />
               </Route>
@@ -52,6 +58,10 @@ function App() {
 
               <Route path="/userlistnews">
                 <UserListNews />
+              </Route>
+
+              <Route path="/listnews">
+                <ListNewsByUser />
               </Route>
 
               <Route path="/latestnews">

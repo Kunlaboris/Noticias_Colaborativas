@@ -13,7 +13,6 @@ export const UserProfile = (props) => {
 
   const [profile, setProfile] = useState(0);
   const [token] = useContext(AuthContext);
-
   const { id } = useParams();
 
   useEffect(() => {
