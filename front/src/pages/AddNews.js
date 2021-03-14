@@ -11,7 +11,7 @@ export const AddNews = () => {
         <Menu />
       </header>
       <main>
-        <FormEditNews></FormEditNews>
+        <FormEditNews />
       </main>
     </>
   );

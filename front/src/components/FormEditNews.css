@@ -4,6 +4,13 @@
   box-sizing: border-box;
 }
 
+.new {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  flex-wrap: wrap;
+}
+
 h4 {
   color: #7ed321;
 }
@@ -218,9 +225,26 @@ button#new:active {
 .col-third:last-of-type {
   padding-right: 0;
 }
+
+.new h2 {
+  display: block;
+  max-width: 100%;
+  padding: 2em 2em 2em 2em;
+  margin: 0 auto 2em auto;
+  border-radius: 4.2px;
+  /* flex: 0 1 auto; */
+  background-color: #27ae60;
+  color: #ffffff;
+}
+
 @media only screen and (max-width: 540px) {
   .col-half {
     width: 100%;
     padding-right: 0;
+  }
+  .new h2 {
+    /* display: none; */
+
+    padding: 20px;
   }
 }

@@ -9,27 +9,27 @@ import { BoxNotiVotos } from '../components/BoxNotiVotos';
 import { BoxUser } from '../components/BoxUser';
 import { useRemoteCategory } from '../api/useRemoteCategory';
 
-export const Home = () => {
+export const LatestNews = () => {
   const { categories } = useRemoteCategory([{ id: 1, nombre: 'economía' }]);
   const { news, setNews, errorNews } = useUploadNews();
   const [dateToFilter, setDateToFilter] = useState(new Date());
   const [categoryToFilter, setCategoryToFilter] = useState('');
-  // // setDateToFilter();
-  // console.log(new Date(dateToFilter).toLocaleDateString());
 
-  // ************************************ hay que activarlo
   //momentjs
   //date-fns
 
   const filteredNews = news
     .filter(
-      (post) =>
-        new Date(dateToFilter).toLocaleDateString() === new Date().toLocaleDateString() ||
-        new Date(post.fecha_publicacion).toLocaleDateString() === new Date(dateToFilter).toLocaleDateString()
+      (post) => new Date(post.fecha_publicacion).toLocaleDateString() === new Date(dateToFilter).toLocaleDateString()
     )
     .filter((post) => categoryToFilter === '' || parseInt(categoryToFilter) === post.id_cat);
 
-  // console.log(filteredNews);
+  // if (filteredNews === []) {
+  //   <div>Ninguna noticia</div>;
+  // }
+
+  console.log(!filteredNews);
+
   return (
     <>
       <header>
@@ -37,20 +37,14 @@ export const Home = () => {
         <Menu />
       </header>
       <main>
-        <div className="filter-bar">
-          <h2>
-            <i className="fas fa-newspaper"></i> Filtros
-          </h2>
-          <select onChange={(e) => setCategoryToFilter(e.target.value)} className="filter">
-            <option value="">Todos los temas</option>
-            {categories.map((cat) => (
-              <option key={cat.id} value={cat.id}>
-                {cat.nombre}
-              </option>
-            ))}
-          </select>
-          <input type="date" onChange={(e) => setDateToFilter(e.target.value)} className="filter"></input>
-        </div>
+        <select onChange={(e) => setCategoryToFilter(e.target.value)}>
+          <option value="">Todos los temas</option>
+          {categories.map((cat) => (
+            <option key={cat.id} value={cat.id}>
+              {cat.nombre}
+            </option>
+          ))}
+        </select>
         {filteredNews.map((post) => (
           <ArticleNews key={post.id} new={post} />
         ))}
@@ -59,11 +53,9 @@ export const Home = () => {
       </main>
 
       <footer>
-        <BoxNotiVotos face="happy" news={news} />
-        <BoxNotiVotos face="sad" news={news} />
         <BoxBiography />
+        {<BoxNotiVotos />}
       </footer>
-      <div className="top-footer">Trabajo realizado por: Anamaria, Monica y Armando</div>
     </>
   );
 };

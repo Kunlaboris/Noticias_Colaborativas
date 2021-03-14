@@ -49,6 +49,7 @@ async function uploadImageProfile(req, res) {
     res.send({
       status: 'ok',
       message: 'Avatar actualizado',
+      avatar: avatarFileName,
     });
   } catch (err) {
     createJsonError(err, res);

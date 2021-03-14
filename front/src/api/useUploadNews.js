@@ -30,7 +30,7 @@ export const useUploadNews = () => {
       } else {
         setErrorNews('Ha sucedido un error');
       }
-      console.log('Actualizado...');
+      // console.log('Actualizado...');
     };
     loadNews();
   }, []);
