@@ -9,7 +9,8 @@ const { uploadImage } = require('../../../helpers');
 
 const schema = Joi.object().keys({
   subject: Joi.string().min(12).max(200),
-  category: Joi.number().min(1).max(10),
+  foto: Joi.any().allow(null, ''),
+  category: Joi.number().min(1).max(10).error(new Error(' La categoria es incorecta')),
   lead: Joi.string().min(10).max(255),
   text: Joi.string().min(300).max(1000),
 });
@@ -23,9 +24,10 @@ async function updateNewsById(req, res, next) {
 
     let { subject, category, lead, text } = req.body;
 
+    const currentNew = await findNewsById(idNew);
     // Comprobamos si se subió una foto
-    let newPhoto;
-    let newThumbnail;
+    let newPhoto = currentNew[0].foto;
+    let newThumbnail = currentNew[0].miniatura;
 
     if (req.files && req.files.foto) {
       //Procesamos la foto y generamos las dos versiones
@@ -42,8 +44,6 @@ async function updateNewsById(req, res, next) {
         height: 200,
       });
     }
-
-    const currentNew = await findNewsById(idNew);
 
     if (!subject) subject = currentNew[0].titulo;
     if (!category) category = currentNew[0].id_categoria;

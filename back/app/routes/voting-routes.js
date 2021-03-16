@@ -8,11 +8,13 @@ const updateVoting = require('../controllers/voting/update-voting-by-id');
 const deleteVoting = require('../controllers/voting/delete-voting-by-id');
 const getVotingNews = require('../controllers/voting/get-voting-new');
 const { validateAuth, isUser } = require('../middlewares/validate-auth');
+const getVoting = require('../controllers/voting/get-voting');
 
 const router = express.Router();
 
 //privadas
 router
+  .get('/news/id', (req, res) => getVoting(req, res))
   .get('/news/:idNews', (req, res) => getVotingByIdNews(req, res))
   .get('/news', (req, res) => getVotingNews(req, res))
   .post('/', validateAuth, (req, res) => addVoteByIdUser(req, res));

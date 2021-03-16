@@ -2,15 +2,15 @@
 
 const Joi = require('joi');
 const bcrypt = require('bcryptjs');
-//const cryptoRandomString = require('crypto-random-string');
+const cryptoRandomString = require('crypto-random-string');
 const {
-  //addVerificationCode,
+  addVerificationCode,
   createUser,
   findUserByEmail,
   findUserByNickname,
 } = require('../../repositories/users-repository');
 const createJsonError = require('../errors/create-json-errors');
-//const { sendEmailRegistration } = require('../../../mail-smtp');
+const { sendEmailRegistration } = require('../../../mail-smtp');
 
 const schema = Joi.object().keys({
   firstname: Joi.string().min(3).max(40).required(),
@@ -44,6 +44,10 @@ async function registerUsers(req, res) {
     const passwordHash = await bcrypt.hash(password, 12);
 
     // llamada a la base de datos
+    const name = `${firstname} ${lastname} ${surname}`;
+
+    const verificationCode = cryptoRandomString({ length: 64 });
+    await sendEmailRegistration(email, name, verificationCode);
 
     const id = await createUser(
       firstname,
@@ -58,15 +62,15 @@ async function registerUsers(req, res) {
     );
     //////////////////////////////////////////////////////////////////////
 
+    // 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
+
     // COMPROBAR DESDE AQUÍ
 
     // nada más se crea el usuario, se crea el código de verificación -verificationCode
     // lo enviamos por email - sendEmailRegistration
     // se añade a la base de datos en la nueva tabla creada usuario_activacion - addVerificationCode
 
-    // const verificationCode = cryptoRandomString({ length: 64 });
-    // await sendEmailRegistration(nickname, email, verificationCode);
-    // await addVerificationCode(id, verificationCode);
+    await addVerificationCode(id, verificationCode);
 
     /////////////////////////////////////////////////////////////////////////
 

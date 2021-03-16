@@ -35,6 +35,15 @@ async function findVotesByIdNew(idNews) {
   return voting;
 }
 
+async function findVotes() {
+  const connection = await getPool();
+  const query = `SELECT * FROM valoraciones`;
+  const [voting] = await connection.query(query);
+
+  connection.release();
+  return voting;
+}
+
 async function findVotesByIdUser(idUser, idNews) {
   const connection = await getPool();
   const query = `SELECT * FROM valoraciones WHERE id_usuario = ? AND id_noticia = ?`;
@@ -93,6 +102,7 @@ module.exports = {
   addVoteByIdUser,
   findVotesByIdUser,
   findVotesByIdUser2,
+  findVotes,
   findVotesByIdNew,
   findVotesNegativeByIdNews,
   findVotesNews,
