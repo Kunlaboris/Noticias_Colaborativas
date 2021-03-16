@@ -37,6 +37,7 @@
 .box-name h2 {
   flex: 1 1 auto;
   text-align: center;
+  width: 200px;
   color: #ffffff;
   padding: 50px 20px;
 }
@@ -46,6 +47,7 @@
 
 .user-avatar img {
   width: 110px;
+  background-color: #fff;
   border-radius: 100%;
   border: 6px solid #fff;
   flex: 0 1 auto;
@@ -81,6 +83,20 @@
 .user-data span {
   color: #219653;
   font-weight: 700;
+}
+button.user {
+  border: 4px solid transparent;
+  border-radius: 5px;
+  font-size: 12px;
+  padding: 0.5em 1.5em;
+  margin: 0.5em;
+  transition-duration: 0.25s;
+  background-color: #0066ff;
+  color: white;
+}
+
+button.user:hover {
+  background-color: #0099ff;
 }
 
 /* 

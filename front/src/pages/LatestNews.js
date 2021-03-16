@@ -8,6 +8,7 @@ import { useUploadNews } from '../api/useUploadNews';
 import { BoxNotiVotos } from '../components/BoxNotiVotos';
 import { BoxUser } from '../components/BoxUser';
 import { useRemoteCategory } from '../api/useRemoteCategory';
+import Loading from '../components/Loading';
 
 export const LatestNews = () => {
   const { categories } = useRemoteCategory([{ id: 1, nombre: 'economía' }]);
@@ -15,8 +16,7 @@ export const LatestNews = () => {
   const [dateToFilter, setDateToFilter] = useState(new Date());
   const [categoryToFilter, setCategoryToFilter] = useState('');
 
-  //momentjs
-  //date-fns
+  if (!news.length) return <Loading />;
 
   const filteredNews = news
     .filter(
@@ -27,9 +27,7 @@ export const LatestNews = () => {
   // if (filteredNews === []) {
   //   <div>Ninguna noticia</div>;
   // }
-
-  console.log(!filteredNews);
-
+  console.log(filteredNews);
   return (
     <>
       <header>
@@ -37,25 +35,36 @@ export const LatestNews = () => {
         <Menu />
       </header>
       <main>
-        <select onChange={(e) => setCategoryToFilter(e.target.value)}>
-          <option value="">Todos los temas</option>
-          {categories.map((cat) => (
-            <option key={cat.id} value={cat.id}>
-              {cat.nombre}
-            </option>
-          ))}
-        </select>
+        <div className="filter-bar">
+          <h2>
+            <i className="fas fa-newspaper"></i> Filtros
+          </h2>
+          <select onChange={(e) => setCategoryToFilter(e.target.value)} className="filter">
+            <option value="">Todos los temas</option>
+            {categories.map((cat) => (
+              <option key={cat.id} value={cat.id}>
+                {cat.nombre}
+              </option>
+            ))}
+          </select>
+        </div>
         {filteredNews.map((post) => (
           <ArticleNews key={post.id} new={post} />
         ))}
 
-        {!!filteredNews && <div>Ninguna noticia</div>}
+        {filteredNews.length === 0 && (
+          <div className="news-vacio">
+            <i class="far fa-eye-slash"></i> Tu busqueda no tiene ninguna respuesta
+          </div>
+        )}
       </main>
 
       <footer>
+        <BoxNotiVotos face="happy" news={news} />
+        <BoxNotiVotos face="sad" news={news} />
         <BoxBiography />
-        {<BoxNotiVotos />}
       </footer>
+      <div className="top-footer">Trabajo realizado por: Anamaria, Monica y Armando</div>
     </>
   );
 };

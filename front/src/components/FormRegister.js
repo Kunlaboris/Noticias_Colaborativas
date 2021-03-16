@@ -1,6 +1,6 @@
 import React, { useState, useContext } from 'react';
 import './FormRegister.css';
-import { useHistory } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 //import { useLocalStorage } from '../components/useLocalStorage';
 
 import { AuthContext } from '../components/AuthProvider';
@@ -90,102 +90,163 @@ export const FormRegister = () => {
     }
   };
 
+  const [shown, setShown] = React.useState(false);
+  const switchShown = () => setShown(!shown);
+
+  const [shown2, setShown2] = React.useState(false);
+  const switchShown2 = (e) => {
+    e.preventDefault();
+    setShown2(!shown2);
+  };
   /* const handleChange = (event) => {
     setEmail(event.target.value);
   }; */
   // fetch quse se conecta al back encodeURI, inpus enviar Email, se cargue POST al servidor
   return (
-    <>
-      <div class="container">
+    <section id="user-profile" className="user-profile">
+      <div className="container user">
         <h2>Crea tu cuenta</h2>
+
+        <div>
+          <form onSubmit={handleRegisterUser}>
+            <div className="row">
+              {/* /////////////////////////// Nombre */}
+              <div className="col-third name">
+                <h4>Nombre</h4>
+                <div className="input-group input-group-icon">
+                  <input
+                    placeholder="Nombre (200 caracteres)"
+                    name="firstname"
+                    type="text"
+                    value={firstname}
+                    onChange={(e) => setFirstname(e.target.value)}
+                  />
+                  <div className="input-icon">
+                    <i className="fas fa-user-edit"></i>
+                  </div>
+                </div>
+              </div>
+
+              <div className="col-third name">
+                <h4>Primer apellido</h4>
+                <div className="input-group">
+                  <input
+                    placeholder="Primer apellido (50) caracteres"
+                    name="lastname"
+                    type="text"
+                    value={lastname}
+                    onChange={(e) => setLastname(e.target.value)}
+                  />
+                </div>
+              </div>
+
+              <div className="col-third name">
+                <h4>Segundo apellido</h4>
+                <div className="input-group">
+                  <input
+                    placeholder="segundo apellido (50) caracteres"
+                    name="surname"
+                    type="text"
+                    value={surname}
+                    onChange={(e) => setSurname(e.target.value)}
+                  />
+                </div>
+              </div>
+            </div>
+            <div className="row">
+              <h4>Nickname</h4>
+              <div className="input-group input-group-icon">
+                <input
+                  placeholder="Nombre (10) caracteres"
+                  name="nickname"
+                  type="text"
+                  value={nickname}
+                  onChange={(e) => setNickname(e.target.value)}
+                />
+                <div className="input-icon">
+                  <i className="fab fa-kickstarter-k"></i>
+                </div>
+              </div>
+            </div>
+
+            {/* /////////////////////////// final de nombre */}
+            <div className="row">
+              <div className="col-half">
+                <h4>Email</h4>
+                <div className="input-group input-group-icon">
+                  <input
+                    placeholder="email"
+                    name="email"
+                    type="text"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                  />
+                  <div className="input-icon">
+                    <i className="fas fa-at"></i>
+                  </div>
+                </div>
+              </div>
+              <div className="col-half">
+                <h4>Fecha de nacimiento</h4>
+                <input id="date" type="date" value={birthdate} onChange={(e) => setBirthDate(e.target.value)} />
+              </div>
+            </div>
+            {/* /////////////////////////////////////////////// fin de email y fecha nacimiento */}
+            <div className="row">
+              <div className="col-half">
+                <h4>Contraseña</h4>
+                <div className="input-group input-group-icon  left">
+                  <input
+                    name="password"
+                    type={shown ? 'text' : 'password'}
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                  />
+                  <div className="input-icon">
+                    <i className="fas fa-unlock-alt"></i>
+                  </div>
+                  <button className="candado" onClick={switchShown}>
+                    <i className={shown ? 'fas fa-eye-slash' : 'fas fa-eye'}></i>
+                  </button>
+                </div>
+              </div>
+
+              <div className="col-half">
+                <h4>Confirmar contraseña</h4>
+                <div className="input-group input-group-icon left">
+                  <input
+                    name="repeatPassword"
+                    type={shown2 ? 'text' : 'password'}
+                    value={repeatPassword}
+                    onChange={(e) => setRepeatPassword(e.target.value)}
+                  />
+                  <div className="input-icon">
+                    <i className="fas fa-unlock-alt"></i>
+                  </div>
+                  <button className="candado" onClick={switchShown2}>
+                    <i className={shown2 ? 'fas fa-eye-slash' : 'fas fa-eye'}></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <div>
+              <h4>Tu biografía</h4>
+              <textarea
+                name="biography"
+                type="text"
+                rows="8"
+                value={biography}
+                onChange={(e) => setBiography(e.target.value)}
+              />
+            </div>
+            <button type="submit" className="register-boton">
+              Enviar
+            </button>
+          </form>
+        </div>
+        {errorMsg && <div>{errorMsg}</div>}
       </div>
-      <div>
-        <form onSubmit={handleRegisterUser}>
-          <div>
-            <label htmlFor="firstname">Nombre</label>
-            <input
-              name="firstname"
-              type="text"
-              value={firstname}
-              onChange={(e) => setFirstname(e.target.value)}
-              required
-            />
-          </div>
-
-          <div>
-            <label htmlFor="lastname">Primer apellido</label>
-            <input
-              name="lastname"
-              type="text"
-              value={lastname}
-              onChange={(e) => setLastname(e.target.value)}
-              required
-            />
-          </div>
-
-          <div>
-            <label htmlFor="surname">Segundo apellido</label>
-            <input name="surname" type="text" value={surname} onChange={(e) => setSurname(e.target.value)} />
-          </div>
-
-          <div>
-            <label htmlFor="nickname">Nombre de usuario</label>
-            <input
-              name="nickname"
-              type="text"
-              value={nickname}
-              onChange={(e) => setNickname(e.target.value)}
-              required
-            />
-          </div>
-
-          <div>
-            <label htmlFor="email">Email</label>
-            <input name="email" type="email" value={email} onChange={(e) => setEmail(e.target.value)} required />
-          </div>
-
-          <div>
-            <label htmlFor="birthDate">Fecha de nacimiento</label>
-            <input name="birthDate" type="date" value={birthdate} onChange={(e) => setBirthDate(e.target.value)} />
-          </div>
-
-          <div>
-            <label htmlFor="password">Contraseña</label>
-            <input
-              name="password"
-              type="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              required
-            />
-          </div>
-
-          <div>
-            <label htmlFor="repeatPassword">Confirmar contraseña</label>
-            <input
-              name="repeatPassword"
-              type="password"
-              value={repeatPassword}
-              onChange={(e) => setRepeatPassword(e.target.value)}
-              required
-            />
-          </div>
-
-          <div>
-            <label htmlFor="biography">Tu biografía</label>
-            <textarea
-              name="biography"
-              type="text"
-              rows="8"
-              value={biography}
-              onChange={(e) => setBiography(e.target.value)}
-            ></textarea>
-          </div>
-          {errorMsg && <div>{errorMsg}</div>}
-
-          <button type="submit">Enviar</button>
-        </form>
-      </div>
-    </>
+    </section>
   );
 };

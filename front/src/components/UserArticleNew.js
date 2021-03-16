@@ -1,4 +1,4 @@
-import { Button } from '@material-ui/core';
+import { Link } from 'react-router-dom';
 import './ArticleNew.css';
 import { AvatarKunlaboris } from './AvatarKunlaboris';
 import { FaceKunla } from './FaceKunla';
@@ -53,7 +53,7 @@ export const UserArticleNew = (props) => {
           id={props.new.id_usuario}
         />
         <h1 className="title">
-          <a href={`news/${props.new.id}`}>{props.new.titulo}</a>
+          <Link to={`/news/${props.new.id}`}>{props.new.titulo}</Link>
         </h1>
         <p className="excerpt"> {props.new.entradilla} </p>
       </div>

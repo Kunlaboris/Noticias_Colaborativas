@@ -1,19 +1,32 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { AuthContext } from './AuthProvider';
+import { useHistory } from 'react-router-dom';
 
-export const DeleteNews = (props) => {
-  const { news, setNews, idKey } = props;
-  const newNews = [...news];
-  async function deleteNews(id) {
-    // const indexNews = news.findIndex((news) => news.id === event);
-    // const deleteOfList = newNews.splice(indexNews, 1);
-    // console.log(deleteOfList[0].id);
+export const DeleteNews = ({ id, redirect, clase }) => {
+  const [token] = useContext(AuthContext);
+  const history = useHistory();
 
-    /// COMPROBAR LA URL
+  async function deleteNews(e) {
+    e.preventDefault();
+    if (confirm('Estas segur@ de borrar la noticia')) {
+      // const indexNews = news.findIndex((news) => news.id === event);
+      // const deleteOfList = newNews.splice(indexNews, 1);
+      // console.log(deleteOfList[0].id);
 
-    await fetch(`http://localhost:3050/api/v1/news/${id}`, {
-      method: 'DELETE',
-    });
-    return setNews(newNews);
+      /// COMPROBAR LA URL
+
+      await fetch(`${process.env.REACT_APP_API_URL}/api/v1/news/${id}`, {
+        method: 'DELETE',
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      history.push(redirect);
+    }
   }
-  return <button onClick={() => deleteNews(idKey)}>Eliminar noticia</button>;
+  return (
+    <button onClick={deleteNews} className={clase && clase}>
+      <i className="fas fa-eraser"></i> Eliminar noticia
+    </button>
+  );
 };

@@ -72,6 +72,29 @@ footer {
   padding: 40px 20px;
 }
 
+.news-vacio {
+  background-color: #eb5757;
+  /* max-width: 400px; */
+  color: #fff;
+  font-size: 25px;
+  text-align: center;
+  padding: 20px;
+  margin: 20px auto;
+  border-radius: 4px;
+}
+
+.loading-wrapper {
+  width: 100vw;
+  height: 100vh;
+  display: grid;
+  place-content: center;
+  background-color: #27ae60;
+}
+
+.loading-wrapper img {
+  width: 10vw;
+}
+
 @media (min-width: 780px) {
   main div.filter-bar h2 {
     color: #fff;

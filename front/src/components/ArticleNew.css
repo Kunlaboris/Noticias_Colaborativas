@@ -50,16 +50,19 @@ article {
 }
 
 .button-edit {
-  position: relative;
-  display: contents;
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+  padding: 5px 5px 0px 5px;
+  margin-right: 0px;
 }
 .button-edit button {
-  margin: 10px;
-  border-radius: 6px;
+  align-self: flex-end;
+  margin: 0px 4px;
+  border-radius: 6px 6px 0px 0px;
   background-color: #27ae60;
   color: #fff;
   padding: 20px;
-  border: 4px solid #fff;
 }
 
 .button-edit button:hover {
@@ -81,5 +84,11 @@ article {
     align-items: stretch;
     padding-bottom: 0px;
     margin-bottom: 40px;
+  }
+  .button-edit button {
+    margin: -10px 4px;
+  }
+  .button-edit {
+    margin-right: 10px;
   }
 }

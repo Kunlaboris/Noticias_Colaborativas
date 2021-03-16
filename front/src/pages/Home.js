@@ -8,6 +8,7 @@ import { useUploadNews } from '../api/useUploadNews';
 import { BoxNotiVotos } from '../components/BoxNotiVotos';
 import { BoxUser } from '../components/BoxUser';
 import { useRemoteCategory } from '../api/useRemoteCategory';
+import Loading from '../components/Loading';
 
 export const Home = () => {
   const { categories } = useRemoteCategory([{ id: 1, nombre: 'economía' }]);
@@ -20,6 +21,8 @@ export const Home = () => {
   // ************************************ hay que activarlo
   //momentjs
   //date-fns
+
+  if (!news.length) return <Loading />;
 
   const filteredNews = news
     .filter(
@@ -55,7 +58,7 @@ export const Home = () => {
           <ArticleNews key={post.id} new={post} />
         ))}
 
-        {!!filteredNews && <div>Ninguna noticia</div>}
+        {filteredNews.length === 0 && <div className="news-vacio">Tu busqueda no tiene ninguna respuesta</div>}
       </main>
 
       <footer>

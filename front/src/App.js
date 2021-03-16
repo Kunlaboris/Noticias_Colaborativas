@@ -35,6 +35,10 @@ function App() {
                 <EditUserProfilePage />
               </Route>
 
+              <Route path="/users/:id/listnew">
+                <UserListNews />
+              </Route>
+
               <Route path="/users/:id">
                 <UserProfilePage />
               </Route>
@@ -54,14 +58,6 @@ function App() {
 
               <Route path="/addnews">
                 <AddNews />
-              </Route>
-
-              <Route path="/userlistnews">
-                <UserListNews />
-              </Route>
-
-              <Route path="/listnews">
-                <ListNewsByUser />
               </Route>
 
               <Route path="/latestnews">

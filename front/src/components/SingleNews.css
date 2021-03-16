@@ -1,0 +1,166 @@
+#publicacion {
+  display: grid;
+  padding: 10px;
+  margin: 0em auto;
+  background-color: #fff;
+  border-radius: 4.2px;
+  box-shadow: 0px 3px 10px -2px rgba(0, 0, 0, 0.2);
+}
+
+#publicacion h1.encabezado {
+  font-weight: 500;
+  font-size: 32px;
+  line-height: 40px;
+  padding: 20px 0px;
+  color: #219653;
+  text-align: center;
+}
+
+#publicacion img.imagen-1 {
+  margin: 10px auto;
+}
+
+#publicacion h3.temas {
+  font-size: 14px;
+  line-height: 12px;
+  text-transform: uppercase;
+  color: #2f80ed;
+  margin: 10px;
+}
+#publicacion h3.temas span {
+  color: #56ccf2;
+}
+
+#publicacion div.author {
+  margin: 10px;
+}
+
+#publicacion div.author p.biography {
+  font-size: 12px;
+  line-height: 15px;
+  letter-spacing: 0.4px;
+  color: #828282;
+  margin-top: 10px;
+}
+
+#publicacion div.fecha {
+  margin: 10px;
+}
+
+#publicacion div.fecha h4 {
+  font-size: 10px;
+  line-height: 12px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+}
+
+#publicacion div.fecha p {
+  font-size: 16px;
+  line-height: 12px;
+  margin: 10px;
+  letter-spacing: 1.5px;
+}
+
+#publicacion div.fecha h4 {
+  font-size: 10px;
+  line-height: 12px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: #828282;
+}
+
+#publicacion div.votaciones {
+  margin: 10px auto;
+}
+
+#publicacion div.entradilla {
+  font-size: 18px;
+  line-height: 24px;
+  letter-spacing: 0.25px;
+  color: #828282;
+  font-weight: 300;
+  margin: 10px;
+}
+
+#publicacion div.texto-noticia {
+  margin: 10px;
+}
+
+#publicacion div.texto-noticia p {
+  font-size: 14px;
+  line-height: 24px;
+  color: #333;
+}
+
+button.news-single {
+  border: 4px solid transparent;
+  border-radius: 5px;
+  font-size: 12px;
+  padding: 0.5em 1.5em;
+  margin: 0.5em;
+  transition-duration: 0.25s;
+  background-color: #0066ff;
+  color: white;
+  align-self: flex-end;
+}
+
+button.news-single :hover {
+  background-color: #0099ff;
+}
+
+button.news-single :active {
+  border: 4px solid #0066ff;
+  transition: 0s;
+}
+
+@media (min-width: 768px) {
+  #publicacion {
+    max-width: 800px;
+    padding: 20px;
+    display: grid;
+    grid-template-columns: 480px auto;
+    grid-template-rows: auto auto auto auto auto auto auto;
+    gap: 10px;
+    grid-template-areas:
+      'titulo titulo'
+      'foto categoria'
+      'foto autor'
+      'foto votacion'
+      'fecha fecha'
+      'entradilla entradilla'
+      'texto texto';
+  }
+
+  #publicacion h1.encabezado {
+    grid-area: titulo;
+  }
+
+  #publicacion img.imagen-1 {
+    grid-area: foto;
+  }
+
+  #publicacion h3.temas {
+    grid-area: categoria;
+  }
+
+  #publicacion div.author {
+    grid-area: autor;
+  }
+
+  #publicacion div.fecha {
+    grid-area: fecha;
+  }
+
+  #publicacion div.votaciones {
+    grid-area: votacion;
+    align-self: end;
+  }
+
+  #publicacion div.entradilla {
+    grid-area: entradilla;
+  }
+
+  #publicacion div.texto-noticia {
+    grid-area: texto;
+  }
+}

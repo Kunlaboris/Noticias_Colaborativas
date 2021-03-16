@@ -49,7 +49,7 @@ export const ArticleNewsByUser = (props) => {
           Editar
         </button>
         <button type="submit" className="boton">
-          Borrar
+          <DeleteNews id={id} redirect={`/`} />
         </button>
       </div>
     </article>

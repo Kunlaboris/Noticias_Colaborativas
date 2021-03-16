@@ -20,7 +20,7 @@ export const FormEditUserProfile = (props) => {
   // hasta que no use setEmail no veo ningún cambio en mi formulario
   const [token, setToken] = useContext(AuthContext);
 
-  const { selectedPerson } = useContext(UserContext);
+  const { selectedPerson, setSelectedPerson } = useContext(UserContext);
   const [errorMsg, setErrorMsg] = useState('');
 
   const history = useHistory();
@@ -60,8 +60,8 @@ export const FormEditUserProfile = (props) => {
         setEmail(json.user.email);
         setPhoto(json.user.foto);
         setBirthDate(json.user.fecha_nacimiento);
-        setDay(new Date(json.user.fecha_nacimiento).getDay());
-        setMonth(new Date(json.user.fecha_nacimiento).getMonth());
+        setDay(new Date(json.user.fecha_nacimiento).getDate());
+        setMonth(new Date(json.user.fecha_nacimiento).getMonth() + 1);
         setYear(new Date(json.user.fecha_nacimiento).getFullYear());
         setPassword(json.user.constrasena);
         setBiography(json.user.biografia);
@@ -91,6 +91,8 @@ export const FormEditUserProfile = (props) => {
     if (response.ok) {
       const contentBody = await response.json();
       console.log(contentBody);
+      console.log(selectedPerson);
+      setSelectedPerson({ ...selectedPerson, foto: contentBody.avatar });
       setPhoto(contentBody.avatar);
       setPhotoNew('');
     } else {
@@ -101,6 +103,11 @@ export const FormEditUserProfile = (props) => {
 
   const handleEditUserProfile = async (e) => {
     e.preventDefault();
+
+    if (password !== repeatPassword) {
+      setErrorMsg('contraseña ');
+      return;
+    }
     const birthDateModified = `${year}-${month}-${day}`;
     console.log(birthDateModified);
     const resp = await fetch(`http://localhost:3050/api/v1/users/${id}`, {
@@ -117,7 +124,7 @@ export const FormEditUserProfile = (props) => {
         email: email,
         birthDate: birthDateModified,
         password: password,
-        repeatPassword: password,
+        repeatPassword: repeatPassword,
         biography: biography,
       }),
     });

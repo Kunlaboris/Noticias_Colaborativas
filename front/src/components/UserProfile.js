@@ -86,9 +86,14 @@ export const UserProfile = (props) => {
         <p> {new Date(profile.fecha_creacion).toLocaleDateString('es-ES', options)}</p>
 
         {parseInt(id) === selectedPerson.id && (
-          <Button variant="outlined" color="default" href={`/users/${id}/edit`}>
-            Edita tu perfil
-          </Button>
+          <>
+            <Link to={`/users/${id}/edit`}>
+              <button className="user">Edita tu perfil</button>
+            </Link>
+            <Link to={`/users/${id}/listnew`}>
+              <button className="user">Lista de noticias</button>
+            </Link>
+          </>
         )}
       </div>
     </div>

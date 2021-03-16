@@ -19,8 +19,6 @@ export const Login = () => {
         <Menu />
       </header>
       <main>
-        <div>Bienvenido a Kunlaboris</div>
-
         <FormLogin />
       </main>
     </>

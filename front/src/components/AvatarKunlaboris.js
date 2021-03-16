@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import './AvatarKunlaboris.css';
 
-export const AvatarKunlaboris = ({ className = '', date, name, photo, id }) => {
+export const AvatarKunlaboris = ({ className = '', date, name, photo, id, textAvatar }) => {
   const { REACT_APP_API_URL } = process.env;
 
   const avatarImage = photo ? `${REACT_APP_API_URL}/images/profiles/${photo}` : '../../img/avatar-kunlaboris.svg';
@@ -10,6 +10,7 @@ export const AvatarKunlaboris = ({ className = '', date, name, photo, id }) => {
       <img src={avatarImage} alt="Avatar" />
       <div id="dataAvatar">
         <h5>{date && <time dateTime={date}>{new Date(date).toLocaleDateString()}</time>}</h5>
+        <h5>{textAvatar && textAvatar}</h5>
         <p>{className === 'avatar-user' ? <Link to={`/users/${id}`}> {name}</Link> : name}</p>
       </div>
     </div>
